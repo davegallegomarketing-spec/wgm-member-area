@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Achievements - Wing Girl Method</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Achievements Page Specific Styles */
+
+
+
+
+.leaderboard-item{
+  padding: 12px !important;
+}
+
+    .achievement-hero {
+      background: linear-gradient(135deg, var(--secondary, #5B9BD5), #3b6e9e);
+      padding: 60px 0;
+      text-align: center;
+      color: white;
+    }
+
+    .achievement-hero h1 {
+      font-size: 48px;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .achievement-hero p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: -40px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .stat-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--gradient-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+    }
+
+    .stat-icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--secondary);
+    }
+
+    .stat-value {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* Badges Grid */
+    .badges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .badge-card {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 24px 16px;
+      text-align: center;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .badge-card.earned {
+      border-color: var(--secondary);
+      background: var(--gradient-blue);
+    }
+
+    .badge-card.locked {
+      opacity: 0.6;
+    }
+
+    .badge-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .badge-icon svg {
+      width: 40px;
+      height: 40px;
+      color: var(--secondary);
+    }
+
+    .badge-card.earned .badge-icon {
+      background: linear-gradient(135deg, #f59e0b, #f97316);
+    }
+
+    .badge-card.earned .badge-icon svg {
+      color: white;
+    }
+
+    .badge-card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .badge-card p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .badge-date {
+      font-size: 11px;
+      color: #10b981;
+      font-weight: 500;
+    }
+
+    .locked-badge {
+      font-size: 11px;
+      color: var(--muted);
+      background: var(--bg);
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+          display: flex;
+    align-items: center;
+    justify-content: center;
+     gap: 10px;
+    }
+
+    /* Progress Section */
+    .progress-section {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .progress-section h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+.leaderboard-item{
+  padding: 12px;
+}
+
+    .progress-section h3 svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .milestone-item {
+      margin-bottom: 20px;
+    }
+
+    .milestone-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .milestone-bar {
+      height: 8px;
+      background: var(--progress-bg);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .milestone-fill {
+      height: 100%;
+      background: var(--secondary);
+      border-radius: 10px;
+      transition: width 0.3s;
+    }
+
+    /* Leaderboard */
+    .leaderboard-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .leaderboard-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--bg);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .rank {
+      width: 32px;
+      height: 32px;
+      background: var(--gradient-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--secondary);
+    }
+
+    .rank.top-1 {
+      background: linear-gradient(135deg, #f59e0b, #f97316);
+      color: white;
+    }
+
+    .rank.top-2 {
+      background: linear-gradient(135deg, #94a3b8, #64748b);
+      color: white;
+    }
+
+    .rank.top-3 {
+      background: linear-gradient(135deg, #cd9b5a, #b87333);
+      color: white;
+    }
+
+    .leaderboard-info {
+      flex: 1;
+    }
+
+    .leaderboard-info h4 {
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .leaderboard-info p {
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .leaderboard-info p svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .leaderboard-score {
+      font-weight: bold;
+      color: var(--secondary);
+    }
+
+    /* Recent Activity */
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: var(--panel);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .activity-item:hover {
+      transform: translateX(4px);
+      border-color: var(--secondary);
+    }
+
+    .activity-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--gradient-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .activity-icon svg {
+      width: 24px;
+      height: 24px;
+      color: var(--secondary);
+    }
+
+    .activity-content {
+      flex: 1;
+    }
+
+    .activity-content h4 {
+      font-size: 15px;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    .activity-content p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .activity-date {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .badges-grid { grid-template-columns: repeat(2, 1fr); }
+      .achievement-hero h1 { font-size: 32px; }
+    }
+
+    @media (max-width: 640px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .badges-grid { grid-template-columns: 1fr; }
+      .activity-item { flex-wrap: wrap; }
+      .activity-date { width: 100%; margin-top: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="nav-wrap">
+  <div class="container nav">
+
+    <!-- LEFT -->
+    <div class="nav-left">
+      <div class="brand">
+        <a href="index.html">
+          <img src="assets/main_logo.png" alt="Logo" />
+        </a>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="courses-public.html">Programs</a>
+        <a href="course-library-member.html">Library</a>
+        <a href="community.html">Community</a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="nav-right">
+
+       <!-- 🌓 THEME TOGGLE -->
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <i data-lucide="sun" class="sun-icon"></i>
+    <i data-lucide="moon" class="moon-icon"></i>
+  </div>
+
+      <span class="ai-btn" onclick="openWingGirl()">
+        <i data-lucide="sparkles"></i> Talk to wing girl
+      </span>
+
+      <div class="nav-icon" onclick="toggleSearch()">
+        <i data-lucide="search"></i>
+      </div>
+
+      <div class="nav-icon" onclick="toggleNotif()">
+        <i data-lucide="bell"></i>
+      </div>
+
+      <div class="nav-profile" onclick="toggleProfile()">
+        <i data-lucide="user"></i>
+      </div>
+
+      <a class="btn btn-secondary" href="signup.html">Join Now</a>
+      
+
+      <!-- 🔥 HAMBURGER -->
+       
+      <div class="nav-hamburger">
+        <i data-lucide="menu" style="color: #5B9BD5;"></i>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 🔥 MOBILE DRAWER -->
+<!-- 🔥 MOBILE DRAWER - UPDATED WITH ALL ELEMENTS -->
+<div class="mobile-nav-drawer">
+
+  <!-- Overlay -->
+  <div class="mobile-nav-overlay"
+       onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+  </div>
+
+  <!-- Panel -->
+  <div class="mobile-nav-panel">
+
+    <!-- Close Button -->
+    <div class="close-nav">
+      <i data-lucide="x"
+         style="cursor:pointer;"
+         onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      </i>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="mobile-profile-section">
+      <div class="mobile-avatar">M</div>
+      <div class="mobile-user-info">
+        <h4>Marni</h4>
+        <p>marni@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- Main Navigation Links -->
+    <a href="index.html">
+      <i data-lucide="home"></i> Home
+    </a>
+    <a href="dashboard.html">
+      <i data-lucide="layout-dashboard"></i> Dashboard
+    </a>
+    <a href="courses-public.html">
+      <i data-lucide="graduation-cap"></i> Programs
+    </a>
+    <a href="course-library-member.html">
+      <i data-lucide="book-open"></i> Library
+    </a>
+    <a href="community.html">
+      <i data-lucide="users"></i> Community
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Account</div>
+
+    <!-- Account Links -->
+    <a href="profile.html">
+      <i data-lucide="user"></i> Profile
+    </a>
+    <a href="achievements.html">
+      <i data-lucide="award"></i> Achievements
+    </a>
+    <a href="help-center.html">
+      <i data-lucide="help-circle"></i> Help Center
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Support</div>
+
+    <!-- Support Links -->
+    <a href="contact-support.html">
+      <i data-lucide="mail"></i> Contact Support
+    </a>
+    <a href="about.html">
+      <i data-lucide="info"></i> About Us
+    </a>
+
+    <!-- Action Buttons -->
+    <button class="mobile-ai-btn" onclick="openWingGirl(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="sparkles"></i> Talk to Wing Girl
+    </button>
+
+    <a href="signup.html" class="mobile-join-btn" onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="log-in"></i> Join Now
+    </a>
+
+    <!-- Search and Notification in mobile -->
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+      <div class="nav-icon" onclick="toggleSearch(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="search"></i>
+      </div>
+      <div class="nav-icon" onclick="toggleNotif(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="bell"></i>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  <!-- Nav Popups -->
+  <div>
+    <div class="search-popup" id="searchPopup">
+      <div class="search-box">
+        <i data-lucide="search" class="search-icon"></i>
+        <input type="text" placeholder="Search anything..." />
+        <button class="close-btn" onclick="toggleSearch()">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="notification-panel" id="notificationPanel">
+      <div class="notif-header">
+        <h4>Notifications</h4>
+        <span onclick="toggleNotif()"><i data-lucide="x"></i></span>
+      </div>
+      <div class="notif-item">
+        <i data-lucide="message-circle" class="notif-icon"></i>
+        <span>New message received</span>
+      </div>
+      <div class="notif-item">
+        <i data-lucide="book-open" class="notif-icon"></i>
+        <span>Course updated</span>
+      </div>
+      <div class="notif-item">
+        <i data-lucide="trending-up" class="notif-icon"></i>
+        <span>Your progress improved</span>
+      </div>
+    </div>
+
+    <div class="profile-dropdown" id="profileDropdown">
+      <div class="profile-header">
+        <div class="avatar">M</div>
+        <div class="user-info">
+          <h4>Marni</h4>
+          <p>marni@gmail.com</p>
+        </div>
+      </div>
+      <div class="menu">
+        <a href="profile.html"><i data-lucide="user"></i> Profile</a>
+        <a href="dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+        <a href="about.html"><i data-lucide="info"></i> About</a>
+        <a href="contact-support.html"><i data-lucide="mail"></i> Contact</a>
+      </div>
+      <div class="menu logout">
+        <a href="login.html"><i data-lucide="log-out"></i> Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ACHIEVEMENTS CONTENT ==================== -->
+
+  <!-- Hero Section -->
+  <section class="achievement-hero">
+    <div class="container">
+      <h1>Your Achievements</h1>
+      <p>Track your progress, earn badges, and celebrate your wins</p>
+    </div>
+  </section>
+
+  <!-- Stats Overview -->
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon"><i data-lucide="flame"></i></div>
+        <div class="stat-value">6</div>
+        <div class="stat-label">Day Streak</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i data-lucide="star"></i></div>
+        <div class="stat-value">1,240</div>
+        <div class="stat-label">Total Points</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i data-lucide="award"></i></div>
+        <div class="stat-value">8</div>
+        <div class="stat-label">Badges Earned</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i data-lucide="trophy"></i></div>
+        <div class="stat-value">42</div>
+        <div class="stat-label">Global Rank</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Badges Section -->
+  <section class="section">
+    <div class="container">
+      <h2 style="margin-bottom: 8px;">Your Badges</h2>
+      <p style="color: var(--muted); margin-bottom: 32px;">Collect badges by completing courses, building streaks, and engaging with the community</p>
+
+      <div class="badges-grid">
+        <!-- Earned Badges -->
+        <div class="badge-card earned">
+          <div class="badge-icon"><i data-lucide="rocket"></i></div>
+          <h3>First Flight</h3>
+          <p>Completed your first lesson</p>
+          <span class="badge-date">Earned: Jan 15, 2026</span>
+        </div>
+        <div class="badge-card earned">
+          <div class="badge-icon"><i data-lucide="flame"></i></div>
+          <h3>On Fire</h3>
+          <p>Maintained a 7-day streak</p>
+          <span class="badge-date">Earned: Jan 22, 2026</span>
+        </div>
+        <div class="badge-card earned">
+          <div class="badge-icon"><i data-lucide="book-open"></i></div>
+          <h3>Course Master</h3>
+          <p>Completed Emotional Intelligence course</p>
+          <span class="badge-date">Earned: Feb 10, 2026</span>
+        </div>
+        <div class="badge-card earned">
+          <div class="badge-icon"><i data-lucide="message-circle"></i></div>
+          <h3>Community Contributor</h3>
+          <p>Posted 5 times in community</p>
+          <span class="badge-date">Earned: Feb 18, 2026</span>
+        </div>
+        
+        <!-- Locked Badges -->
+        <div class="badge-card locked">
+          <div class="badge-icon"><i data-lucide="zap"></i></div>
+          <h3>Consistency King</h3>
+          <p>Maintain a 30-day streak</p>
+          <span class="locked-badge"><i data-lucide="lock"></i> 24 days to go</span>
+        </div>
+        <div class="badge-card locked">
+          <div class="badge-icon"><i data-lucide="users"></i></div>
+          <h3>Community Leader</h3>
+          <p>Get 50 upvotes on your posts</p>
+          <span class="locked-badge"><i data-lucide="lock"></i> 42 more needed</span>
+        </div>
+        <div class="badge-card locked">
+          <div class="badge-icon"><i data-lucide="crown"></i></div>
+          <h3>Completionist</h3>
+          <p>Complete 5 full courses</p>
+          <span class="locked-badge"><i data-lucide="lock"></i> 3 more courses</span>
+        </div>
+        <div class="badge-card locked">
+          <div class="badge-icon"><i data-lucide="bot"></i></div>
+          <h3>AI Pro</h3>
+          <p>Ask 100 questions to Coach AI</p>
+          <span class="locked-badge"><i data-lucide="lock"></i> 73 more questions</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Progress & Milestones -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="two-col">
+    <div class="progress-section">
+
+  <h3 style="display: flex; align-items: center; gap: 6px;">
+    <i data-lucide="target" style="width: 20px; height: 20px; color: #5B9BD5;"></i>
+    Next Milestones
+  </h3>
+
+  <div class="milestone-item">
+    <div class="milestone-header" style="display: flex; justify-content: space-between; align-items: center;">
+      <span style="display: flex; align-items: center; gap: 6px;">
+        <i data-lucide="flame" style="width: 18px; height: 18px; color: #f97316;"></i>
+        30-Day Streak
+      </span>
+      <span>6 / 30 days</span>
+    </div>
+    <div class="milestone-bar">
+      <div class="milestone-fill" style="width: 20%"></div>
+    </div>
+  </div>
+
+  <div class="milestone-item">
+    <div class="milestone-header" style="display: flex; justify-content: space-between; align-items: center;">
+      <span style="display: flex; align-items: center; gap: 6px;">
+        <i data-lucide="book-open" style="width: 18px; height: 18px; color: #5b9bd5;"></i>
+        Complete 5 Courses
+      </span>
+      <span>2 / 5 courses</span>
+    </div>
+    <div class="milestone-bar">
+      <div class="milestone-fill" style="width: 40%"></div>
+    </div>
+  </div>
+
+  <div class="milestone-item">
+    <div class="milestone-header" style="display: flex; justify-content: space-between; align-items: center;">
+      <span style="display: flex; align-items: center; gap: 6px;">
+        <i data-lucide="message-square" style="width: 18px; height: 18px; color: #10b981;"></i>
+        Community Posts
+      </span>
+      <span>12 / 50 posts</span>
+    </div>
+    <div class="milestone-bar">
+      <div class="milestone-fill" style="width: 24%"></div>
+    </div>
+  </div>
+
+  <div class="milestone-item">
+    <div class="milestone-header" style="display: flex; justify-content: space-between; align-items: center;">
+      <span style="display: flex; align-items: center; gap: 6px;">
+        <i data-lucide="star" style="width: 18px; height: 18px; color: #f5b342;"></i>
+        Total Points
+      </span>
+      <span>1,240 / 5,000 points</span>
+    </div>
+    <div class="milestone-bar">
+      <div class="milestone-fill" style="width: 25%"></div>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <a href="dashboard.html" class="btn btn-outline" 
+       style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+      <i data-lucide="trending-up"></i>
+      View Dashboard
+    </a>
+  </div>
+
+</div>
+
+<script>
+  lucide.createIcons();
+</script>
+
+        <div class="progress-section">
+          <h3><i data-lucide="trophy" style="color: #5B9BD5;"></i> Leaderboard - Top Members</h3>
+          <div class="leaderboard-list">
+            <div class="leaderboard-item">
+              <div class="rank top-1">1</div>
+              <div class="leaderboard-info">
+                <h4>Sarah Johnson</h4>
+                <p><i data-lucide="award"></i> Master Coach</p>
+              </div>
+              <div class="leaderboard-score">3,420 pts</div>
+            </div>
+            <div class="leaderboard-item">
+              <div class="rank top-2">2</div>
+              <div class="leaderboard-info">
+                <h4>Mike Thompson</h4>
+                <p><i data-lucide="flame"></i> 45-day streak</p>
+              </div>
+              <div class="leaderboard-score">2,890 pts</div>
+            </div>
+            <div class="leaderboard-item">
+              <div class="rank top-3">3</div>
+              <div class="leaderboard-info">
+                <h4>David Chen</h4>
+                <p><i data-lucide="book-open"></i> 8 courses completed</p>
+              </div>
+              <div class="leaderboard-score">2,450 pts</div>
+            </div>
+            <div class="leaderboard-item">
+              <div class="rank">42</div>
+              <div class="leaderboard-info">
+                <h4>You</h4>
+                <p><i data-lucide="star"></i> 6-day streak</p>
+              </div>
+              <div class="leaderboard-score">1,240 pts</div>
+            </div>
+          </div>
+          <div style="margin-top: 16px; text-align: center;">
+            <a href="community.html" class="btn btn-outline" style="width: 100%;">
+              <i data-lucide="users"></i> Join Community
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Achievements -->
+  <section class="section">
+    <div class="container">
+      <h2 style="margin-bottom: 8px;">Recent Activity</h2>
+      <p style="color: var(--muted); margin-bottom: 32px;">Your latest achievements and milestones</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="activity-item">
+          <div class="activity-icon">
+            <i data-lucide="award"></i>
+          </div>
+          <div class="activity-content">
+            <h4>Earned "Course Master" Badge</h4>
+            <p>Completed Emotional Intelligence for Attraction course</p>
+          </div>
+          <div class="activity-date">Feb 10, 2026</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon">
+            <i data-lucide="flame"></i>
+          </div>
+          <div class="activity-content">
+            <h4>6-Day Learning Streak</h4>
+            <p>Consistent learning for 6 days in a row</p>
+          </div>
+          <div class="activity-date">Today</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon">
+            <i data-lucide="message-circle"></i>
+          </div>
+          <div class="activity-content">
+            <h4>Community Contributor</h4>
+            <p>Posted 5 helpful comments in community</p>
+          </div>
+          <div class="activity-date">Feb 18, 2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/main_logo.png" alt="Wing Girl Method Logo" style="height: 40px;">
+        <p>Wing Girl Method Transform your confidence, dating life & masculinity with expert guidance from Marni Kinrys.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <a href="courses-public.html">Programs</a>
+        <a href="master-classes.html">Master Classes</a>
+        <a href="course-library-member.html">Video Library</a>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a href="profile.html">Profile</a>
+        <a href="signup.html">Signup</a>
+        <a href="login.html">Login</a>
+        <a href="checkout.html">Checkout</a>
+      </div>
+      <div class="footer-col">
+        <h4>Community & Support</h4>
+        <a href="community.html">Community</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="help-center.html">Help Center</a>
+        <a href="contact-support.html">Contact Support</a>
+        
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">© 2026 Wing Girl Method. All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Chat Widget -->
+  <div class="chat-toggle" onclick="toggleChat()">
+    <i data-lucide="message-circle"></i>
+  </div>
+  <div class="chat-box" id="chatBox">
+    <div class="chat-header">
+      <strong>Talk to wing girl</strong>
+      <span onclick="toggleChat()">✖</span>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="msg bot">Hi How can we help you today?</div>
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="chatInput" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <!-- Wing Girl Popup -->
+  <div id="winggirl-modal" class="wg-modal">
+    <div class="wg-modal-content">
+      <span class="wg-close" onclick="closeWingGirl()">✕</span>
+      <div class="wg-header">
+        <img src="assets/main_logo.png" class="wg-avatar" />
+        <h2>Marni Kinrys</h2>
+        <p class="wg-sub">Founder of The Wing Girl Method</p>
+      </div>
+      <div class="wg-actions">
+        <button class="wg-btn"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4a2 2 0 0 0-2 2v14l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg> Chat</button>
+        <button class="wg-btn-outline"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2c1 .3 2 .5 3 .5a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10 21 3 14 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1 .2 2 .5 3a1 1 0 0 1-.2 1l-2.2 2.2z"/></svg> Call</button>
+      </div>
+      <div class="wg-suggestions">
+        <p>Suggested Questions</p>
+        <div class="wg-suggest-list">
+          <span>How do I approach a girl confidently?</span>
+          <span>What should I say first?</span>
+          <span>How to stop overthinking?</span>
+          <span>How to build attraction naturally?</span>
+        </div>
+      </div>
+      <div class="wg-input">
+        <input type="text" placeholder="Ask Wing Girl a question..." />
+        <button><svg width="18" height="18" viewBox="0 0 24 24"><path fill="white" d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+<!-- dark theme -->
+<script>
+// ==================== THEME TOGGLE FUNCTIONALITY ====================
+
+// Check for saved theme preference on page load
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Update Lucide icons after theme change
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Toggle theme function
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  // Show toast notification
+  showThemeToast(newTheme === 'dark' ? '🌙 Dark mode activated' : '☀️ Light mode activated');
+  
+  // Refresh Lucide icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Optional: Show temporary notification
+function showThemeToast(message) {
+  const toast = document.createElement('div');
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 13px;
+    z-index: 9999;
+    animation: fadeInOut 2s ease forwards;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  `;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.remove();
+  }, 2000);
+}
+
+// Add keyframes for toast animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  }
+`;
+document.head.appendChild(style);
+
+// Initialize theme on page load
+initTheme();
+
+</script>
+<!-- dark theme end --><!-- nav btn -->
+<script>
+
+document.querySelector('.nav-hamburger')?.addEventListener('click', () => {
+  document.querySelector('.mobile-nav-drawer')?.classList.toggle('open');
+});
+
+</script>
+
+
+  <script>
+    function openWingGirl() {
+      document.getElementById("winggirl-modal").style.display = "block";
+    }
+
+    function closeWingGirl() {
+      document.getElementById("winggirl-modal").style.display = "none";
+    }
+
+    window.onclick = function(e) {
+      let modal = document.getElementById("winggirl-modal");
+      if (e.target === modal) modal.style.display = "none";
+    }
+
+    document.querySelectorAll('.wg-suggest-list span').forEach(item => {
+      item.onclick = () => {
+        document.querySelector('.wg-input input').value = item.innerText;
+      }
+    });
+
+    lucide.createIcons();
+
+    function toggleSearch() {
+      document.getElementById("searchPopup").classList.toggle("active");
+    }
+
+    function toggleNotif() {
+      document.getElementById("notificationPanel").classList.toggle("active");
+    }
+
+    function toggleProfile() {
+      document.getElementById("profileDropdown").classList.toggle("active");
+    }
+
+    function toggleChat() {
+      const box = document.getElementById("chatBox");
+      box.style.display = box.style.display === "flex" ? "none" : "flex";
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("chatInput");
+      const text = input.value.trim();
+      if (text === "") return;
+      const chatBody = document.getElementById("chatBody");
+      const userMsg = document.createElement("div");
+      userMsg.className = "msg user";
+      userMsg.innerText = text;
+      chatBody.appendChild(userMsg);
+      setTimeout(() => {
+        const botMsg = document.createElement("div");
+        botMsg.className = "msg bot";
+        botMsg.innerText = "Got it We'll get back to you shortly.";
+        chatBody.appendChild(botMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 800);
+      input.value = "";
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    document.addEventListener("click", function(e) {
+      if (!e.target.closest(".nav-icon") && !e.target.closest(".nav-profile") && !e.target.closest("#notificationPanel") && !e.target.closest("#profileDropdown")) {
+        document.getElementById("notificationPanel").classList.remove("active");
+        document.getElementById("profileDropdown").classList.remove("active");
+      }
+    });
+  </script>
+</body>
+</html>

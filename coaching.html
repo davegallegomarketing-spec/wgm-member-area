@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Coaching | Wing Girl Method</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      /* Additional styles for the enhanced "Not Sure Where To Start?" section */
+      .hero-start-section {
+        background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);
+        border-radius: 32px;
+        padding: 60px 48px;
+        margin: 40px 0;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(91, 155, 213, 0.2);
+      }
+      
+      .hero-start-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(91,155,213,0.08) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      
+      .hero-start-section::after {
+        content: '';
+        position: absolute;
+        bottom: -30%;
+        left: -10%;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(91,155,213,0.05) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      
+      .hero-start-inner {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+      
+      .hero-badge {
+        display: inline-block;
+        background: #5B9BD5;
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 6px 16px;
+        border-radius: 40px;
+        margin-bottom: 24px;
+        letter-spacing: 0.5px;
+      }
+      
+      .hero-start-inner h1 {
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 24px;
+        color: #0f172a;
+      }
+      
+      .hero-start-inner h1 span {
+        color: #5B9BD5;
+        position: relative;
+      }
+      
+      .hero-start-inner h1 span::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #5B9BD5;
+        border-radius: 4px;
+        opacity: 0.3;
+      }
+      
+      .hero-description {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #334155;
+        margin-bottom: 32px;
+      }
+      
+      .hero-quote {
+        font-size: 20px;
+        font-weight: 500;
+        color: #1e293b;
+        margin: 32px 0;
+        padding: 24px;
+        background: rgba(91, 155, 213, 0.05);
+        border-radius: 24px;
+        font-style: italic;
+        position: relative;
+      }
+      
+      .hero-quote::before {
+        content: '"';
+        font-size: 60px;
+        color: #5B9BD5;
+        opacity: 0.3;
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        font-family: serif;
+      }
+      
+      .goal-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+        margin: 32px 0;
+      }
+      
+      .goal-card {
+        background: white;
+        border-radius: 60px;
+        padding: 12px 24px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid rgba(91, 155, 213, 0.2);
+        font-size: 14px;
+        font-weight: 500;
+        color: #1e293b;
+        transition: all 0.2s;
+        cursor: default;
+      }
+      
+      .goal-card:hover {
+        border-color: #5B9BD5;
+        background: #f8fafc;
+        transform: translateY(-2px);
+      }
+      
+      .goal-card i {
+        width: 18px;
+        height: 18px;
+        color: #5B9BD5;
+      }
+      
+      .wing-girl-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: #1e293b;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 60px;
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 16px;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: none;
+      }
+      
+      .wing-girl-tag:hover {
+        background: #5B9BD5;
+        transform: translateY(-2px);
+      }
+      
+      .wing-girl-tag i {
+        width: 20px;
+        height: 20px;
+      }
+      
+      /* ENHANCED COACHING PANEL STYLES */
+      .enhanced-panel {
+        background: #ffffff;
+        border-radius: 24px;
+        border: 1px solid rgba(91, 155, 213, 0.15);
+        padding: 32px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .enhanced-panel:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 35px -12px rgba(91, 155, 213, 0.2);
+        border-color: rgba(91, 155, 213, 0.3);
+      }
+      
+      /* Image Panel - Fixed Alignment */
+      .image-panel {
+        padding: 0 !important;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8fafc;
+        min-height: 383px;
+      }
+      
+      .coaching-image {
+        border-radius: 20px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        min-height: 383px;
+        transition: transform 0.3s ease;
+      }
+      
+      .coaching-image:hover {
+        transform: scale(1.02);
+      }
+      
+      /* Make both panels same height */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: stretch;
+      }
+      
+      .panel-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        border-bottom: 2px solid rgba(91, 155, 213, 0.15);
+      }
+      
+      .panel-header i {
+        width: 28px;
+        height: 28px;
+        color: #5B9BD5;
+      }
+      
+      .panel-header h3 {
+        font-size: 22px;
+        font-weight: 700;
+        margin: 0;
+        color: #0f172a;
+      }
+      
+      .enhanced-checklist {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      
+      .enhanced-check {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 8px 0;
+        font-size: 15px;
+        color: #1e293b;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+      }
+      
+      .enhanced-check::before {
+        content: "✓";
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        background: #5B9BD5;
+        color: white;
+        border-radius: 50%;
+        font-size: 13px;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+      
+      .enhanced-feature {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+      }
+      
+      .enhanced-feature span:first-child {
+        color: #475569;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+      }
+      
+      .enhanced-feature strong {
+        color: #5B9BD5;
+        font-size: 15px;
+        font-weight: 700;
+        background: rgba(91, 155, 213, 0.1);
+        padding: 4px 12px;
+        border-radius: 40px;
+      }
+      
+      .btn-enhanced {
+        background: #5B9BD5;
+        border: none;
+        padding: 14px 28px;
+        border-radius: 60px;
+        color: white;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        width: 100%;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 24px;
+        text-decoration: none;
+      }
+      
+      .btn-enhanced:hover {
+        background: #4a8ac2;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(91, 155, 213, 0.3);
+      }
+      
+      .sidebar-list-enhanced {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      
+      .sidebar-item-enhanced {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        font-size: 15px;
+        color: #1e293b;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+      }
+      
+      .sidebar-item-enhanced i {
+        width: 20px;
+        height: 20px;
+        color: #5B9BD5;
+        flex-shrink: 0;
+      }
+      
+      .goal-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      @media (max-width: 768px) {
+        .hero-start-section {
+          padding: 40px 24px;
+        }
+        .hero-start-inner h1 {
+          font-size: 32px;
+        }
+        .hero-description {
+          font-size: 16px;
+        }
+        .hero-quote {
+          font-size: 16px;
+          padding: 20px;
+        }
+        .goal-card {
+          padding: 8px 16px;
+          font-size: 12px;
+        }
+        .enhanced-panel {
+          padding: 24px;
+        }
+        .panel-header h3 {
+          font-size: 18px;
+        }
+        .two-col {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .image-panel {
+          min-height: 300px;
+        }
+        .coaching-image {
+          min-height: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+<div class="nav-wrap">
+  <div class="container nav">
+
+    <!-- LEFT -->
+    <div class="nav-left">
+      <div class="brand">
+        <a href="index.html">
+          <img src="assets/main_logo.png" alt="Logo" />
+        </a>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="courses-public.html">Programs</a>
+        <a href="course-library-member.html">Library</a>
+        <a href="community.html">Community</a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="nav-right">
+
+       <!-- 🌓 THEME TOGGLE -->
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <i data-lucide="sun" class="sun-icon"></i>
+    <i data-lucide="moon" class="moon-icon"></i>
+  </div>
+
+      <span class="ai-btn" onclick="openWingGirl()">
+        <i data-lucide="sparkles"></i> Talk to wing girl
+      </span>
+
+      <div class="nav-icon" onclick="toggleSearch()">
+        <i data-lucide="search"></i>
+      </div>
+
+      <div class="nav-icon" onclick="toggleNotif()">
+        <i data-lucide="bell"></i>
+      </div>
+
+      <div class="nav-profile" onclick="toggleProfile()">
+        <i data-lucide="user"></i>
+      </div>
+
+      <a class="btn btn-secondary" href="signup.html">Join Now</a>
+      
+
+      <!-- 🔥 HAMBURGER -->
+       
+      <div class="nav-hamburger">
+        <i data-lucide="menu" style="color: #5B9BD5;"></i>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 🔥 MOBILE DRAWER -->
+<!-- 🔥 MOBILE DRAWER - UPDATED WITH ALL ELEMENTS -->
+<div class="mobile-nav-drawer">
+
+  <!-- Overlay -->
+  <div class="mobile-nav-overlay"
+       onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+  </div>
+
+  <!-- Panel -->
+  <div class="mobile-nav-panel">
+
+    <!-- Close Button -->
+    <div class="close-nav">
+      <i data-lucide="x"
+         style="cursor:pointer;"
+         onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      </i>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="mobile-profile-section">
+      <div class="mobile-avatar">M</div>
+      <div class="mobile-user-info">
+        <h4>Marni</h4>
+        <p>marni@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- Main Navigation Links -->
+    <a href="index.html">
+      <i data-lucide="home"></i> Home
+    </a>
+    <a href="dashboard.html">
+      <i data-lucide="layout-dashboard"></i> Dashboard
+    </a>
+    <a href="courses-public.html">
+      <i data-lucide="graduation-cap"></i> Programs
+    </a>
+    <a href="course-library-member.html">
+      <i data-lucide="book-open"></i> Library
+    </a>
+    <a href="community.html">
+      <i data-lucide="users"></i> Community
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Account</div>
+
+    <!-- Account Links -->
+    <a href="profile.html">
+      <i data-lucide="user"></i> Profile
+    </a>
+    <a href="achievements.html">
+      <i data-lucide="award"></i> Achievements
+    </a>
+    <a href="help-center.html">
+      <i data-lucide="help-circle"></i> Help Center
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Support</div>
+
+    <!-- Support Links -->
+    <a href="contact-support.html">
+      <i data-lucide="mail"></i> Contact Support
+    </a>
+    <a href="about.html">
+      <i data-lucide="info"></i> About Us
+    </a>
+
+    <!-- Action Buttons -->
+    <button class="mobile-ai-btn" onclick="openWingGirl(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="sparkles"></i> Talk to Wing Girl
+    </button>
+
+    <a href="signup.html" class="mobile-join-btn" onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="log-in"></i> Join Now
+    </a>
+
+    <!-- Search and Notification in mobile -->
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+      <div class="nav-icon" onclick="toggleSearch(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="search"></i>
+      </div>
+      <div class="nav-icon" onclick="toggleNotif(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="bell"></i>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <!-- Nav Popups -->
+    <div>
+      <div class="search-popup" id="searchPopup">
+        <div class="search-box">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" placeholder="Search anything..." />
+          <button class="close-btn" onclick="toggleSearch()">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+      </div>
+      <div class="notification-panel" id="notificationPanel">
+        <div class="notif-header">
+          <h4>Notifications</h4>
+          <span onclick="toggleNotif()"><i data-lucide="x"></i></span>
+        </div>
+        <div class="notif-item">
+          <i data-lucide="message-circle" class="notif-icon"></i>
+          <span>New message received</span>
+        </div>
+        <div class="notif-item">
+          <i data-lucide="book-open" class="notif-icon"></i>
+          <span>Course updated</span>
+        </div>
+        <div class="notif-item">
+          <i data-lucide="trending-up" class="notif-icon"></i>
+          <span>Your progress improved</span>
+        </div>
+      </div>
+      <div class="profile-dropdown" id="profileDropdown">
+        <div class="profile-header">
+          <div class="avatar">M</div>
+          <div class="user-info">
+            <h4>Marni</h4>
+            <p>marni@gmail.com</p>
+          </div>
+        </div>
+        <div class="menu">
+          <a href="profile.html"><i data-lucide="user"></i> Profile</a>
+          <a href="dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+          <a href="about.html"><i data-lucide="info"></i> About</a>
+          <a href="contact-support.html"><i data-lucide="mail"></i> Contact</a>
+        </div>
+        <div class="menu logout">
+          <a href="login.html"><i data-lucide="log-out"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== NEW ENHANCED SECTION ==================== -->
+    <section class="hero-start-section">
+      <div class="hero-start-inner">
+        <span class="hero-badge">
+          <i data-lucide="help-circle" style="width: 14px; height: 14px; display: inline; margin-right: 4px;"></i>
+          Not Sure Where To Start?
+        </span>
+        
+        <h1>
+          What would your life look like if you could feel 
+          <span>confident and relaxed</span> when approaching and talking to women?
+        </h1>
+        
+        <p class="hero-description">
+          If you knew just the right thing to do and say every time. Close your eyes and really think about it. 
+          Pretty awesome life, right?
+        </p>
+        
+        <div class="hero-quote">
+          I know that not every guy is going to want the same thing. Some want a girlfriend, 
+          others want to date, others want a fun noncommittal lifestyle, and others are looking 
+          for a long-term relationship or marriage. I'm here to help make that happen and help 
+          you get the women you want.
+        </div>
+        
+        <div class="goal-cards">
+          <div class="goal-card">
+            <i data-lucide="heart" style="color: #5B9BD5;"></i>
+            Find a Girlfriend
+          </div>
+          <div class="goal-card">
+            <i data-lucide="calendar-heart" style="color: #5B9BD5;"></i>
+            Casual Dating
+          </div>
+          <div class="goal-card">
+            <i data-lucide="sparkles" style="color: #5B9BD5;"></i>
+            Non-Committal Lifestyle
+          </div>
+          <div class="goal-card">
+            <i data-lucide="infinity" style="color: #5B9BD5;"></i>
+            Long-Term Relationship
+          </div>
+          <div class="goal-card">
+            <i data-lucide="gem" style="color: #5B9BD5;"></i>
+            Marriage
+          </div>
+        </div>
+        
+        <button class="wing-girl-tag" onclick="openWingGirl()">
+          <i data-lucide="sparkles"></i>
+          One of Our Wing Girls Will Help You
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== ENHANCED COACHING SECTION ==================== -->
+    <section class="section">
+      <div class="container two-col">
+        <!-- Premium Coaching Panel - Enhanced -->
+        <div class="enhanced-panel">
+          <div class="panel-header">
+            <i data-lucide="crown" style="color: #5B9BD5;"></i>
+            <h3>Premium Coaching</h3>
+          </div>
+          <p style="color: #475569; line-height: 1.7; margin-bottom: 24px;">
+            For members who want faster growth, more accountability, and direct
+            support. This page is designed to support one-click upgrades once
+            payment credentials are already attached to the member profile.
+          </p>
+          <div class="enhanced-feature">
+            <span><i data-lucide="compass" style="width: 16px; height: 16px; display: inline; margin-right: 8px; color: #5B9BD5;"></i> Direct guidance</span>
+            <strong>Included</strong>
+          </div>
+          <div class="enhanced-feature">
+            <span><i data-lucide="calendar" style="width: 16px; height: 16px; display: inline; margin-right: 8px; color: #5B9BD5;"></i> Accountability</span>
+            <strong>Weekly</strong>
+          </div>
+          <div class="enhanced-feature">
+            <span><i data-lucide="zap" style="width: 16px; height: 16px; display: inline; margin-right: 8px; color: #5B9BD5;"></i> Priority support</span>
+            <strong>Yes</strong>
+          </div>
+          <div class="enhanced-feature">
+            <span><i data-lucide="credit-card" style="width: 16px; height: 16px; display: inline; margin-right: 8px; color: #5B9BD5;"></i> 1-click upgrade path</span>
+            <strong>Enabled</strong>
+          </div>
+          <a class="btn-enhanced" href="checkout.html">
+            <i data-lucide="arrow-right"></i>
+            Apply for Coaching
+          </a>
+        </div>
+        
+        <!-- Image Panel - Fixed with proper alignment -->
+        <div class="enhanced-panel image-panel">
+          <img src="assets/videoframe_8445.png" class="coaching-image" alt="Marni Kinrys Coaching" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ENHANCED WHAT COACHING INCLUDES & IDEAL FOR MEMBERS ==================== -->
+    <section class="section section-muted">
+      <div class="container two-col">
+        <!-- What coaching includes - Enhanced -->
+        <div class="enhanced-panel">
+          <div class="panel-header">
+            <i data-lucide="gift" style="color: #5B9BD5;"></i>
+            <h3>What Coaching Includes</h3>
+          </div>
+          <div class="enhanced-checklist">
+            <div class="enhanced-check">Direct guidance and strategic feedback</div>
+            <div class="enhanced-check">Stronger accountability and momentum</div>
+            <div class="enhanced-check">Priority support and clearer next steps</div>
+            <div class="enhanced-check">Contextual upgrade placements</div>
+            <div class="enhanced-check">Personalized action plan</div>
+            <div class="enhanced-check">Weekly check-ins and progress tracking</div>
+          </div>
+        </div>
+        
+        <!-- Ideal for members who want - Enhanced -->
+        <div class="enhanced-panel">
+          <div class="panel-header">
+            <i data-lucide="target" style="color: #5B9BD5;"></i>
+            <h3>Ideal For Members Who Want</h3>
+          </div>
+          <div class="sidebar-list-enhanced">
+            <div class="sidebar-item-enhanced">
+              <i data-lucide="zap" style="color: #5B9BD5;"></i>
+              Faster results than self-paced learning alone
+            </div>
+            <div class="sidebar-item-enhanced">
+              <i data-lucide="calendar-check"  style="color: #5B9BD5;"></i>
+              Higher accountability and check-ins
+            </div>
+            <div class="sidebar-item-enhanced">
+              <i data-lucide="compass"  style="color: #5B9BD5;"></i>
+              Clearer direction on what to prioritize next
+            </div>
+            <div class="sidebar-item-enhanced">
+              <i data-lucide="message-circle"  style="color: #5B9BD5;"></i>
+              Direct access to coaching feedback
+            </div>
+            <div class="sidebar-item-enhanced">
+              <i data-lucide="trending-up"  style="color: #5B9BD5;"></i>
+              Accelerated transformation and results
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <img src="assets/main_logo.png" alt="Wing Girl Method Logo" style="height: 40px; margin-top: 20px;">
+          <p>Wing Girl Method Transform your confidence, dating life & masculinity with expert guidance from Marni Kinrys.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="dashboard.html">Dashboard</a>
+        </div>
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <a href="courses-public.html">Programs</a>
+          <a href="master-classes.html">Master Classes</a>
+          <a href="course-library-member.html">Video Library</a>
+          <a href="resources.html">Resources</a>
+        </div>
+        <div class="footer-col">
+          <h4>Account</h4>
+          <a href="profile.html">Profile</a>
+          <a href="signup.html">Signup</a>
+          <a href="login.html">Login</a>
+          <a href="onboarding-quiz.html">Onboarding</a>
+          <a href="checkout.html">Checkout</a>
+        </div>
+        <div class="footer-col">
+          <h4>Community & Support</h4>
+          <a href="community.html">Community</a>
+          <a href="achievements.html">Achievements</a>
+          <a href="help-center.html">Help Center</a>
+          <a href="contact-support.html">Contact Support</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">© 2026 Wing Girl Method. All Rights Reserved.</div>
+      </div>
+    </footer>
+
+    <!-- CHAT BUTTON & BOX -->
+    <div class="chat-toggle" onclick="toggleChat()">
+      <i data-lucide="message-circle"></i>
+    </div>
+    <div class="chat-box" id="chatBox">
+      <div class="chat-header">
+        <strong>Talk to wing girl</strong>
+        <span onclick="toggleChat()">✖</span>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="msg bot">Hi 👋 How can we help you today?</div>
+      </div>
+      <div class="chat-footer">
+        <input type="text" id="chatInput" placeholder="Type a message..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <!-- wing girl popup -->
+    <div id="winggirl-modal" class="wg-modal">
+      <div class="wg-modal-content">
+        <span class="wg-close" onclick="closeWingGirl()">✕</span>
+        <div class="wg-header">
+          <img src="assets/main_logo.png" class="wg-avatar" />
+          <h2>Marni Kinrys</h2>
+          <p class="wg-sub">Founder of The Wing Girl Method</p>
+        </div>
+        <div class="wg-actions">
+          <button class="wg-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M20 2H4a2 2 0 0 0-2 2v14l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/>
+            </svg>
+            Chat
+          </button>
+          <button class="wg-btn-outline">
+            <svg width="18" height="18" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2c1 .3 2 .5 3 .5a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10 21 3 14 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1 .2 2 .5 3a1 1 0 0 1-.2 1l-2.2 2.2z"/>
+            </svg>
+            Call
+          </button>
+        </div>
+        <div class="wg-suggestions">
+          <p>Suggested Questions</p>
+          <div class="wg-suggest-list">
+            <span>How do I approach a girl confidently?</span>
+            <span>What should I say first?</span>
+            <span>How to stop overthinking?</span>
+            <span>How to build attraction naturally?</span>
+          </div>
+        </div>
+        <div class="wg-input">
+          <input type="text" placeholder="Ask Wing Girl a question..." />
+          <button>
+            <svg width="18" height="18" viewBox="0 0 24 24">
+              <path fill="white" d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+<!-- dark theme -->
+<script>
+// ==================== THEME TOGGLE FUNCTIONALITY ====================
+
+// Check for saved theme preference on page load
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Update Lucide icons after theme change
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Toggle theme function
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  // Show toast notification
+  showThemeToast(newTheme === 'dark' ? '🌙 Dark mode activated' : '☀️ Light mode activated');
+  
+  // Refresh Lucide icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Optional: Show temporary notification
+function showThemeToast(message) {
+  const toast = document.createElement('div');
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 13px;
+    z-index: 9999;
+    animation: fadeInOut 2s ease forwards;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  `;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.remove();
+  }, 2000);
+}
+
+// Add keyframes for toast animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  }
+`;
+document.head.appendChild(style);
+
+// Initialize theme on page load
+initTheme();
+
+</script>
+<!-- dark theme end --><!-- nav btn -->
+<script>
+
+document.querySelector('.nav-hamburger')?.addEventListener('click', () => {
+  document.querySelector('.mobile-nav-drawer')?.classList.toggle('open');
+});
+
+</script>
+
+
+    <script>
+      function openWingGirl() {
+        document.getElementById("winggirl-modal").style.display = "block";
+      }
+      function closeWingGirl() {
+        document.getElementById("winggirl-modal").style.display = "none";
+      }
+      window.onclick = function(e) {
+        let modal = document.getElementById("winggirl-modal");
+        if (e.target === modal) modal.style.display = "none";
+      }
+      document.querySelectorAll('.wg-suggest-list span').forEach(item => {
+        item.onclick = () => {
+          document.querySelector('.wg-input input').value = item.innerText;
+        }
+      });
+      
+      lucide.createIcons();
+
+      function toggleChat() {
+        const box = document.getElementById("chatBox");
+        box.style.display = box.style.display === "flex" ? "none" : "flex";
+      }
+      function sendMessage() {
+        const input = document.getElementById("chatInput");
+        const text = input.value.trim();
+        if (text === "") return;
+        const chatBody = document.getElementById("chatBody");
+        const userMsg = document.createElement("div");
+        userMsg.className = "msg user";
+        userMsg.innerText = text;
+        chatBody.appendChild(userMsg);
+        setTimeout(() => {
+          const botMsg = document.createElement("div");
+          botMsg.className = "msg bot";
+          botMsg.innerText = "Got it 👍 We'll get back to you shortly.";
+          chatBody.appendChild(botMsg);
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 800);
+        input.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+      function toggleSearch() {
+        document.getElementById("searchPopup").classList.toggle("active");
+      }
+      function toggleNotif() {
+        document.getElementById("notificationPanel").classList.toggle("active");
+      }
+      function toggleProfile() {
+        document.getElementById("profileDropdown").classList.toggle("active");
+      }
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".nav-icon") && !e.target.closest(".nav-profile") && !e.target.closest("#notificationPanel") && !e.target.closest("#profileDropdown")) {
+          document.getElementById("notificationPanel").classList.remove("active");
+          document.getElementById("profileDropdown").classList.remove("active");
+        }
+      });
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

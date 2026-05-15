@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lesson</title>
+    <link rel="stylesheet" href="styles.css" />
+            <script src="https://unpkg.com/lucide@latest"></script>
+
+  </head>
+  <body>
+      <div class="nav-wrap">
+  <div class="container nav">
+
+    <!-- LEFT -->
+    <div class="nav-left">
+      <div class="brand">
+        <a href="index.html">
+          <img src="assets/main_logo.png" alt="Logo" />
+        </a>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="courses-public.html">Programs</a>
+        <a href="course-library-member.html">Library</a>
+        <a href="community.html">Community</a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="nav-right">
+
+       <!-- 🌓 THEME TOGGLE -->
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <i data-lucide="sun" class="sun-icon"></i>
+    <i data-lucide="moon" class="moon-icon"></i>
+  </div>
+
+      <span class="ai-btn" onclick="openWingGirl()">
+        <i data-lucide="sparkles"></i> Talk to wing girl
+      </span>
+
+      <div class="nav-icon" onclick="toggleSearch()">
+        <i data-lucide="search"></i>
+      </div>
+
+      <div class="nav-icon" onclick="toggleNotif()">
+        <i data-lucide="bell"></i>
+      </div>
+
+      <div class="nav-profile" onclick="toggleProfile()">
+        <i data-lucide="user"></i>
+      </div>
+
+      <a class="btn btn-secondary" href="signup.html">Join Now</a>
+      
+
+      <!-- 🔥 HAMBURGER -->
+       
+      <div class="nav-hamburger">
+        <i data-lucide="menu" style="color: #5B9BD5;"></i>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 🔥 MOBILE DRAWER -->
+<!-- 🔥 MOBILE DRAWER - UPDATED WITH ALL ELEMENTS -->
+<div class="mobile-nav-drawer">
+
+  <!-- Overlay -->
+  <div class="mobile-nav-overlay"
+       onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+  </div>
+
+  <!-- Panel -->
+  <div class="mobile-nav-panel">
+
+    <!-- Close Button -->
+    <div class="close-nav">
+      <i data-lucide="x"
+         style="cursor:pointer;"
+         onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      </i>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="mobile-profile-section">
+      <div class="mobile-avatar">M</div>
+      <div class="mobile-user-info">
+        <h4>Marni</h4>
+        <p>marni@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- Main Navigation Links -->
+    <a href="index.html">
+      <i data-lucide="home"></i> Home
+    </a>
+    <a href="dashboard.html">
+      <i data-lucide="layout-dashboard"></i> Dashboard
+    </a>
+    <a href="courses-public.html">
+      <i data-lucide="graduation-cap"></i> Programs
+    </a>
+    <a href="course-library-member.html">
+      <i data-lucide="book-open"></i> Library
+    </a>
+    <a href="community.html">
+      <i data-lucide="users"></i> Community
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Account</div>
+
+    <!-- Account Links -->
+    <a href="profile.html">
+      <i data-lucide="user"></i> Profile
+    </a>
+    <a href="achievements.html">
+      <i data-lucide="award"></i> Achievements
+    </a>
+    <a href="help-center.html">
+      <i data-lucide="help-circle"></i> Help Center
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Support</div>
+
+    <!-- Support Links -->
+    <a href="contact-support.html">
+      <i data-lucide="mail"></i> Contact Support
+    </a>
+    <a href="about.html">
+      <i data-lucide="info"></i> About Us
+    </a>
+
+    <!-- Action Buttons -->
+    <button class="mobile-ai-btn" onclick="openWingGirl(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="sparkles"></i> Talk to Wing Girl
+    </button>
+
+    <a href="signup.html" class="mobile-join-btn" onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="log-in"></i> Join Now
+    </a>
+
+    <!-- Search and Notification in mobile -->
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+      <div class="nav-icon" onclick="toggleSearch(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="search"></i>
+      </div>
+      <div class="nav-icon" onclick="toggleNotif(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="bell"></i>
+      </div>
+    </div>
+
+  </div>
+</div>
+        <!-- nav pop up -->
+    <div>
+      <!-- search -->
+              <div class="search-popup" id="searchPopup">
+  <div class="search-box">
+    <i data-lucide="search" class="search-icon"></i>
+    <input type="text" placeholder="Search anything..." />
+    <button class="close-btn" onclick="toggleSearch()">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+            </div>
+      <!-- notification -->
+     
+               <div class="notification-panel" id="notificationPanel">
+  <!-- HEADER -->
+  <div class="notif-header">
+    <h4>Notifications</h4>
+    <span onclick="toggleNotif()"><i data-lucide="x"></i></span>
+  </div>
+
+  <!-- ITEMS -->
+  <div class="notif-item">
+    <i data-lucide="message-circle" class="notif-icon"></i>
+    <span>New message received</span>
+  </div>
+
+  <div class="notif-item">
+    <i data-lucide="book-open" class="notif-icon"></i>
+    <span>Course updated</span>
+  </div>
+
+  <div class="notif-item">
+    <i data-lucide="trending-up" class="notif-icon"></i>
+    <span>Your progress improved 🎉</span>
+  </div>
+              </div>
+            <!-- profile -->
+             <div class="profile-dropdown" id="profileDropdown">
+
+  <!-- TOP PROFILE INFO -->
+  <div class="profile-header">
+    <div class="avatar">M</div>
+    <div class="user-info">
+      <h4>Marni</h4>
+      <p>marni@gmail.com</p>
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <div class="menu">
+    <a href="profile.html"><i data-lucide="user"></i> Profile</a>
+    <a href="dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+    <a href="about.html"><i data-lucide="info"></i> About</a>
+    <a href="contact-support.html"><i data-lucide="mail"></i> Contact</a>
+  </div>
+
+  <!-- LOGOUT -->
+  <div class="menu logout">
+    <a href="login.html"><i data-lucide="log-out"></i> Logout</a>
+  </div>
+
+                     </div>
+
+                     </div>
+
+    <section class="section">
+      <div class="container two-col">
+        <div class="panel">
+          <img
+            src="assets/Masterclass_How-To-Master-Emotional-Intelligence-With-Women-.png"
+            style="border-radius: 14px"
+          />
+          <h2 style="margin-top: 18px">Lesson 3 — Reading Emotional Cues</h2>
+          <div class="meta">
+            <span>Duration: 12:34</span
+            ><span>Course: Emotional Intelligence</span
+            ><span>Saved at 10:21</span>
+          </div>
+          <p style="color: black; line-height: 1.7">
+            This lesson teaches how to notice subtle changes in tone, body
+            language, pace, and emotional energy — then respond in a way that
+            creates safety, confidence, and attraction.
+          </p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap">
+            <a class="btn btn-secondary" href="#">Mark Complete</a
+            ><a class="btn btn-secondary" href="#">Download Worksheet</a>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Lesson Notes & Resources</h3>
+          <div class="sidebar-list">
+            <div class="sidebar-item">
+              Key idea: observe first, respond second
+            </div>
+            <div class="sidebar-item">
+              Worksheet: emotional pattern tracking
+            </div>
+            <div class="sidebar-item">
+              Practice drill: 3 real-world observations before reacting
+            </div>
+            <div class="sidebar-item">
+  Key idea: stay calm under pressure situations
+</div>
+
+<div class="sidebar-item">
+  Worksheet: identify your emotional triggers
+</div>
+
+<div class="sidebar-item">
+  Practice drill: pause 5 seconds before responding
+</div>
+
+<div class="sidebar-item">
+  Key idea: listen actively instead of reacting instantly
+</div>
+
+<!-- <div class="panel">
+          <h3>Comments & Ratings</h3>
+          <div class="comment">
+            <div class="name">
+              Member A
+              <span style="color: #94a3b8; font-weight: 600"
+                >• 2 hours ago</span
+              >
+            </div>
+            <div class="rating">★★★★★</div>
+            <p>
+              This one was huge for me. I realized I’ve been reacting too fast
+              instead of actually observing what’s happening.
+            </p>
+          </div>
+          <div class="comment">
+            <div class="name">
+              Coach Reply
+              <span style="color: #94a3b8; font-weight: 600">• 1 hour ago</span>
+            </div>
+            <p>
+              Exactly. The goal is to slow your internal reaction so you can
+              respond from awareness, not urgency.
+            </p>
+          </div>
+        </div> -->
+
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- <section class="section section-dark">
+      <div class="container two-col">
+        <div class="panel">
+          <h3>Comments & Ratings</h3>
+          <div class="comment">
+            <div class="name">
+              Member A
+              <span style="color: #94a3b8; font-weight: 600"
+                >• 2 hours ago</span
+              >
+            </div>
+            <div class="rating">★★★★★</div>
+            <p>
+              This one was huge for me. I realized I’ve been reacting too fast
+              instead of actually observing what’s happening.
+            </p>
+          </div>
+          <div class="comment">
+            <div class="name">
+              Coach Reply
+              <span style="color: #94a3b8; font-weight: 600">• 1 hour ago</span>
+            </div>
+            <p>
+              Exactly. The goal is to slow your internal reaction so you can
+              respond from awareness, not urgency.
+            </p>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Suggested AI Prompts</h3>
+          <div class="sidebar-list">
+            <div class="sidebar-item">
+              Give me an example of emotional cues on a first date.
+            </div>
+            <div class="sidebar-item">
+              Summarize the main lesson in plain language.
+            </div>
+            <div class="sidebar-item">
+              What should I practice after this video?
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+
+ <footer class="footer">
+  <div class="container footer-inner">
+
+    <!-- BRAND -->
+    <div class="footer-brand">
+      <img src="assets/main_logo.png" alt="Wing Girl Method Logo" style="height: 40px; margin-top: 20px;">
+      <p>
+        Wing Girl Method Transform your confidence, dating life & masculinity 
+        with expert guidance from Marni Kinrys.
+      </p>
+    </div>
+
+    <!-- COLUMN 1 -->
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+
+    <!-- COLUMN 2 -->
+    <div class="footer-col">
+      <h4>Learn</h4>
+      <a href="courses-public.html">Programs</a>
+      <a href="master-classes.html">Master Classes</a>
+      <a href="course-library-member.html">Video Library</a>
+      <a href="resources.html">Resources</a>
+    </div>
+
+    <!-- COLUMN 3 -->
+    <div class="footer-col">
+      <h4>Account</h4>
+      <a href="profile.html">Profile</a>
+      <a href="signup.html">Signup</a>
+      <a href="login.html">Login</a>
+      <a href="onboarding-quiz.html">Onboarding</a>
+      <a href="checkout.html">Checkout</a>
+    </div>
+
+    <!-- COLUMN 4 -->
+    <div class="footer-col">
+      <h4>Community & Support</h4>
+      <a href="community.html">Community</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="help-center.html">Help Center</a>
+      <a href="contact-support.html">Contact Support</a>
+      <a href="#">Coach Marni AI</a>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <div class="container">
+      © 2026 Wing Girl Method. All Rights Reserved.
+    </div>
+  </div>
+</footer>
+<!-- CHAT BUTTON -->
+<div class="chat-toggle" onclick="toggleChat()">
+  <i data-lucide="message-circle"></i>
+</div>
+
+<!-- CHAT BOX -->
+<div class="chat-box" id="chatBox">
+  <div class="chat-header">
+    <strong>Talk to wing girl</strong>
+    <span onclick="toggleChat()">✖</span>
+  </div>
+
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">Hi 👋 How can we help you today?</div>
+  </div>
+
+  <div class="chat-footer">
+    <input type="text" id="chatInput" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+
+
+<!-- wing girl popup -->
+<div id="winggirl-modal" class="wg-modal">
+  <div class="wg-modal-content">
+
+    <!-- CLOSE -->
+    <span class="wg-close" onclick="closeWingGirl()">✕</span>
+
+    <!-- HEADER -->
+    <div class="wg-header">
+      <img src="assets/main_logo.png" class="wg-avatar" />
+
+      <h2>Marni Kinrys</h2>
+      <p class="wg-sub">Founder of The Wing Girl Method</p>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="wg-actions">
+
+      <button class="wg-btn">
+        <!-- chat icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M20 2H4a2 2 0 0 0-2 2v14l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/>
+        </svg>
+        Chat
+      </button>
+
+      <button class="wg-btn-outline">
+        <!-- phone icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2c1 .3 2 .5 3 .5a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10 21 3 14 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1 .2 2 .5 3a1 1 0 0 1-.2 1l-2.2 2.2z"/>
+        </svg>
+        Call
+      </button>
+
+    </div>
+
+    <!-- SUGGESTED QUESTIONS -->
+    <div class="wg-suggestions">
+      <p>Suggested Questions</p>
+
+      <div class="wg-suggest-list">
+        <span>How do I approach a girl confidently?</span>
+        <span>What should I say first?</span>
+        <span>How to stop overthinking?</span>
+        <span>How to build attraction naturally?</span>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div class="wg-input">
+      <input type="text" placeholder="Ask Wing Girl a question..." />
+      <button>
+        <!-- send icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24">
+          <path fill="white"
+            d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- dark theme -->
+<script>
+// ==================== THEME TOGGLE FUNCTIONALITY ====================
+
+// Check for saved theme preference on page load
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Update Lucide icons after theme change
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Toggle theme function
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  // Show toast notification
+  showThemeToast(newTheme === 'dark' ? '🌙 Dark mode activated' : '☀️ Light mode activated');
+  
+  // Refresh Lucide icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Optional: Show temporary notification
+function showThemeToast(message) {
+  const toast = document.createElement('div');
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 13px;
+    z-index: 9999;
+    animation: fadeInOut 2s ease forwards;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  `;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.remove();
+  }, 2000);
+}
+
+// Add keyframes for toast animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  }
+`;
+document.head.appendChild(style);
+
+// Initialize theme on page load
+initTheme();
+
+</script>
+<!-- dark theme end --><!-- nav btn -->
+<script>
+
+document.querySelector('.nav-hamburger')?.addEventListener('click', () => {
+  document.querySelector('.mobile-nav-drawer')?.classList.toggle('open');
+});
+
+</script>
+
+<script>
+function openWingGirl() {
+  document.getElementById("winggirl-modal").style.display = "block";
+}
+
+function closeWingGirl() {
+  document.getElementById("winggirl-modal").style.display = "none";
+}
+
+// close outside
+window.onclick = function(e) {
+  let modal = document.getElementById("winggirl-modal");
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+}
+
+// suggestion click → input fill
+document.querySelectorAll('.wg-suggest-list span').forEach(item => {
+  item.onclick = () => {
+    document.querySelector('.wg-input input').value = item.innerText;
+  }
+});
+</script>
+
+
+
+    <script>
+      lucide.createIcons();
+
+      // Carousel
+      const cards = document.getElementById("programCards");
+      if (document.querySelector(".arrow.right")) {
+        document.querySelector(".arrow.right").onclick = () =>
+          (cards.scrollLeft += 320);
+        document.querySelector(".arrow.left").onclick = () =>
+          (cards.scrollLeft -= 320);
+      }
+
+     const welcomeContainer = document.getElementById("welcome-video-container");
+const closeBtn = document.getElementById("close-welcome-btn");
+const iframe = document.getElementById("welcome-iframe");
+
+if (welcomeContainer) {
+  welcomeContainer.classList.add("show");
+}
+
+if (closeBtn) {
+  closeBtn.addEventListener("click", () => {
+    welcomeContainer.classList.remove("show");
+    if (iframe) iframe.src = iframe.src;
+  });
+}
+
+      function toggleChat() {
+        const box = document.getElementById("chatBox");
+        box.style.display = box.style.display === "flex" ? "none" : "flex";
+      }
+
+      function sendMessage() {
+        const input = document.getElementById("chatInput");
+        const text = input.value.trim();
+
+        if (text === "") return;
+
+        const chatBody = document.getElementById("chatBody");
+
+        // user message
+        const userMsg = document.createElement("div");
+        userMsg.className = "msg user";
+        userMsg.innerText = text;
+        chatBody.appendChild(userMsg);
+
+        // fake bot reply
+        setTimeout(() => {
+          const botMsg = document.createElement("div");
+          botMsg.className = "msg bot";
+          botMsg.innerText = "Got it 👍 We'll get back to you shortly.";
+          chatBody.appendChild(botMsg);
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 800);
+
+        input.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+    </script>
+
+    <script>
+      function toggleSearch() {
+        document.getElementById("searchPopup").classList.toggle("active");
+      }
+
+      function toggleNotif() {
+        document.getElementById("notificationPanel").classList.toggle("active");
+      }
+
+      function toggleProfile() {
+        document.getElementById("profileDropdown").classList.toggle("active");
+      }
+
+      // close on outside click
+      document.addEventListener("click", function (e) {
+        if (
+          !e.target.closest(".nav-icon") &&
+          !e.target.closest(".nav-profile") &&
+          !e.target.closest("#notificationPanel") &&
+          !e.target.closest("#profileDropdown")
+        ) {
+          document
+            .getElementById("notificationPanel")
+            .classList.remove("active");
+          document.getElementById("profileDropdown").classList.remove("active");
+        }
+      });
+
+      // lucide icons init
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

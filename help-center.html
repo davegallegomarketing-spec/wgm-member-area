@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Help Center - Wing Girl Method</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Help Center Specific Styles */
+    .help-hero {
+      background: linear-gradient(135deg, var(--secondary, #5B9BD5), #3b6e9e);
+      padding: 60px 0;
+      text-align: center;
+      color: white;
+    }
+
+    .help-hero h1 {
+      font-size: 48px;
+      margin-bottom: 16px;
+      color: white;
+    }
+
+    .help-hero p {
+      font-size: 18px;
+      opacity: 0.9;
+      margin-bottom: 32px;
+    }
+
+    .search-container {
+      display: flex;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 16px 20px 16px 50px;
+      border-radius: 50px;
+      border: solid 1px white;
+      font-size: 16px;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    }
+
+    .search-container i {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+    }
+
+    /* Category Cards */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .category-card {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 28px;
+      text-align: center;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .category-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      border-color: var(--secondary);
+    }
+
+    .category-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--gradient-blue);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .category-icon svg {
+      margin-top: 15px;
+      width: 32px;
+      height: 32px;
+      color: var(--secondary);
+    }
+
+    .category-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .category-card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .category-card a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* FAQ Accordion */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .faq-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .faq-item {
+      background: var(--panel);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .faq-question:hover {
+      background: var(--hover-bg);
+    }
+
+    .faq-question h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0;
+      flex: 1;
+    }
+
+    .faq-toggle {
+      width: 24px;
+      height: 24px;
+      color: var(--secondary);
+      transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding: 0 20px;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+      padding: 0 20px 20px 20px;
+    }
+
+    .faq-answer p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Contact Options */
+    .contact-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .contact-card {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 28px;
+      text-align: center;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--gradient-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .contact-icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--secondary);
+    }
+
+    .contact-card h4 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .contact-card .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .stat-card {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .stat-value {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--secondary);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .help-hero h1 { font-size: 32px; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .contact-options { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+ <div class="nav-wrap">
+  <div class="container nav">
+
+    <!-- LEFT -->
+    <div class="nav-left">
+      <div class="brand">
+        <a href="index.html">
+          <img src="assets/main_logo.png" alt="Logo" />
+        </a>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="courses-public.html">Programs</a>
+        <a href="course-library-member.html">Library</a>
+        <a href="community.html">Community</a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="nav-right">
+
+       <!-- 🌓 THEME TOGGLE -->
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <i data-lucide="sun" class="sun-icon"></i>
+    <i data-lucide="moon" class="moon-icon"></i>
+  </div>
+
+      <span class="ai-btn" onclick="openWingGirl()">
+        <i data-lucide="sparkles"></i> Talk to wing girl
+      </span>
+
+      <div class="nav-icon" onclick="toggleSearch()">
+        <i data-lucide="search"></i>
+      </div>
+
+      <div class="nav-icon" onclick="toggleNotif()">
+        <i data-lucide="bell"></i>
+      </div>
+
+      <div class="nav-profile" onclick="toggleProfile()">
+        <i data-lucide="user"></i>
+      </div>
+
+      <a class="btn btn-secondary" href="signup.html">Join Now</a>
+      
+
+      <!-- 🔥 HAMBURGER -->
+       
+      <div class="nav-hamburger">
+        <i data-lucide="menu" style="color: #5B9BD5;"></i>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 🔥 MOBILE DRAWER -->
+<!-- 🔥 MOBILE DRAWER - UPDATED WITH ALL ELEMENTS -->
+<div class="mobile-nav-drawer">
+
+  <!-- Overlay -->
+  <div class="mobile-nav-overlay"
+       onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+  </div>
+
+  <!-- Panel -->
+  <div class="mobile-nav-panel">
+
+    <!-- Close Button -->
+    <div class="close-nav">
+      <i data-lucide="x"
+         style="cursor:pointer;"
+         onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      </i>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="mobile-profile-section">
+      <div class="mobile-avatar">M</div>
+      <div class="mobile-user-info">
+        <h4>Marni</h4>
+        <p>marni@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- Main Navigation Links -->
+    <a href="index.html">
+      <i data-lucide="home"></i> Home
+    </a>
+    <a href="dashboard.html">
+      <i data-lucide="layout-dashboard"></i> Dashboard
+    </a>
+    <a href="courses-public.html">
+      <i data-lucide="graduation-cap"></i> Programs
+    </a>
+    <a href="course-library-member.html">
+      <i data-lucide="book-open"></i> Library
+    </a>
+    <a href="community.html">
+      <i data-lucide="users"></i> Community
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Account</div>
+
+    <!-- Account Links -->
+    <a href="profile.html">
+      <i data-lucide="user"></i> Profile
+    </a>
+    <a href="achievements.html">
+      <i data-lucide="award"></i> Achievements
+    </a>
+    <a href="help-center.html">
+      <i data-lucide="help-circle"></i> Help Center
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Support</div>
+
+    <!-- Support Links -->
+    <a href="contact-support.html">
+      <i data-lucide="mail"></i> Contact Support
+    </a>
+    <a href="about.html">
+      <i data-lucide="info"></i> About Us
+    </a>
+
+    <!-- Action Buttons -->
+    <button class="mobile-ai-btn" onclick="openWingGirl(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="sparkles"></i> Talk to Wing Girl
+    </button>
+
+    <a href="signup.html" class="mobile-join-btn" onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="log-in"></i> Join Now
+    </a>
+
+    <!-- Search and Notification in mobile -->
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+      <div class="nav-icon" onclick="toggleSearch(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="search"></i>
+      </div>
+      <div class="nav-icon" onclick="toggleNotif(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="bell"></i>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  <!-- Nav Popups -->
+  <div>
+    <div class="search-popup" id="searchPopup">
+      <div class="search-box">
+        <i data-lucide="search" style=" margin-top: 15px;" class="search-icon"></i>
+        <input type="text" placeholder="Search anything..." />
+        <button class="close-btn" onclick="toggleSearch()">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="notification-panel" id="notificationPanel">
+      <div class="notif-header">
+        <h4>Notifications</h4>
+        <span onclick="toggleNotif()"><i data-lucide="x"></i></span>
+      </div>
+      <div class="notif-item">
+        <i data-lucide="message-circle" class="notif-icon"></i>
+        <span>New message received</span>
+      </div>
+      <div class="notif-item">
+        <i data-lucide="book-open" class="notif-icon"></i>
+        <span>Course updated</span>
+      </div>
+      <div class="notif-item">
+        <i data-lucide="trending-up" class="notif-icon"></i>
+        <span>Your progress improved </span>
+      </div>
+    </div>
+
+    <div class="profile-dropdown" id="profileDropdown">
+      <div class="profile-header">
+        <div class="avatar">M</div>
+        <div class="user-info">
+          <h4>Marni</h4>
+          <p>marni@gmail.com</p>
+        </div>
+      </div>
+      <div class="menu">
+        <a href="profile.html"><i data-lucide="user"></i> Profile</a>
+        <a href="dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+        <a href="about.html"><i data-lucide="info"></i> About</a>
+        <a href="contact-support.html"><i data-lucide="mail"></i> Contact</a>
+      </div>
+      <div class="menu logout">
+        <a href="login.html"><i data-lucide="log-out"></i> Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== HELP CENTER CONTENT ==================== -->
+
+  <!-- Hero Section -->
+  <section class="help-hero">
+    <div class="container">
+      <h1>How can we help you?</h1>
+      <p>Find answers, get support, or connect with our team</p>
+      <!-- <div class="search-container">
+        <i data-lucide="search"></i>
+        <input type="text" style="color: white; margin-top: 5px;" placeholder="Search for articles, topics, or questions..." id="searchInput" onkeyup="searchArticles()">
+      </div> -->
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="section">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 16px;">Browse by Category</h2>
+      <p style="text-align: center; color: var(--muted); margin-bottom: 40px;">Quickly find answers to your questions</p>
+      
+      <div class="categories-grid">
+        <div class="category-card">
+          <div class="category-icon"><i data-lucide="rocket"></i></div>
+          <h3>Getting Started</h3>
+          <p>New to Wing Girl Method? Start here</p>
+          <a href="/index.html">View articles →</a>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i data-lucide="credit-card"></i></div>
+          <h3>Billing & Account</h3>
+          <p>Payments, subscriptions, refunds</p>
+          <a href="/checkout.html">View articles →</a>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i data-lucide="book-open"></i></div>
+          <h3>Courses & Progress</h3>
+          <p>Track your learning journey</p>
+          <a href="/course.html">View articles →</a>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i data-lucide="bot"></i></div>
+          <h3>AI Coach</h3>
+          <p>How to use Wing Girl AI</p>
+          <a href="#">View articles →</a>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i data-lucide="users"></i></div>
+          <h3>Community</h3>
+          <p>Connect with other members</p>
+          <a href="/community.html">View articles →</a>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i data-lucide="shield-check"></i></div>
+          <h3>Privacy & Security</h3>
+          <p>Your data, your safety</p>
+          <a href="/privacy.html">View articles →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section section-dark">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 16px;">Frequently Asked Questions</h2>
+      <p style="text-align: center; color: var(--muted); margin-bottom: 40px;">Everything you need to know</p>
+      
+      <div class="faq-grid">
+        <div class="faq-column">
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <h4>How do I reset my password?</h4>
+              <i data-lucide="chevron-down" class="faq-toggle"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Click on "Forgot Password" on the login page. Enter your email address and we'll send you a reset link. Follow the instructions to create a new password.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <h4>Where do I find my saved progress?</h4>
+              <i data-lucide="chevron-down" class="faq-toggle"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Your progress is automatically saved. Go to Dashboard → My Courses to see your completed lessons and progress percentage for each course.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <h4>How do I upgrade to coaching?</h4>
+              <i data-lucide="chevron-down" class="faq-toggle"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Navigate to Dashboard → Coaching. Select your preferred package and complete the checkout process. Our team will contact you within 24 hours.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-column">
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <h4>How does Coach Marni AI work?</h4>
+              <i data-lucide="chevron-down" class="faq-toggle"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Coach Marni AI is available 24/7. Click the AI button, ask any dating or confidence question, and get instant personalized advice based on Marni's teachings.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <h4>Can I cancel my subscription?</h4>
+              <i data-lucide="chevron-down" class="faq-toggle"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Yes, you can cancel anytime. Go to Account → Billing → Cancel Subscription. Your access continues until the end of your billing period.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <h4>Is there a money-back guarantee?</h4>
+              <i data-lucide="chevron-down" class="faq-toggle"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Yes! We offer a 15-day money-back guarantee. If you're not satisfied, contact support within 15 days for a full refund.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Support Metrics Section -->
+  <section class="section">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 40px;">Support at a Glance</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">3h</div>
+          <div class="stat-label">Average Response Time</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">98%</div>
+          <div class="stat-label">Customer Satisfaction</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">24/7</div>
+          <div class="stat-label">AI Support Available</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Options Section -->
+  <section class="section section-dark">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 16px;">Still Need Help?</h2>
+      <p style="text-align: center; color: var(--muted); margin-bottom: 40px;">Choose how you'd like to connect with us</p>
+      
+      <div class="contact-options">
+        <div class="contact-card">
+          <div class="contact-icon"><i data-lucide="mail"></i></div>
+          <h4>Email Support</h4>
+          <p>Get a response within 3 hours</p>
+          <a href="contact-support.html" class="btn btn-secondary">Send Email →</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><i data-lucide="message-circle"></i></div>
+          <h4>Live Chat</h4>
+          <p>Chat with our support team</p>
+          <button class="btn btn-secondary" onclick="openWingGirl()">Start Chat →</button>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon"><i data-lucide="bot"></i></div>
+          <h4>AI Assistant</h4>
+          <p>Instant answers 24/7</p>
+          <button class="btn btn-secondary" onclick="openWingGirl()">Ask Wing Girl →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/main_logo.png" alt="Wing Girl Method Logo" style="height: 40px;">
+        <p>Wing Girl Method Transform your confidence, dating life & masculinity with expert guidance from Marni Kinrys.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <a href="courses-public.html">Programs</a>
+        <a href="master-classes.html">Master Classes</a>
+        <a href="course-library-member.html">Video Library</a>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a href="profile.html">Profile</a>
+        <a href="signup.html">Signup</a>
+        <a href="login.html">Login</a>
+        <a href="checkout.html">Checkout</a>
+      </div>
+      <div class="footer-col">
+        <h4>Community & Support</h4>
+        <a href="community.html">Community</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="help-center.html">Help Center</a>
+        <a href="contact-support.html">Contact Support</a>
+        
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">© 2026 Wing Girl Method. All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Chat Widget -->
+  <div class="chat-toggle" onclick="toggleChat()">
+    <i data-lucide="message-circle"></i>
+  </div>
+  <div class="chat-box" id="chatBox">
+    <div class="chat-header">
+      <strong>Talk to wing girl</strong>
+      <span onclick="toggleChat()">✖</span>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="msg bot">Hi 👋 How can we help you today?</div>
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="chatInput" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <!-- Wing Girl Popup -->
+  <div id="winggirl-modal" class="wg-modal">
+    <div class="wg-modal-content">
+      <span class="wg-close" onclick="closeWingGirl()">✕</span>
+      <div class="wg-header">
+        <img src="assets/main_logo.png" class="wg-avatar" />
+        <h2>Marni Kinrys</h2>
+        <p class="wg-sub">Founder of The Wing Girl Method</p>
+      </div>
+      <div class="wg-actions">
+        <button class="wg-btn"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4a2 2 0 0 0-2 2v14l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg> Chat</button>
+        <button class="wg-btn-outline"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2c1 .3 2 .5 3 .5a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10 21 3 14 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1 .2 2 .5 3a1 1 0 0 1-.2 1l-2.2 2.2z"/></svg> Call</button>
+      </div>
+      <div class="wg-suggestions">
+        <p>Suggested Questions</p>
+        <div class="wg-suggest-list">
+          <span>How do I approach a girl confidently?</span>
+          <span>What should I say first?</span>
+          <span>How to stop overthinking?</span>
+          <span>How to build attraction naturally?</span>
+        </div>
+      </div>
+      <div class="wg-input">
+        <input type="text" placeholder="Ask Wing Girl a question..." />
+        <button><svg width="18" height="18" viewBox="0 0 24 24"><path fill="white" d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+<!-- dark theme -->
+<script>
+// ==================== THEME TOGGLE FUNCTIONALITY ====================
+
+// Check for saved theme preference on page load
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Update Lucide icons after theme change
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Toggle theme function
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  // Show toast notification
+  showThemeToast(newTheme === 'dark' ? '🌙 Dark mode activated' : '☀️ Light mode activated');
+  
+  // Refresh Lucide icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Optional: Show temporary notification
+function showThemeToast(message) {
+  const toast = document.createElement('div');
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 13px;
+    z-index: 9999;
+    animation: fadeInOut 2s ease forwards;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  `;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.remove();
+  }, 2000);
+}
+
+// Add keyframes for toast animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  }
+`;
+document.head.appendChild(style);
+
+// Initialize theme on page load
+initTheme();
+
+</script>
+<!-- dark theme end --><!-- nav btn -->
+<script>
+
+document.querySelector('.nav-hamburger')?.addEventListener('click', () => {
+  document.querySelector('.mobile-nav-drawer')?.classList.toggle('open');
+});
+
+</script>
+
+
+  <script>
+    // FAQ Toggle Function
+    function toggleFaq(element) {
+      const faqItem = element.closest('.faq-item');
+      faqItem.classList.toggle('open');
+    }
+
+    // Search Function
+    function searchArticles() {
+      const input = document.getElementById('searchInput');
+      const filter = input.value.toLowerCase();
+      const faqItems = document.querySelectorAll('.faq-item');
+      
+      faqItems.forEach(item => {
+        const question = item.querySelector('h4').innerText.toLowerCase();
+        const answer = item.querySelector('.faq-answer p').innerText.toLowerCase();
+        if (question.includes(filter) || answer.includes(filter)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function openChat() {
+      alert('Chat support coming soon! Our team will be available shortly.');
+    }
+
+    function openWingGirl() {
+      document.getElementById("winggirl-modal").style.display = "block";
+    }
+
+    function closeWingGirl() {
+      document.getElementById("winggirl-modal").style.display = "none";
+    }
+
+    window.onclick = function(e) {
+      let modal = document.getElementById("winggirl-modal");
+      if (e.target === modal) modal.style.display = "none";
+    }
+
+    document.querySelectorAll('.wg-suggest-list span').forEach(item => {
+      item.onclick = () => {
+        document.querySelector('.wg-input input').value = item.innerText;
+      }
+    });
+
+    lucide.createIcons();
+
+    function toggleSearch() {
+      document.getElementById("searchPopup").classList.toggle("active");
+    }
+
+    function toggleNotif() {
+      document.getElementById("notificationPanel").classList.toggle("active");
+    }
+
+    function toggleProfile() {
+      document.getElementById("profileDropdown").classList.toggle("active");
+    }
+
+    function toggleChat() {
+      const box = document.getElementById("chatBox");
+      box.style.display = box.style.display === "flex" ? "none" : "flex";
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("chatInput");
+      const text = input.value.trim();
+      if (text === "") return;
+      const chatBody = document.getElementById("chatBody");
+      const userMsg = document.createElement("div");
+      userMsg.className = "msg user";
+      userMsg.innerText = text;
+      chatBody.appendChild(userMsg);
+      setTimeout(() => {
+        const botMsg = document.createElement("div");
+        botMsg.className = "msg bot";
+        botMsg.innerText = "Got it 👍 We'll get back to you shortly.";
+        chatBody.appendChild(botMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 800);
+      input.value = "";
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    document.addEventListener("click", function(e) {
+      if (!e.target.closest(".nav-icon") && !e.target.closest(".nav-profile") && !e.target.closest("#notificationPanel") && !e.target.closest("#profileDropdown")) {
+        document.getElementById("notificationPanel").classList.remove("active");
+        document.getElementById("profileDropdown").classList.remove("active");
+      }
+    });
+  </script>
+</body>
+</html>

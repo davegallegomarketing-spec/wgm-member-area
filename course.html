@@ -1,0 +1,2171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wing Girl Method</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+
+
+/* Video Modal Styles -  */
+
+#modalVideoTitle{
+  color: white;
+}
+
+.video-modal {
+  display: none !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95) !important;
+  backdrop-filter: blur(10px);
+  z-index: 9999 !important;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.video-modal.show,
+.video-modal.active {
+  display: flex !important;
+}
+
+.video-modal-container {
+  max-width: 900px;
+  width: 90%;
+  background: #000;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.video-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.video-modal-close:hover {
+  background: var(--secondary);
+  color: black;
+}
+
+.video-wrapper video {
+  width: 100%;
+  display: block;
+  background: black;
+}
+
+.video-modal-info {
+  padding: 16px 20px;
+  background: #111;
+  color: white;
+}
+
+.video-modal-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+}
+
+.video-modal-info p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+      /* ================= COURSE PAGE SPECIFIC STYLES ================= */
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .section-dark {
+        background: var(--bg2);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      /* Course Header */
+      .course-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: start;
+      }
+
+      .course-header-left h1 {
+        font-size: 36px;
+        margin: 12px 0 8px;
+        color: var(--text);
+      }
+
+      .instructor {
+        font-size: 16px;
+        color: var(--secondary);
+        font-weight: 500;
+        margin-bottom: 12px;
+      }
+
+      .badge {
+        display: inline-block;
+        background: var(--gradient-blue);
+        color: var(--secondary);
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: 20px;
+        border: 1px solid rgba(91, 155, 213, 0.2);
+      }
+
+      .meta {
+        font-size: 13px;
+        color: var(--muted);
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin: 12px 0;
+      }
+
+      .rating {
+        font-size: 14px;
+        color: var(--gold);
+        margin: 8px 0;
+      }
+
+      .rating-count {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .course-description {
+        margin: 20px 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .progress-section {
+        margin: 24px 0;
+      }
+
+      .progress-label {
+        font-size: 13px;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+
+      .progress {
+        height: 8px;
+        background: var(--progress-bg);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 12px 0;
+      }
+
+      .progress span {
+        display: block;
+        height: 100%;
+        background: var(--secondary);
+        border-radius: 10px;
+      }
+
+      .course-image {
+        width: 100%;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 500;
+        font-size: 14px;
+        text-decoration: none;
+        transition: all 0.2s;
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-secondary {
+        background: var(--secondary);
+        color: white;
+      }
+
+      .btn-secondary:hover {
+        background: var(--secondary-hover);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text);
+      }
+
+      .btn-outline:hover {
+        background: var(--hover-bg);
+        border-color: var(--secondary);
+      }
+
+      /* Tabs */
+/* ================= TABS UPDATED ================= */
+
+.section-tabs {
+  border-bottom: 1px solid var(--border);
+  background: #ededed;
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 70px;
+  z-index: 10;
+}
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+/* Default Tab */
+.tab {
+  background: transparent;
+  border: none;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.2s ease;
+}
+
+/* Hover Effect */
+.tab:hover {
+  background: rgba(91, 155, 213, 0.1);
+  color: var(--secondary);
+}
+
+/* Active Tab */
+.tab.active {
+  background: var(--secondary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(91, 155, 213, 0.25);
+}
+
+/* Tab Content */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Dark Theme - Tabs */
+[data-theme="dark"] .section-tabs {
+  background: var(--bg2);
+  border-bottom-color: var(--border);
+}
+
+[data-theme="dark"] .tab {
+  color: var(--muted);
+}
+
+[data-theme="dark"] .tab:hover {
+  background: rgba(91, 155, 213, 0.15);
+  color: var(--secondary);
+}
+
+[data-theme="dark"] .tab.active {
+  background: var(--secondary);
+  color: white;
+}
+      /* Two Column Layout */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+
+      /* Panel */
+      .panel {
+        background: var(--panel);
+        border-radius: var(--radius);
+        padding: 28px;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .panel h3 {
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+
+      .panel p {
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      /* Superpowers */
+      .superpowers-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .superpower {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .superpower-icon {
+        width: 36px;
+        height: 36px;
+        background: var(--secondary);
+        color: white;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      .superpower strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--text);
+      }
+
+      .superpower p {
+        font-size: 13px;
+        margin: 0;
+      }
+
+      /* Checklist */
+      .checklist {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 20px;
+      }
+
+      .check {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+        font-size: 14px;
+        color: var(--text);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .check::before {
+        content: "✓";
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        background: var(--secondary);
+        color: white;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+
+      /* About Instructor */
+      .about-instructor {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .instructor-info h2 {
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
+
+      .instructor-title {
+        color: var(--secondary);
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+
+      .instructor-info p {
+        color: var(--muted);
+        margin-bottom: 16px;
+        line-height: 1.6;
+      }
+
+      .credentials {
+        margin-top: 24px;
+      }
+
+      .cred {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 12px;
+        font-size: 14px;
+      }
+
+      .cred-icon {
+        width: 24px;
+        height: 24px;
+        background: var(--secondary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+      }
+
+      .instructor-image img {
+        width: 100%;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      /* Bonus Section */
+      .bonus-section {
+        text-align: center;
+        padding: 40px 0;
+      }
+
+      .bonus-content h2 {
+        font-size: 28px;
+        margin: 16px 0 24px;
+      }
+
+      .bonus-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .bonus-item {
+        padding: 16px;
+        background: var(--bg);
+        border-radius: 12px;
+        font-size: 15px;
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      /* Stories Grid */
+      .stories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 24px;
+        margin-top: 32px;
+      }
+
+      .story-card {
+        background: var(--panel);
+        border-radius: var(--radius);
+        padding: 24px;
+        border: 1px solid var(--border);
+        transition: all 0.3s;
+      }
+
+      .story-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow);
+      }
+
+      .story-card p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .story-author strong {
+        display: block;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+
+      .story-author span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .read-more {
+        display: inline-block;
+        margin-top: 16px;
+        color: var(--secondary);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .read-more:hover {
+        text-decoration: underline;
+      }
+
+      /* Curriculum Styles */
+      .curriculum-header {
+        margin-bottom: 32px;
+      }
+
+      .curriculum-header h2 {
+        font-size: 28px;
+        margin-bottom: 8px;
+      }
+
+      .sub {
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .curriculum-module {
+        background: var(--panel);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        margin-bottom: 20px;
+        overflow: hidden;
+      }
+
+      .module-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 24px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .module-header h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .module-lessons {
+        font-size: 13px;
+        color: var(--muted);
+        background: var(--bg2);
+        padding: 4px 10px;
+        border-radius: 20px;
+      }
+
+      .module-lessons-list {
+        padding: 8px 0;
+      }
+
+      .lesson-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 24px;
+        border-bottom: 1px solid var(--border);
+        transition: background 0.2s;
+      }
+
+      .lesson-row:hover {
+        background: var(--hover-bg);
+      }
+
+      .lesson-row.completed {
+        opacity: 0.7;
+      }
+
+      .lesson-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+      }
+
+      .lesson-num-small {
+        width: 32px;
+        height: 32px;
+        background: var(--gradient-blue);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--secondary);
+      }
+
+      .lesson-title {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .lesson-duration {
+        font-size: 12px;
+        color: var(--muted);
+        margin-right: 16px;
+      }
+
+      .completed-badge {
+        font-size: 12px;
+        color: #10b981;
+        background: rgba(16, 185, 129, 0.1);
+        padding: 4px 10px;
+        border-radius: 20px;
+      }
+
+      .btn-preview {
+        background: transparent;
+        border: 1px solid var(--border);
+        padding: 6px 14px;
+        border-radius: 8px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .btn-preview:hover {
+        background: var(--secondary);
+        color: white;
+        border-color: var(--secondary);
+      }
+
+      /* Resources Grid */
+      .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .resource-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 20px;
+        background: var(--panel);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        transition: all 0.2s;
+      }
+
+      .resource-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+
+      .resource-icon {
+        font-size: 28px;
+      }
+
+      .resource-card h3 {
+        font-size: 15px;
+        margin-bottom: 4px;
+      }
+
+      .resource-card p {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .resource-type {
+        font-size: 11px;
+        background: var(--gradient-blue);
+        padding: 2px 8px;
+        border-radius: 12px;
+        color: var(--secondary);
+        margin-top: 6px;
+        display: inline-block;
+      }
+
+      .btn-resource {
+        margin-left: auto;
+        background: var(--secondary);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .btn-resource:hover {
+        background: var(--secondary-hover);
+      }
+
+      /* PDFs Grid */
+      .pdfs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .pdf-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 20px;
+        background: var(--panel);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+      }
+
+      .pdf-icon {
+        font-size: 28px;
+      }
+
+      .pdf-card h3 {
+        font-size: 15px;
+        margin-bottom: 4px;
+      }
+
+      .pdf-card p {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .btn-pdf {
+        margin-left: auto;
+        background: transparent;
+        border: 1px solid var(--secondary);
+        color: var(--secondary);
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .btn-pdf:hover {
+        background: var(--secondary);
+        color: white;
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .course-header {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+
+        .about-instructor {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        .about-instructor .instructor-image {
+          order: -1;
+        }
+
+        .section {
+          padding: 40px 0;
+        }
+
+        .course-header-left h1 {
+          font-size: 28px;
+        }
+
+        .tabs {
+          overflow-x: auto;
+          gap: 20px;
+        }
+
+        .tab {
+          white-space: nowrap;
+        }
+
+        .lesson-row {
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+
+        .lesson-duration {
+          margin-right: 0;
+        }
+      }
+
+      @media (max-width: 640px) {
+        /* .container {
+          padding: 0 16px;
+        } */
+
+        .stories-grid,
+        .resources-grid,
+        .pdfs-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .module-header {
+          flex-direction: column;
+          gap: 8px;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar - Already in styles.css,  -->
+    <div class="nav-wrap">
+  <div class="container nav">
+
+    <!-- LEFT -->
+    <div class="nav-left">
+      <div class="brand">
+        <a href="index.html">
+          <img src="assets/main_logo.png" alt="Logo" />
+        </a>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="courses-public.html">Programs</a>
+        <a href="course-library-member.html">Library</a>
+        <a href="community.html">Community</a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="nav-right">
+
+       <!-- 🌓 THEME TOGGLE -->
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <i data-lucide="sun" class="sun-icon"></i>
+    <i data-lucide="moon" class="moon-icon"></i>
+  </div>
+
+      <span class="ai-btn" onclick="openWingGirl()">
+        <i data-lucide="sparkles"></i> Talk to wing girl
+      </span>
+
+      <div class="nav-icon" onclick="toggleSearch()">
+        <i data-lucide="search"></i>
+      </div>
+
+      <div class="nav-icon" onclick="toggleNotif()">
+        <i data-lucide="bell"></i>
+      </div>
+
+      <div class="nav-profile" onclick="toggleProfile()">
+        <i data-lucide="user"></i>
+      </div>
+
+      <a class="btn btn-secondary" href="signup.html">Join Now</a>
+      
+
+      <!-- 🔥 HAMBURGER -->
+       
+      <div class="nav-hamburger">
+        <i data-lucide="menu" style="color: #5B9BD5;"></i>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 🔥 MOBILE DRAWER -->
+<!-- 🔥 MOBILE DRAWER - UPDATED WITH ALL ELEMENTS -->
+<div class="mobile-nav-drawer">
+
+  <!-- Overlay -->
+  <div class="mobile-nav-overlay"
+       onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+  </div>
+
+  <!-- Panel -->
+  <div class="mobile-nav-panel">
+
+    <!-- Close Button -->
+    <div class="close-nav">
+      <i data-lucide="x"
+         style="cursor:pointer;"
+         onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      </i>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="mobile-profile-section">
+      <div class="mobile-avatar">M</div>
+      <div class="mobile-user-info">
+        <h4>Marni</h4>
+        <p>marni@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- Main Navigation Links -->
+    <a href="index.html">
+      <i data-lucide="home"></i> Home
+    </a>
+    <a href="dashboard.html">
+      <i data-lucide="layout-dashboard"></i> Dashboard
+    </a>
+    <a href="courses-public.html">
+      <i data-lucide="graduation-cap"></i> Programs
+    </a>
+    <a href="course-library-member.html">
+      <i data-lucide="book-open"></i> Library
+    </a>
+    <a href="community.html">
+      <i data-lucide="users"></i> Community
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Account</div>
+
+    <!-- Account Links -->
+    <a href="profile.html">
+      <i data-lucide="user"></i> Profile
+    </a>
+    <a href="achievements.html">
+      <i data-lucide="award"></i> Achievements
+    </a>
+    <a href="help-center.html">
+      <i data-lucide="help-circle"></i> Help Center
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Support</div>
+
+    <!-- Support Links -->
+    <a href="contact-support.html">
+      <i data-lucide="mail"></i> Contact Support
+    </a>
+    <a href="about.html">
+      <i data-lucide="info"></i> About Us
+    </a>
+
+    <!-- Action Buttons -->
+    <button class="mobile-ai-btn" onclick="openWingGirl(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="sparkles"></i> Talk to Wing Girl
+    </button>
+
+    <a href="signup.html" class="mobile-join-btn" onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="log-in"></i> Join Now
+    </a>
+
+    <!-- Search and Notification in mobile -->
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+      <div class="nav-icon" onclick="toggleSearch(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="search"></i>
+      </div>
+      <div class="nav-icon" onclick="toggleNotif(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="bell"></i>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <!-- Nav Popups -->
+    <div>
+      <div class="search-popup" id="searchPopup">
+        <div class="search-box">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" placeholder="Search anything..." />
+          <button class="close-btn" onclick="toggleSearch()">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="notification-panel" id="notificationPanel">
+        <div class="notif-header">
+          <h4>Notifications</h4>
+          <span onclick="toggleNotif()"><i data-lucide="x"></i></span>
+        </div>
+        <div class="notif-item">
+          <i data-lucide="message-circle" class="notif-icon"></i>
+          <span>New message received</span>
+        </div>
+        <div class="notif-item">
+          <i data-lucide="book-open" class="notif-icon"></i>
+          <span>Course updated</span>
+        </div>
+        <div class="notif-item">
+          <i data-lucide="trending-up" class="notif-icon"></i>
+          <span>Your progress improved </span>
+        </div>
+      </div>
+
+      <div class="profile-dropdown" id="profileDropdown">
+        <div class="profile-header">
+          <div class="avatar">M</div>
+          <div class="user-info">
+            <h4>Marni</h4>
+            <p>marni@gmail.com</p>
+          </div>
+        </div>
+        <div class="menu">
+          <a href="profile.html"><i data-lucide="user"></i> Profile</a>
+          <a href="dashboard.html"
+            ><i data-lucide="layout-dashboard"></i> Dashboard</a
+          >
+          <a href="about.html"><i data-lucide="info"></i> About</a>
+          <a href="contact-support.html"><i data-lucide="mail"></i> Contact</a>
+        </div>
+        <div class="menu logout">
+          <a href="login.html"><i data-lucide="log-out"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+
+ <!-- ==================== COURSE CONTENT STARTS HERE ==================== -->
+
+<!-- Course Header Section -->
+<section class="section">
+  <div class="container">
+    <div class="course-header">
+      <div class="course-header-left">
+        <span class="badge">Course</span>
+        <h1>Emotional Intelligence for Attraction</h1>
+
+        <div class="instructor">With Marni Kinrys</div>
+
+        <div class="meta">
+          <span>28 lessons</span>
+          <span>15+ hours</span>
+          <span>20,000+ Men Enrolled</span>
+        </div>
+
+        <div class="rating">
+          ★★★★★ <span class="rating-count">4.9 (2k+ reviews)</span>
+        </div>
+
+        <div class="course-description">
+          <p>
+            Most men struggle not because they lack confidence — but because they don't understand what actually makes women feel attraction. Marni's unique approach teaches you how to read emotional signals, communicate with authenticity, and naturally draw women in without chasing or overthinking.
+          </p>
+        </div>
+
+        <div class="progress-label">Your Progress</div>
+        <span>35% complete • 10 of 28 lessons</span>
+
+        <br>
+         <a href="checkout.html" style="margin-top: 10px; " class="btn btn-secondary ai-btn">
+          <i data-lucide="shopping-cart"></i>
+          Checkout Now
+        </a>
+        <a class="ai-btn btn btn-secondary" style="margin-top: 10px;" onclick="openWingGirl()">
+          <i data-lucide="sparkles"></i>
+          Talk to Wing Girl
+        </a>
+      </div>
+      <div class="instructor-image">
+        <img
+          src="assets/Masterclass_How-To-Master-Emotional-Intelligence-With-Women-.png"
+          alt="Marni Kinrys - Wing Girl Method Founder"
+        />
+       
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tabs Navigation -->
+<section class="section-tabs">
+  <div class="container">
+    <div class="tabs">
+      <button class="tab active" data-tab="overview">Overview</button>
+      <button class="tab" data-tab="lessons">Lessons</button>
+      <button class="tab" data-tab="resources">Resources</button>
+      <button class="tab" data-tab="stories">Stories</button>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== OVERVIEW TAB ==================== -->
+<div id="overview-tab" class="tab-content active">
+  <!-- 5 Superpowers + What You'll Gain -->
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+        <div class="panel">
+          <h3>Why Emotional Intelligence Changes Everything</h3>
+
+          <p>
+            Most guys think attraction is about looks, money, or clever lines… but that's not what actually works. Women respond to how you make them feel — and that comes from emotional intelligence and genuine connection.
+          </p>
+
+          <p>
+            Marni has spent 15+ years teaching men exactly what women wish they knew. This course helps you understand what's really happening beneath the surface in every interaction, so you can stop guessing and start leading with confidence and authenticity.
+          </p>
+          <div class="superpowers-list">
+            <div class="superpower">
+              <div class="superpower-icon">1</div>
+              <div>
+                <strong>Emotional Calibration</strong>
+                <p>
+                  Learn to read her emotional state in real-time and respond in ways that build comfort and attraction.
+                </p>
+              </div>
+            </div>
+            <div class="superpower">
+              <div class="superpower-icon">2</div>
+              <div>
+                <strong>Authentic Confidence</strong>
+                <p>
+                  Stop pretending and start owning who you are. Marni shows you how real confidence comes from emotional honesty.
+                </p>
+              </div>
+            </div>
+            <div class="superpower">
+              <div class="superpower-icon">3</div>
+              <div>
+                <strong>Reading Her Signals</strong>
+                <p>
+                  Understand the subtle cues women give — from interest to hesitation — so you always know where you stand.
+                </p>
+              </div>
+            </div>
+            <div class="superpower">
+              <div class="superpower-icon">4</div>
+              <div>
+                <strong>Leading Without Neediness</strong>
+                <p>
+                  Take charge of interactions without coming across as controlling or desperate. Balance strength with emotional intelligence.
+                </p>
+              </div>
+            </div>
+            <div class="superpower">
+              <div class="superpower-icon">5</div>
+              <div>
+                <strong>Creating Magnetic Presence</strong>
+                <p>
+                  Develop the kind of energy that naturally draws women toward you, without having to chase or perform.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>What You'll Gain from This Course</h3>
+          <div class="checklist">
+            <div class="check">Master emotional calibration with women</div>
+            <div class="check">Eliminate neediness and overthinking</div>
+            <div class="check">Create genuine attraction without manipulation</div>
+            <div class="check">Handle rejection with emotional grace</div>
+            <div class="check">Spark authentic desire through connection</div>
+            <div class="check">Build unshakeable self-trust</div>
+            <div class="check">Understand what women actually want (from a woman's perspective)</div>
+            <div class="check">Step into your most confident self</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Instructor Section -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="about-instructor">
+        <div class="instructor-info">
+          <h2>About Marni Kinrys</h2>
+          <p class="instructor-title">
+            Founder of The Wing Girl Method
+          </p>
+          <p>
+            Marni Kinrys is a world-renowned dating coach who has helped over 100,000 men transform their relationships and confidence. Her approach is unique because she teaches from a woman's perspective — giving you the honest insights most men never get.
+          </p>
+          <p>
+            Featured on major media outlets like HuffPost, AskMen, and BBC, Marni has spent over 15 years developing the Wing Girl Method. She's the author of the bestselling "Wing Girl Method" and has helped countless men go from frustrated to successful in dating.
+          </p>
+          <div class="credentials">
+            <div class="cred">
+              <span class="cred-icon">✓</span>
+              <span>Featured on HuffPost, AskMen, BBC, and more</span>
+            </div>
+            <div class="cred">
+              <span class="cred-icon">✓</span>
+              <span>15+ years coaching men worldwide</span>
+            </div>
+            <div class="cred">
+              <span class="cred-icon">✓</span>
+              <span>Bestselling author & international speaker</span>
+            </div>
+            <div class="cred">
+              <span class="cred-icon">✓</span>
+              <span>Helped create over 20,000 success stories</span>
+            </div>
+          </div>
+        </div>
+        <div class="instructor-image">
+          <img
+            src="assets/Masterclass_How-To-Master-Emotional-Intelligence-With-Women-.png"
+            alt="Marni Kinrys - Wing Girl Method"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bonus Section -->
+  <section class="section">
+    <div class="container">
+      <div class="bonus-section">
+        <div class="bonus-content">
+          <span class="badge">Bonus Included</span>
+          <h2>Free Bonuses When You Enroll Today</h2>
+          <div class="bonus-list">
+            <div class="bonus-item">
+              🎯 30-Day Texting & Banter Blueprint — real scripts that work
+            </div>
+            <div class="bonus-item">
+              🎧 Audio Hypnosis: Emotional Confidence Booster (MP3)
+            </div>
+            <div class="bonus-item">
+              📓 Daily Journal Prompts for Emotional Mastery
+            </div>
+            <div class="bonus-item">
+              💬 Private Community Access — connect with other men on the same journey
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== LESSONS TAB ==================== -->
+<div id="lessons-tab" class="tab-content">
+  <section class="section">
+    <div class="container">
+      <div class="curriculum-header">
+        <h2>The Curriculum</h2>
+        <p class="sub">28 lessons • 15+ hours • 20,203 men enrolled</p>
+      </div>
+
+      <div class="curriculum-list">
+        <!-- Day 1-3: Fundamentals -->
+        <div class="curriculum-module">
+          <div class="module-header">
+            <h3>The Fundamentals of Emotional Intelligence (Day 1 - 3)</h3>
+            <span class="module-lessons">3 lessons</span>
+          </div>
+          <div class="module-lessons-list">
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">1</span>
+                <span class="lesson-title">Welcome to Emotional Intelligence for Attraction</span>
+              </div>
+              <span class="lesson-duration">PREVIEW</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">2</span>
+                <span class="lesson-title">Why Emotional Intelligence Is the #1 Attraction Skill</span>
+              </div>
+              <span class="lesson-duration">12 mins</span>
+              <button onclick="videoPopup('assets/Welcome to The Wing Girl Method Members Area_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row completed">
+              <div class="lesson-info">
+                <span class="lesson-num-small">3</span>
+                <span class="lesson-title">The 3 Pillars of Emotional Attraction</span>
+              </div>
+              <span class="lesson-duration">11 mins</span>
+              <span class="completed-badge">Completed</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 4-6: Powerful Visioning -->
+        <div class="curriculum-module">
+          <div class="module-header">
+            <h3>Understanding Her Emotional World (Day 4 - 6)</h3>
+            <span class="module-lessons">3 lessons</span>
+          </div>
+          <div class="module-lessons-list">
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">4</span>
+                <span class="lesson-title">What Women Actually Want (The Honest Truth)</span>
+              </div>
+              <span class="lesson-duration">11 mins</span>
+              <button onclick="videoPopup('assets/Welcome to The Wing Girl Method Members Area_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">5</span>
+                <span class="lesson-title">Reading Her Signals: Micro-Expressions & Body Language</span>
+              </div>
+              <span class="lesson-duration">11 mins</span>
+              <button onclick="videoPopup('assets/Welcome to The Wing Girl Method Members Area_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">6</span>
+                <span class="lesson-title">How Women Test Men (And How to Pass Every Time)</span>
+              </div>
+              <span class="lesson-duration">13 mins</span>
+              <button onclick="videoPopup('assets/Welcome to The Wing Girl Method Members Area_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 7-10: Expanding Your Capacity -->
+        <div class="curriculum-module">
+          <div class="module-header">
+            <h3>Mastering Your Emotional State (Day 7 - 10)</h3>
+            <span class="module-lessons">4 lessons</span>
+          </div>
+          <div class="module-lessons-list">
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">7</span>
+                <span class="lesson-title">Staying Calm Under Pressure (Anxiety Mastery)</span>
+              </div>
+              <span class="lesson-duration">15 mins</span>
+              <button onclick="videoPopup('assets/Welcome to The Wing Girl Method Members Area_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">8</span>
+                <span class="lesson-title">How to Handle Rejection with Grace</span>
+              </div>
+              <span class="lesson-duration">10 mins</span>
+              <button onclick="videoPopup('assets/Welcome to The Wing Girl Method Members Area_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">9</span>
+                <span class="lesson-title">Eliminating Neediness for Good</span>
+              </div>
+              <span class="lesson-duration">12 mins</span>
+              <button onclick="videoPopup('assets/Welcome to The Wing Girl Method Members Area_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">10</span>
+                <span class="lesson-title">Building Unshakeable Confidence</span>
+              </div>
+              <span class="lesson-duration">10 mins</span>
+              <button onclick="videoPopup('assets/Welcome to The Wing Girl Method Members Area_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 11-16: Overcoming Resistance -->
+        <div class="curriculum-module">
+          <div class="module-header">
+            <h3>Overcoming Limiting Beliefs (Day 11 - 16)</h3>
+            <span class="module-lessons">6 lessons</span>
+          </div>
+          <div class="module-lessons-list">
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">11</span>
+                <span class="lesson-title">Why You Self-Sabotage (And How to Stop)</span>
+              </div>
+              <span class="lesson-duration">12 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">12</span>
+                <span class="lesson-title">Overcoming Approach Anxiety</span>
+              </div>
+              <span class="lesson-duration">17 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">13</span>
+                <span class="lesson-title">Healing Attachment Wounds</span>
+              </div>
+              <span class="lesson-duration">17 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">14</span>
+                <span class="lesson-title">Rewiring Negative Self-Talk</span>
+              </div>
+              <span class="lesson-duration">18 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">15</span>
+                <span class="lesson-title">Building Emotional Resilience</span>
+              </div>
+              <span class="lesson-duration">17 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">16</span>
+                <span class="lesson-title">The Art of Emotional Vulnerability</span>
+              </div>
+              <span class="lesson-duration">20 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 17-21: Step Into Next Version -->
+        <div class="curriculum-module">
+          <div class="module-header">
+            <h3>Magnetic Communication (Day 17 - 21)</h3>
+            <span class="module-lessons">5 lessons</span>
+          </div>
+          <div class="module-lessons-list">
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">17</span>
+                <span class="lesson-title">How to Start Conversations That Go Somewhere</span>
+              </div>
+              <span class="lesson-duration">21 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">18</span>
+                <span class="lesson-title">Flirting Without Being Creepy</span>
+              </div>
+              <span class="lesson-duration">21 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">19</span>
+                <span class="lesson-title">Deep Connection Through Listening</span>
+              </div>
+              <span class="lesson-duration">18 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">20</span>
+                <span class="lesson-title">Texting: What to Say & When</span>
+              </div>
+              <span class="lesson-duration">15 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">21</span>
+                <span class="lesson-title">Escalating from Conversation to Date</span>
+              </div>
+              <span class="lesson-duration">12 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 22-27: Locking In -->
+        <div class="curriculum-module">
+          <div class="module-header">
+            <h3>Real-World Application (Day 22 - 27)</h3>
+            <span class="module-lessons">6 lessons</span>
+          </div>
+          <div class="module-lessons-list">
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">22</span>
+                <span class="lesson-title">First Date Mastery</span>
+              </div>
+              <span class="lesson-duration">18 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">23</span>
+                <span class="lesson-title">Creating Sexual Tension Naturally</span>
+              </div>
+              <span class="lesson-duration">14 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">24</span>
+                <span class="lesson-title">Building Lasting Relationships</span>
+              </div>
+              <span class="lesson-duration">16 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">25</span>
+                <span class="lesson-title">Handling Difficult Situations</span>
+              </div>
+              <span class="lesson-duration">14 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">26</span>
+                <span class="lesson-title">Consistency: The Secret to Success</span>
+              </div>
+              <span class="lesson-duration">10 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+            <div class="lesson-row">
+              <div class="lesson-info">
+                <span class="lesson-num-small">27-28</span>
+                <span class="lesson-title">Becoming the Man She Can't Resist</span>
+              </div>
+              <span class="lesson-duration">25 mins</span>
+              <button onclick="videoPopup('assets/8 Tongue Techniques That Makes Her Feel EXTREME Pleasure (Make Women Go WILD)_1080p.mp4')" class="btn-preview">Preview</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== RESOURCES TAB ==================== -->
+<div id="resources-tab" class="tab-content">
+  <section class="section">
+    <div class="container">
+      <h2>Meditations & Activations</h2>
+      <div class="resources-grid">
+        <div class="resource-card">
+          <div class="resource-icon">🧘</div>
+          <div>
+            <h3>Calm Your Nerves Before Approaching</h3>
+            <p>Marni Kinrys • 6 mins</p>
+            <span class="resource-type">Meditation</span>
+          </div>
+          <button class="btn-resource">Listen</button>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">🌟</div>
+          <div>
+            <h3>Confidence Activation</h3>
+            <p>Marni Kinrys • 8 mins</p>
+            <span class="resource-type">Activation</span>
+          </div>
+          <button class="btn-resource">Listen</button>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">⚓</div>
+          <div>
+            <h3>Emotional Grounding Exercise</h3>
+            <p>Marni Kinrys • 12 mins</p>
+            <span class="resource-type">Activation</span>
+          </div>
+          <button class="btn-resource">Listen</button>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">💤</div>
+          <div>
+            <h3>Sleep Meditation for Confidence</h3>
+            <p>Marni Kinrys • 8 mins</p>
+            <span class="resource-type">Sleep Meditation</span>
+          </div>
+          <button class="btn-resource">Listen</button>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">🔓</div>
+          <div>
+            <h3>Release Fear of Rejection</h3>
+            <p>Marni Kinrys • 8 mins</p>
+            <span class="resource-type">Healing</span>
+          </div>
+          <button class="btn-resource">Listen</button>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">🔄</div>
+          <div>
+            <h3>Rewire Limiting Beliefs</h3>
+            <p>Marni Kinrys • 50 mins</p>
+            <span class="resource-type">Deep Activation</span>
+          </div>
+          <button class="btn-resource">Listen</button>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">👶</div>
+          <div>
+            <h3>Inner Child Healing for Men</h3>
+            <p>Marni Kinrys • 14 mins</p>
+            <span class="resource-type">Healing</span>
+          </div>
+          <button class="btn-resource">Listen</button>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">⏳</div>
+          <div>
+            <h3>Let Go of Past Dating Trauma</h3>
+            <p>Marni Kinrys • 8 mins</p>
+            <span class="resource-type">Activation</span>
+          </div>
+          <button class="btn-resource">Listen</button>
+        </div>
+      </div>
+
+      <h2 style="margin-top: 48px">PDFs & Workbooks</h2>
+      <div class="pdfs-grid">
+        <div class="pdf-card">
+          <div class="pdf-icon">📄</div>
+          <div>
+            <h3>Emotional Intelligence Workbook</h3>
+            <p>30-page guide with exercises and journal prompts</p>
+          </div>
+          <button class="btn-pdf">Download PDF</button>
+        </div>
+        <div class="pdf-card">
+          <div class="pdf-icon">📋</div>
+          <div>
+            <h3>Texting Scripts That Work</h3>
+            <p>Real messages that get responses</p>
+          </div>
+          <button class="btn-pdf">Download PDF</button>
+        </div>
+        <div class="pdf-card">
+          <div class="pdf-icon">📊</div>
+          <div>
+            <h3>Confidence Tracker</h3>
+            <p>Track your progress and daily wins</p>
+          </div>
+          <button class="btn-pdf">Download PDF</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== STORIES TAB ==================== -->
+<div id="stories-tab" class="tab-content">
+  <section class="section">
+    <div class="container">
+      <h2>Student Stories</h2>
+      <p class="sub">Real transformations from real men</p>
+
+      <div class="stories-grid">
+        <div class="story-card">
+          <p>
+            "I used to freeze up when talking to women I was interested in. After taking this course, I finally understand what I was doing wrong. Now I'm in a relationship with someone amazing, and it all started with learning emotional intelligence."
+          </p>
+          <div class="story-author">
+            <strong>James T.</strong>
+            <span>Software Engineer, Austin TX</span>
+          </div>
+          
+        </div>
+
+        <div class="story-card">
+          <p>
+            "This course completely shifted how I show up in dating. I stopped overthinking, started being authentic, and for the first time in my life, women are actually pursuing me. Marni's insights from a woman's perspective are gold."
+          </p>
+          <div class="story-author">
+            <strong>Marcus R.</strong>
+            <span>Entrepreneur, Los Angeles</span>
+          </div>
+          
+        </div>
+
+        <div class="story-card">
+          <p>
+            "I was skeptical at first, but after just 2 weeks I noticed women responding to me differently. The biggest change? I stopped trying to impress and started connecting. Highly recommend this to any guy struggling with dating."
+          </p>
+          <div class="story-author">
+            <strong>David K.</strong>
+            <span>Marketing Director, NYC</span>
+          </div>
+          
+        </div>
+
+        <div class="story-card">
+          <p>
+            "Marni doesn't give you pickup lines or tricks — she teaches you how to become the kind of man women naturally want to be with. This is the real deal. I went from zero confidence to dating with ease."
+          </p>
+          <div class="story-author">
+            <strong>Michael S.</strong>
+            <span>Teacher, Chicago</span>
+          </div>
+          
+        </div>
+
+        <div class="story-card">
+          <p>
+            "The section on emotional calibration alone changed everything for me. I now understand what women are actually feeling and can respond in ways that build attraction instead of killing it. Worth every penny."
+          </p>
+          <div class="story-author">
+            <strong>Chris P.</strong>
+            <span>Sales Executive, Miami</span>
+          </div>
+          
+        </div>
+
+        <div class="story-card">
+          <p>
+            "I was constantly getting friend-zoned until I took this course. Marni helped me understand how to create romantic tension naturally. Now I'm dating women I used to think were out of my league."
+          </p>
+          <div class="story-author">
+            <strong>Ryan W.</strong>
+            <span>Fitness Coach, Denver</span>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Video Modal Popup -->
+<div id="videoModal" class="video-modal" style="display: none;">
+  <div class="video-modal-container">
+    <button class="video-modal-close" onclick="closeVideoModal()">
+      <i data-lucide="x"></i>
+    </button>
+    <div class="video-wrapper">
+      <video id="modalVideo" controls preload="metadata">
+        <source src="" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="video-modal-info">
+      <h3 id="modalVideoTitle">Video Title</h3>
+      <p id="modalVideoDuration"></p>
+    </div>
+  </div>
+</div>
+    <!-- Footer - Already in styles.css -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <img
+            src="assets/main_logo.png"
+            alt="Wing Girl Method Logo"
+            style="height: 40px"
+          />
+          <p>
+            Wing Girl Method Transform your confidence, dating life &
+            masculinity with expert guidance from Marni Kinrys.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          
+          <a href="dashboard.html">Dashboard</a>
+        </div>
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <a href="courses-public.html">Programs</a>
+          <a href="master-classes.html">Master Classes</a>
+          <a href="course-library-member.html">Video Library</a>
+          <a href="resources.html">Resources</a>
+        </div>
+        <div class="footer-col">
+          <h4>Account</h4>
+          <a href="profile.html">Profile</a>
+          <a href="signup.html">Signup</a>
+          <a href="login.html">Login</a>
+          <a href="onboarding-quiz.html">Onboarding</a>
+          <a href="checkout.html">Checkout</a>
+        </div>
+        <div class="footer-col">
+          <h4>Community & Support</h4>
+          <a href="community.html">Community</a>
+          <a href="achievements.html">Achievements</a>
+          <a href="help-center.html">Help Center</a>
+          <a href="contact-support.html">Contact Support</a>
+          
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          © 2026 Wing Girl Method. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-toggle" onclick="toggleChat()">
+      <i data-lucide="message-circle"></i>
+    </div>
+    <div class="chat-box" id="chatBox">
+      <div class="chat-header">
+        <strong>Talk to wing girl</strong>
+        <span onclick="toggleChat()">✖</span>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="msg bot">Hi 👋 How can we help you today?</div>
+      </div>
+      <div class="chat-footer">
+        <input type="text" id="chatInput" placeholder="Type a message..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <!-- wing girl popup -->
+    <div id="winggirl-modal" class="wg-modal">
+      <div class="wg-modal-content">
+        <!-- CLOSE -->
+        <span class="wg-close" onclick="closeWingGirl()">✕</span>
+
+        <!-- HEADER -->
+        <div class="wg-header">
+          <img src="assets/main_logo.png" class="wg-avatar" />
+
+          <h2>Marni Kinrys</h2>
+          <p class="wg-sub">Founder of The Wing Girl Method</p>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="wg-actions">
+          <button class="wg-btn">
+            <!-- chat icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24">
+              <path
+                fill="currentColor"
+                d="M20 2H4a2 2 0 0 0-2 2v14l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"
+              />
+            </svg>
+            Chat
+          </button>
+
+          <button class="wg-btn-outline">
+            <!-- phone icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24">
+              <path
+                fill="currentColor"
+                d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2c1 .3 2 .5 3 .5a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10 21 3 14 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1 .2 2 .5 3a1 1 0 0 1-.2 1l-2.2 2.2z"
+              />
+            </svg>
+            Call
+          </button>
+        </div>
+
+        <!-- SUGGESTED QUESTIONS -->
+        <div class="wg-suggestions">
+          <p>Suggested Questions</p>
+
+          <div class="wg-suggest-list">
+            <span>How do I approach a girl confidently?</span>
+            <span>What should I say first?</span>
+            <span>How to stop overthinking?</span>
+            <span>How to build attraction naturally?</span>
+          </div>
+        </div>
+
+        <!-- INPUT -->
+        <div class="wg-input">
+          <input type="text" placeholder="Ask Wing Girl a question..." />
+          <button>
+            <!-- send icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24">
+              <path fill="white" d="M2 21l21-9L2 3v7l15 2-15 2z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+<script>
+function openWingGirl() {
+  document.getElementById("winggirl-modal").style.display = "block";
+}
+
+function closeWingGirl() {
+  document.getElementById("winggirl-modal").style.display = "none";
+}
+
+// close outside
+window.onclick = function(e) {
+  let modal = document.getElementById("winggirl-modal");
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+}
+
+// suggestion click → input fill
+document.querySelectorAll('.wg-suggest-list span').forEach(item => {
+  item.onclick = () => {
+    document.querySelector('.wg-input input').value = item.innerText;
+  }
+});
+</script>
+
+<!-- dark theme -->
+<script>
+// ==================== THEME TOGGLE FUNCTIONALITY ====================
+
+// Check for saved theme preference on page load
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Update Lucide icons after theme change
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Toggle theme function
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  // Show toast notification
+  showThemeToast(newTheme === 'dark' ? '🌙 Dark mode activated' : '☀️ Light mode activated');
+  
+  // Refresh Lucide icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Optional: Show temporary notification
+function showThemeToast(message) {
+  const toast = document.createElement('div');
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 13px;
+    z-index: 9999;
+    animation: fadeInOut 2s ease forwards;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  `;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.remove();
+  }, 2000);
+}
+
+// Add keyframes for toast animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  }
+`;
+document.head.appendChild(style);
+
+// Initialize theme on page load
+initTheme();
+
+</script>
+<!-- dark theme end --><!-- nav btn -->
+<script>
+
+document.querySelector('.nav-hamburger')?.addEventListener('click', () => {
+  document.querySelector('.mobile-nav-drawer')?.classList.toggle('open');
+});
+
+</script>
+
+    <script>
+// Improved Video Preview Function
+function videoPopup(videoSrc = "", videoTitle = "Course Video", videoDuration = "") {
+  const modal = document.getElementById('videoModal');
+  const video = document.getElementById('modalVideo');
+  const titleEl = document.getElementById('modalVideoTitle');
+  const durationEl = document.getElementById('modalVideoDuration');
+
+  if (!video || !modal) {
+    console.error("Video modal or video element not found!");
+    return;
+  }
+
+  // Reset video
+  video.pause();
+  video.currentTime = 0;
+
+  // Set new source
+  const source = video.querySelector('source');
+  if (source) {
+    source.src = videoSrc || "assets/default-video.mp4";
+  } else {
+    video.src = videoSrc || "assets/default-video.mp4";
+  }
+
+  video.load();
+
+  // Set title & duration
+  titleEl.textContent = videoTitle;
+  durationEl.textContent = videoDuration || "Preview";
+
+  // YAHAN CHANGE KARO - inline style aur class dono set karo
+  modal.style.cssText = 'display: flex !important; visibility: visible !important; opacity: 1 !important;';
+  modal.classList.add('active');
+  
+  document.body.style.overflow = 'hidden';
+  document.body.style.position = 'fixed'; // Extra for modal
+
+  // Play video
+  video.play().catch(err => {
+    console.log("Autoplay prevented:", err);
+  });
+}
+
+function closeVideoModal() {
+  const modal = document.getElementById('videoModal');
+  const video = document.getElementById('modalVideo');
+
+  if (video) {
+    video.pause();
+    video.currentTime = 0;
+  }
+
+  if (modal) {
+    modal.style.cssText = 'display: none !important;';
+    modal.classList.remove('active');
+  }
+  document.body.style.overflow = '';
+  document.body.style.position = '';
+}
+    </script>
+    <script>
+
+
+// Video Modal Functions
+function openVideoModal(videoSrc, videoTitle, videoDuration) {
+  const modal = document.getElementById('videoModal');
+  const video = document.getElementById('modalVideo');
+  const title = document.getElementById('modalVideoTitle');
+  const duration = document.getElementById('modalVideoDuration');
+  
+  // Set video source and info
+  video.querySelector('source').src = videoSrc;
+  video.load();
+  title.textContent = videoTitle;
+  duration.textContent = videoDuration;
+  
+  // Show modal
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden'; // Prevent scrolling
+  
+  // Play video
+  video.play().catch(e => console.log('Autoplay prevented:', e));
+}
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeVideoModal();
+  }
+});
+
+      lucide.createIcons();
+
+      function toggleSearch() {
+        document.getElementById("searchPopup").classList.toggle("active");
+      }
+
+      function toggleNotif() {
+        document.getElementById("notificationPanel").classList.toggle("active");
+      }
+
+      function toggleProfile() {
+        document.getElementById("profileDropdown").classList.toggle("active");
+      }
+
+      function toggleChat() {
+        const box = document.getElementById("chatBox");
+        box.style.display = box.style.display === "flex" ? "none" : "flex";
+      }
+
+      function sendMessage() {
+        const input = document.getElementById("chatInput");
+        const text = input.value.trim();
+        if (text === "") return;
+        const chatBody = document.getElementById("chatBody");
+        const userMsg = document.createElement("div");
+        userMsg.className = "msg user";
+        userMsg.innerText = text;
+        chatBody.appendChild(userMsg);
+        setTimeout(() => {
+          const botMsg = document.createElement("div");
+          botMsg.className = "msg bot";
+          botMsg.innerText = "Got it 👍 We'll get back to you shortly.";
+          chatBody.appendChild(botMsg);
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 800);
+        input.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      document.addEventListener("click", function (e) {
+        if (
+          !e.target.closest(".nav-icon") &&
+          !e.target.closest(".nav-profile") &&
+          !e.target.closest("#notificationPanel") &&
+          !e.target.closest("#profileDropdown")
+        ) {
+          document
+            .getElementById("notificationPanel")
+            .classList.remove("active");
+          document.getElementById("profileDropdown").classList.remove("active");
+        }
+      });
+
+      // Tab Switching
+      const tabs = document.querySelectorAll(".tab");
+      const tabContents = document.querySelectorAll(".tab-content");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const tabId = tab.getAttribute("data-tab");
+          tabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+          tabContents.forEach((content) => content.classList.remove("active"));
+          document.getElementById(`${tabId}-tab`).classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wing Girl Method Mockup Index</title>
+    <link rel="stylesheet" href="styles.css" />
+            <script src="https://unpkg.com/lucide@latest"></script>
+
+  </head>
+  <body>
+      <div class="nav-wrap">
+  <div class="container nav">
+
+    <!-- LEFT -->
+    <div class="nav-left">
+      <div class="brand">
+        <a href="index.html">
+          <img src="assets/main_logo.png" alt="Logo" />
+        </a>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="courses-public.html">Programs</a>
+        <a href="course-library-member.html">Library</a>
+        <a href="community.html">Community</a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="nav-right">
+
+       <!-- 🌓 THEME TOGGLE -->
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <i data-lucide="sun" class="sun-icon"></i>
+    <i data-lucide="moon" class="moon-icon"></i>
+  </div>
+
+      <span class="ai-btn" onclick="openWingGirl()">
+        <i data-lucide="sparkles"></i> Talk to wing girl
+      </span>
+
+      <div class="nav-icon" onclick="toggleSearch()">
+        <i data-lucide="search"></i>
+      </div>
+
+      <div class="nav-icon" onclick="toggleNotif()">
+        <i data-lucide="bell"></i>
+      </div>
+
+      <div class="nav-profile" onclick="toggleProfile()">
+        <i data-lucide="user"></i>
+      </div>
+
+      <a class="btn btn-secondary" href="signup.html">Join Now</a>
+      
+
+      <!-- 🔥 HAMBURGER -->
+       
+      <div class="nav-hamburger">
+        <i data-lucide="menu" style="color: #5B9BD5;"></i>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 🔥 MOBILE DRAWER -->
+<!-- 🔥 MOBILE DRAWER - UPDATED WITH ALL ELEMENTS -->
+<div class="mobile-nav-drawer">
+
+  <!-- Overlay -->
+  <div class="mobile-nav-overlay"
+       onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+  </div>
+
+  <!-- Panel -->
+  <div class="mobile-nav-panel">
+
+    <!-- Close Button -->
+    <div class="close-nav">
+      <i data-lucide="x"
+         style="cursor:pointer;"
+         onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      </i>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="mobile-profile-section">
+      <div class="mobile-avatar">M</div>
+      <div class="mobile-user-info">
+        <h4>Marni</h4>
+        <p>marni@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- Main Navigation Links -->
+    <a href="index.html">
+      <i data-lucide="home"></i> Home
+    </a>
+    <a href="dashboard.html">
+      <i data-lucide="layout-dashboard"></i> Dashboard
+    </a>
+    <a href="courses-public.html">
+      <i data-lucide="graduation-cap"></i> Programs
+    </a>
+    <a href="course-library-member.html">
+      <i data-lucide="book-open"></i> Library
+    </a>
+    <a href="community.html">
+      <i data-lucide="users"></i> Community
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Account</div>
+
+    <!-- Account Links -->
+    <a href="profile.html">
+      <i data-lucide="user"></i> Profile
+    </a>
+    <a href="achievements.html">
+      <i data-lucide="award"></i> Achievements
+    </a>
+    <a href="help-center.html">
+      <i data-lucide="help-circle"></i> Help Center
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Support</div>
+
+    <!-- Support Links -->
+    <a href="contact-support.html">
+      <i data-lucide="mail"></i> Contact Support
+    </a>
+    <a href="about.html">
+      <i data-lucide="info"></i> About Us
+    </a>
+
+    <!-- Action Buttons -->
+    <button class="mobile-ai-btn" onclick="openWingGirl(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="sparkles"></i> Talk to Wing Girl
+    </button>
+
+    <a href="signup.html" class="mobile-join-btn" onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="log-in"></i> Join Now
+    </a>
+
+    <!-- Search and Notification in mobile -->
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+      <div class="nav-icon" onclick="toggleSearch(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="search"></i>
+      </div>
+      <div class="nav-icon" onclick="toggleNotif(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="bell"></i>
+      </div>
+    </div>
+
+  </div>
+</div>
+        <!-- nav pop up -->
+    <div>
+      <!-- search -->
+              <div class="search-popup" id="searchPopup">
+  <div class="search-box">
+    <i data-lucide="search" class="search-icon"></i>
+    <input type="text" placeholder="Search anything..." />
+    <button class="close-btn" onclick="toggleSearch()">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+            </div>
+      <!-- notification -->
+     
+               <div class="notification-panel" id="notificationPanel">
+  <!-- HEADER -->
+  <div class="notif-header">
+    <h4>Notifications</h4>
+    <span onclick="toggleNotif()"><i data-lucide="x"></i></span>
+  </div>
+
+  <!-- ITEMS -->
+  <div class="notif-item">
+    <i data-lucide="message-circle" class="notif-icon"></i>
+    <span>New message received</span>
+  </div>
+
+  <div class="notif-item">
+    <i data-lucide="book-open" class="notif-icon"></i>
+    <span>Course updated</span>
+  </div>
+
+  <div class="notif-item">
+    <i data-lucide="trending-up" class="notif-icon"></i>
+    <span>Your progress improved </span>
+  </div>
+              </div>
+            <!-- profile -->
+             <div class="profile-dropdown" id="profileDropdown">
+
+  <!-- TOP PROFILE INFO -->
+  <div class="profile-header">
+    <div class="avatar">M</div>
+    <div class="user-info">
+      <h4>Marni</h4>
+      <p>marni@gmail.com</p>
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <div class="menu">
+    <a href="profile.html"><i data-lucide="user"></i> Profile</a>
+    <a href="dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+    <a href="about.html"><i data-lucide="info"></i> About</a>
+    <a href="contact-support.html"><i data-lucide="mail"></i> Contact</a>
+  </div>
+
+  <!-- LOGOUT -->
+  <div class="menu logout">
+    <a href="login.html"><i data-lucide="log-out"></i> Logout</a>
+  </div>
+
+                     </div>
+
+                     </div>
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <span class="badge">20-Page Mockup System</span>
+          <h1>Full Wing Girl Method HTML/CSS mockup</h1>
+          <p>
+            This package includes the full mockup site with easy navigation and
+            all core pages referenced in the SOW. Use this as a clickable
+            prototype for design review and development planning.
+          </p>
+        </div>
+       <div class="welcome-video-card">
+  <h3>Start Here: Welcome from Marni</h3>
+
+<div class="welcome-video-card">
+
+ <div class="hero-video" style="position:relative; padding-top:56.25%;">
+
+  <iframe 
+    src="https://player.vimeo.com/video/333438650?autoplay=1&muted=1&loop=0&title=0&byline=0&portrait=0"
+    title="Welcome Video"
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture"
+    style="position:absolute; top:0; left:0; width:100%; height:100%;"
+    allowfullscreen>
+  </iframe>
+
+</div>
+
+</div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <h2>All Pages</h2>
+        <p class="sub">Click any page below to navigate the full mockup.</p>
+        <div class="index-grid">
+          <div class="index-card">
+            <h3>1. Home</h3>
+            <p>Main marketing homepage.</p>
+            <a class="btn btn-secondary "
+            href="index.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>2. About</h3>
+            <p>Program vision and positioning.</p>
+            <a class="btn btn-secondary "
+            href="about.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>3. Programs</h3>
+            <p>Public course/program overview.</p>
+            <a class="btn btn-secondary "
+            href="courses-public.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>4. Coaching</h3>
+            <p>Premium coaching offer page.</p>
+            <a class="btn btn-secondary "
+            href="coaching.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>5. Testimonials</h3>
+            <p>Social proof and outcomes.</p>
+            <a class="btn btn-secondary "
+            href="testimonials.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>6. Community Preview</h3>
+            <p>Public preview of member community.</p>
+            <a class="btn btn-secondary "
+            href="community-preview.html">Open</a>
+          </div>
+          <!-- <div class="index-card">
+            <h3>7. Pricing</h3>
+            <p>Membership and coaching plans.</p>
+            <a class="btn btn-secondary "
+            href="pricing.html">Open</a>
+          </div> -->
+          <div class="index-card">
+            <h3>7. Support</h3>
+            <p>Contact / support entry page.</p>
+            <a class="btn btn-secondary "
+            href="contact-support.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>8. Login</h3>
+            <p>Member login screen.</p>
+            <a class="btn btn-secondary "
+            href="login.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>9. Signup</h3>
+            <p>Membership signup page.</p>
+            <a class="btn btn-secondary "
+            href="signup.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>10. Onboarding</h3>
+            <p>Personalization quiz.</p>
+            <a class="btn btn-secondary "
+            href="onboarding-quiz.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>11. Dashboard</h3>
+            <p>Personalized member dashboard.</p>
+            <a class="btn btn-secondary "
+            href="dashboard.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>12. Course Library</h3>
+            <p>Member course library.</p>
+            <a class="btn btn-secondary "
+            href="course-library-member.html"
+              >Open</a
+            >
+          </div>
+          <div class="index-card">
+            <h3>13. Course Page</h3>
+            <p>Single course overview and lessons.</p>
+            <a class="btn btn-secondary "
+            href="course.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>14. Lesson Page</h3>
+            <p>Lesson player + comments.</p>
+            <a class="btn btn-secondary "
+            href="lesson.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>15. Community</h3>
+            <p>Member feed and engagement.</p>
+            <a class="btn btn-secondary "
+            href="community.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>16. Profile</h3>
+            <p>Member profile and progress.</p>
+            <a class="btn btn-secondary "
+            href="profile.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>17. Achievements</h3>
+            <p>Streaks, badges, points.</p>
+            <a class="btn btn-secondary "
+            href="achievements.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>18. Help Center</h3>
+            <p>Knowledge base and support metrics.</p>
+            <a class="btn btn-secondary "
+            href="help-center.html">Open</a>
+          </div>
+          <div class="index-card">
+            <h3>19. AI Assistant</h3>
+            <p>Coach Marni AI experience.</p>
+            <a class="btn btn-secondary "
+            href="#">Open</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="footer">
+      <div class="container">
+        Wing Girl Method — full HTML/CSS mockup with 19 pages
+      </div>
+    </div>
+
+
+ <!-- CHAT BUTTON -->
+<div class="chat-toggle" onclick="toggleChat()">
+  <i data-lucide="message-circle"></i>
+</div>
+
+<!-- CHAT BOX -->
+<div class="chat-box" id="chatBox">
+  <div class="chat-header">
+    <strong>Talk to wing girl</strong>
+    <span onclick="toggleChat()">✖</span>
+  </div>
+
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">Hi 👋 How can we help you today?</div>
+  </div>
+
+  <div class="chat-footer">
+    <input type="text" id="chatInput" placeholder="Type a message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+    <script>
+      lucide.createIcons();
+
+      // Carousel
+      const cards = document.getElementById("programCards");
+      if (document.querySelector(".arrow.right")) {
+        document.querySelector(".arrow.right").onclick = () =>
+          (cards.scrollLeft += 320);
+        document.querySelector(".arrow.left").onclick = () =>
+          (cards.scrollLeft -= 320);
+      }
+
+     const welcomeContainer = document.getElementById("welcome-video-container");
+const closeBtn = document.getElementById("close-welcome-btn");
+const iframe = document.getElementById("welcome-iframe");
+
+if (welcomeContainer) {
+  welcomeContainer.classList.add("show");
+}
+
+if (closeBtn) {
+  closeBtn.addEventListener("click", () => {
+    welcomeContainer.classList.remove("show");
+    if (iframe) iframe.src = iframe.src;
+  });
+}
+
+      function toggleChat() {
+        const box = document.getElementById("chatBox");
+        box.style.display = box.style.display === "flex" ? "none" : "flex";
+      }
+
+      function sendMessage() {
+        const input = document.getElementById("chatInput");
+        const text = input.value.trim();
+
+        if (text === "") return;
+
+        const chatBody = document.getElementById("chatBody");
+
+        // user message
+        const userMsg = document.createElement("div");
+        userMsg.className = "msg user";
+        userMsg.innerText = text;
+        chatBody.appendChild(userMsg);
+
+        // fake bot reply
+        setTimeout(() => {
+          const botMsg = document.createElement("div");
+          botMsg.className = "msg bot";
+          botMsg.innerText = "Got it 👍 We'll get back to you shortly.";
+          chatBody.appendChild(botMsg);
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 800);
+
+        input.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+    </script>
+
+    <script>
+      function toggleSearch() {
+        document.getElementById("searchPopup").classList.toggle("active");
+      }
+
+      function toggleNotif() {
+        document.getElementById("notificationPanel").classList.toggle("active");
+      }
+
+      function toggleProfile() {
+        document.getElementById("profileDropdown").classList.toggle("active");
+      }
+
+      // close on outside click
+      document.addEventListener("click", function (e) {
+        if (
+          !e.target.closest(".nav-icon") &&
+          !e.target.closest(".nav-profile") &&
+          !e.target.closest("#notificationPanel") &&
+          !e.target.closest("#profileDropdown")
+        ) {
+          document
+            .getElementById("notificationPanel")
+            .classList.remove("active");
+          document.getElementById("profileDropdown").classList.remove("active");
+        }
+      });
+
+      // lucide icons init
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,2406 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+  <body>
+
+
+<style>
+/* ==================== HERO SECTION FULL WIDTH ==================== */
+.hero-section {
+  width: 100%;
+  background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Full width background effect */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(91, 155, 213, 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+/* Container content center */
+.hero-section .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Hero Content Layout */
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Left Side */
+.hero-left h1 {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #5b9bd5, var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-left p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+/* Hero Buttons */
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.btn-primary {
+  background: var(--secondary);
+  color: white;
+  padding: 14px 32px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background: var(--secondary-hover);
+  transform: translateY(-2px);
+}
+
+.btn-outline-light {
+  border: 1px solid var(--secondary);
+  color: var(--secondary);
+  padding: 14px 32px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+  display: inline-block;
+}
+
+.btn-outline-light:hover {
+  background: var(--secondary);
+  color: white;
+}
+
+/* KPIs inside hero */
+.hero-kpis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.hero-kpi {
+  flex: 1;
+  min-width: 100px;
+}
+
+.hero-kpi strong {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.hero-kpi span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Right Side Image */
+.hero-right img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 32px;
+  box-shadow: 0 30px 40px -20px rgba(0, 0, 0, 0.5);
+}
+
+/* Welcome Video Card - Dark Theme Support */
+.welcome-video-card {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+[data-theme="dark"] .welcome-video-card {
+  background: linear-gradient(135deg, #0f172a, #0a0c10);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .hero-left h1 {
+    font-size: 38px;
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+  }
+  
+  .hero-kpis {
+    justify-content: center;
+  }
+  
+  .hero-right {
+    text-align: center;
+  }
+  
+  .hero-right img {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 50px 0;
+  }
+  
+  .hero-left h1 {
+    font-size: 32px;
+  }
+  
+  .hero-left p {
+    font-size: 16px;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .hero-buttons a {
+    text-align: center;
+  }
+  
+  .hero-kpis {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .hero-kpi {
+    min-width: calc(50% - 16px);
+  }
+}
+</style>
+<style>
+.hero-cta {
+  margin: 40px 0;
+  width: 100%;
+}
+
+.hero-cta-content {
+  width: 100%;
+}
+
+.hero-cta-simple {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+.hero-image-simple {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.hero-overlay-simple {
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 2px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.3));
+  padding: 40px 30px;
+  color: white;
+}
+
+[data-theme="dark"] .hero-overlay-simple {
+  background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.5));
+}
+
+.hero-overlay-simple h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.hero-overlay-simple p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.btn-simple {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 8px;
+  background: #5B9BD5;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn-simple:hover {
+  background: #4a8ac2;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(91, 155, 213, 0.3);
+}
+
+@media (max-width: 640px) {
+  .hero-overlay-simple h3 {
+    font-size: 20px;
+  }
+  .hero-overlay-simple p {
+    font-size: 13px;
+  }
+  .hero-overlay-simple {
+    padding: 25px 20px;
+  }
+}
+</style>
+<style>
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: all 0.3s;
+}
+
+[data-theme="dark"] .panel {
+  background: var(--panel);
+  border-color: var(--border);
+}
+
+.timeline-item p {
+  color: var(--text) !important;
+}
+
+[data-theme="dark"] .timeline-item p {
+  color: var(--muted) !important;
+}
+
+[data-theme="dark"] .timeline-num {
+  background: var(--hover-bg);
+  color: var(--text);
+}
+
+[data-theme="dark"] .cta-band p {
+  color: var(--muted) !important;
+}
+
+[data-theme="dark"] .testimonial-card {
+  background: var(--panel);
+  border-color: var(--border);
+}
+</style>
+
+
+<div class="nav-wrap">
+  <div class="container nav">
+
+    <!-- LEFT -->
+    <div class="nav-left">
+      <div class="brand">
+        <a href="index.html">
+          <img src="assets/main_logo.png" alt="Logo" />
+        </a>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="courses-public.html">Programs</a>
+        <a href="course-library-member.html">Library</a>
+        <a href="community.html">Community</a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="nav-right">
+
+       <!-- 🌓 THEME TOGGLE -->
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <i data-lucide="sun" class="sun-icon"></i>
+    <i data-lucide="moon" class="moon-icon"></i>
+  </div>
+
+      <span class="ai-btn" onclick="openWingGirl()">
+        <i data-lucide="sparkles"></i> Talk to wing girl
+      </span>
+
+      <div class="nav-icon" onclick="toggleSearch()">
+        <i data-lucide="search"></i>
+      </div>
+
+      <div class="nav-icon" onclick="toggleNotif()">
+        <i data-lucide="bell"></i>
+      </div>
+
+      <div class="nav-profile" onclick="toggleProfile()">
+        <i data-lucide="user"></i>
+      </div>
+
+      <a class="btn btn-secondary" href="signup.html">Join Now</a>
+      
+
+      <!-- 🔥 HAMBURGER -->
+       
+      <div class="nav-hamburger">
+        <i data-lucide="menu" style="color: #5B9BD5;"></i>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 🔥 MOBILE DRAWER -->
+<!-- 🔥 MOBILE DRAWER - UPDATED WITH ALL ELEMENTS -->
+<div class="mobile-nav-drawer">
+
+  <!-- Overlay -->
+  <div class="mobile-nav-overlay"
+       onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+  </div>
+
+  <!-- Panel -->
+  <div class="mobile-nav-panel">
+
+    <!-- Close Button -->
+    <div class="close-nav">
+      <i data-lucide="x"
+         style="cursor:pointer;"
+         onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      </i>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="mobile-profile-section">
+      <div class="mobile-avatar">M</div>
+      <div class="mobile-user-info">
+        <h4>Marni</h4>
+        <p>marni@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- Main Navigation Links -->
+    <a href="index.html">
+      <i data-lucide="home"></i> Home
+    </a>
+    <a href="dashboard.html">
+      <i data-lucide="layout-dashboard"></i> Dashboard
+    </a>
+    <a href="courses-public.html">
+      <i data-lucide="graduation-cap"></i> Programs
+    </a>
+    <a href="course-library-member.html">
+      <i data-lucide="book-open"></i> Library
+    </a>
+    <a href="community.html">
+      <i data-lucide="users"></i> Community
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Account</div>
+
+    <!-- Account Links -->
+    <a href="profile.html">
+      <i data-lucide="user"></i> Profile
+    </a>
+    <a href="achievements.html">
+      <i data-lucide="award"></i> Achievements
+    </a>
+    <a href="help-center.html">
+      <i data-lucide="help-circle"></i> Help Center
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Support</div>
+
+    <!-- Support Links -->
+    <a href="contact-support.html">
+      <i data-lucide="mail"></i> Contact Support
+    </a>
+    <a href="about.html">
+      <i data-lucide="info"></i> About Us
+    </a>
+
+    <!-- Action Buttons -->
+    <button class="mobile-ai-btn" onclick="openWingGirl(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="sparkles"></i> Talk to Wing Girl
+    </button>
+
+    <a href="signup.html" class="mobile-join-btn" onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="log-in"></i> Join Now
+    </a>
+
+    <!-- Search and Notification in mobile -->
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+      <div class="nav-icon" onclick="toggleSearch(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="search"></i>
+      </div>
+      <div class="nav-icon" onclick="toggleNotif(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="bell"></i>
+      </div>
+    </div>
+
+  </div>
+</div>
+    <!-- nav pop up -->
+    <div>
+      <!-- search -->
+      <div class="search-popup" id="searchPopup">
+        <div class="search-box">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" placeholder="Search anything..." />
+          <button class="close-btn" onclick="toggleSearch()">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+      </div>
+      <!-- notification -->
+
+      <div class="notification-panel" id="notificationPanel">
+        <!-- HEADER -->
+        <div class="notif-header">
+          <h4>Notifications</h4>
+          <span onclick="toggleNotif()"><i data-lucide="x"></i></span>
+        </div>
+
+        <!-- ITEMS -->
+        <div class="notif-item">
+          <i data-lucide="message-circle" class="notif-icon"></i>
+          <span>New message received</span>
+        </div>
+
+        <div class="notif-item">
+          <i data-lucide="book-open" class="notif-icon"></i>
+          <span>Course updated</span>
+        </div>
+
+        <div class="notif-item">
+          <i data-lucide="trending-up" class="notif-icon"></i>
+          <span>Your progress improved </span>
+        </div>
+      </div>
+      <!-- profile -->
+      <div class="profile-dropdown" id="profileDropdown">
+        <!-- TOP PROFILE INFO -->
+        <div class="profile-header">
+          <div class="avatar">M</div>
+          <div class="user-info">
+            <h4>Marni</h4>
+            <p>marni@gmail.com</p>
+          </div>
+        </div>
+
+        <!-- MENU -->
+        <div class="menu">
+          <a href="profile.html"><i data-lucide="user"></i> Profile</a>
+          <a href="dashboard.html"
+            ><i data-lucide="layout-dashboard"></i> Dashboard</a
+          >
+          <a href="about.html"><i data-lucide="info"></i> About</a>
+          <a href="contact-support.html"><i data-lucide="mail"></i> Contact</a>
+        </div>
+
+        <!-- LOGOUT -->
+        <div class="menu logout">
+          <a href="login.html"><i data-lucide="log-out"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+
+   <!-- Hero Section - Full Width -->
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-content">
+      
+      <!-- Left Side -->
+      <div class="hero-left">
+        <h1>THE WING GIRL METHOD</h1>
+        <p>
+          A high-end learning platform designed to improve confidence, 
+          communication, dating outcomes, and consistency through premium 
+          programs, accountability, community, coaching, and future AI guidance.
+        </p>
+        
+        <div class="hero-buttons">
+          <a href="/courses-public.html" class="btn-primary">Explore Programs</a>
+          <a href="#" class="btn-outline-light" onclick="openWingGirl()">Meet Coach Marni AI</a>
+        </div>
+        
+        <!-- KPIs -->
+        <div class="hero-kpis">
+          <div class="hero-kpi">
+            <strong>12+</strong>
+            <span>flagship trainings</span>
+          </div>
+          <div class="hero-kpi">
+            <strong>4.8★</strong>
+            <span>avg rating</span>
+          </div>
+          <div class="hero-kpi">
+            <strong>1-click</strong>
+            <span>coaching upsells</span>
+          </div>
+          <div class="hero-kpi">
+            <strong>BuddyBoss</strong>
+            <span>app-ready</span>
+          </div>
+        </div>
+      </div>
+      
+    <!-- Right Side Image with Video Tag -->
+<div class="hero-right">
+<div class="welcome-video-card">
+  <div class="hero-video">
+    <video 
+      src="assets/Welcome to The Wing Girl Method Members Area_1080p.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      controls  <!-- 🔥 IMPORTANT -->
+      style="width: 100%; border-radius: 24px;"
+    >
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+</div>
+      
+    </div>
+  </div>
+</section>
+
+
+
+  <section class="section" style="padding: 60px 0;">
+  <div class="container">
+    <h2>Why members stay engaged</h2>
+    <p class="sub">
+      The platform is structured to keep momentum high and friction low.
+    </p>
+    <div class="four-col">
+      <div class="icon-card">
+        <div class="badge">
+          <i data-lucide="compass"></i>
+        </div>
+        <h4>Clear Path</h4>
+        <p>
+          Onboarding personalizes the dashboard and recommends what to do
+          next.
+        </p>
+      </div>
+      <div class="icon-card">
+        <div class="badge">
+          <i data-lucide="trending-up"></i>
+        </div>
+        <h4>Visible Progress</h4>
+        <p>
+          Progress bars, streaks, achievements, and lesson completion make
+          growth tangible.
+        </p>
+      </div>
+      <div class="icon-card">
+        <div class="badge">
+          <i data-lucide="users"></i>
+        </div>
+        <h4>Community Layer</h4>
+        <p>Members can share wins, ask questions, and stay accountable.</p>
+      </div>
+      <div class="icon-card">
+        <div class="badge">
+          <i data-lucide="bot"></i>
+        </div>
+        <h4>Smart Guidance</h4>
+        <p>Coach Marni AI helps members pick the next best action.</p>
+      </div>
+    </div>
+  </div>
+</section>
+    <section class="section section-dark" style="padding: 60px 0;">
+      <div class="container">
+        <h2>Featured Programs</h2>
+        <p class="sub">
+          High-value, cinematic learning content built for real outcomes.
+        </p>
+        <div class="cards-H">
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/The-Cold-Approach.png" />
+            <div class="content">
+              <span class="badge">Best Seller</span>
+              <h3>Approach Mastery</h3>
+              <div class="meta">
+                <span>8 lessons</span><span>56 min</span
+                ><span>Updated Mar 2026</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.9 (241)</span>
+              </div>
+              <p>
+                Confident approaches without freezing or sounding rehearsed.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/wiawm-thumbnail.png" />
+            <div class="content">
+              <span class="badge">Popular</span>
+              <h3>Inside a Woman’s Mind</h3>
+              <div class="meta">
+                <span>10 lessons</span><span>74 min</span
+                ><span>Psychology</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.8 (198)</span>
+              </div>
+              <p>
+                Understand attraction, emotional triggers, and what actually
+                creates connection.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/Online-Dating-Profile.png" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>Advanced Dating Skills</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a><a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img 
+            src="assets/What-To-Say-To-A-Girl-To-Spark-Massive-Attraction-in-30-Seconds.png" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>What To Say To A Girl To Spark Massive Attraction in 30 Seconds Masterclass – Hosted By Mark Sing</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a><a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/The-Banter-Masterclass.png" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+The Banter Masterclass – Hosted By Kristen Carney</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/banter_guide-thumbnail.png" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+The Banter Guide</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/The Approach Blueprint.png" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+The Approach Blueprint</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/How-To-Banter-Over-Text-And-Online-Messaging.png" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+How To Banter Over Text And Online Messaging Masterclass – Hosted By Jamie Date</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/the-attraction-mindset-1.png" style="    object-fit: cover;
+    object-position: top center;
+" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+The Attraction Mindset
+</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/the-inner-circle-2.png" style="    object-fit: cover;
+    object-position: top center;
+" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+
+The Inner Circle 2.0
+</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/friendzone-left-banner.png";
+" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+
+The Friend Zone</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/bamww-bottom-banner.png" style="    object-fit: cover;
+    object-position: top center;
+" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+
+Become A Man Women Want
+</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/How-To-Create-Chemistry-With-Women_.png" style="    object-fit: cover;
+    object-position: top center;
+" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+
+How To Create Chemistry With Women Masterclass – Hosted By Alicia Davon
+</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/Break-The-Nice-Guy-Pattern_.png" style="    object-fit: cover;
+    object-position: top center;
+" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+
+Break The Nice Guy Pattern Masterclass – Hosted By Jaime B Haas</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/How-to-Lead-With-Confidence.png" style="    object-fit: cover;
+    object-position: top center;
+" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+
+How to Lead With Confidence Workshop – Hosted By Dave Stultz
+
+
+
+</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/Female-Brain-Body-Decoded.png" style="    object-fit: cover;
+    object-position: top center;
+" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+
+Female Brain And Body Decoded Masterclass – Hosted By Melissa Louise
+
+
+
+</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/Leading-Man-Masterclass_.png" style="    object-fit: cover;
+    object-position: top center;
+" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+
+Leading Man Masterclass – Hosted By Martel Metellus
+
+
+</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/Masterclass_Banners3.png" style="    object-fit: cover;
+    object-position: top center;
+" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+
+Leading Man Masterclass – Hosted By Martel Metellus
+
+
+</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/How-To-Seduce-Women.png" style="    object-fit: cover;
+    object-position: top center;
+" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+
+How To Seduce Women Masterclass – Hosted By Jake Peyton
+
+</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/Flirting-Masterclass.png" style="    object-fit: cover;
+    object-position: top center;
+" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+
+Flirting Masterclass – Hosted By Marissa Madsen
+</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+
+<a href="course.html" class="card-link">
+
+          <div class="card-H">
+            <img src="assets/No-More-Mr.-Nice-Guy-.png" style="    object-fit: cover;
+    object-position: top center;
+" />
+            <div class="content">
+              <span class="badge">Advanced</span>
+              <h3>
+
+No More Mr. Nice Guy Masterclass – Hosted By Jaime Haas</h3>
+              <div class="meta">
+                <span>12 lessons</span><span>92 min</span><span>Premium</span>
+              </div>
+              <div class="rating">
+                ★★★★★ <span style="color: var(--rating-color)">4.7 (163)</span>
+              </div>
+              <p>
+                Build stronger chemistry, deeper emotional pull, and better
+                dating decisions.
+              </p>
+              <span
+                class="btn btn-secondary"
+                href="course.html"
+                style="color: white !important"
+                >View Program</span
+              >
+            </div>
+          </div>
+</a>
+
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding: 60px 0;">
+      <div class="container two-col">
+        <div class="panel">
+          <h3>Transformation Journey</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-num">1</div>
+              <div>
+                <strong>Discover</strong>
+                <p style="color: #000000">
+                  Find the right program through homepage.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-num">2</div>
+              <div>
+                <strong>Join</strong>
+                <p style="color: #000000">
+                  Create your account, activate billing, and unlock the member
+                  experience.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-num">3</div>
+              <div>
+                <strong>Personalize</strong>
+                <p style="color: #000000">
+                  Complete onboarding so the dashboard adapts to your goals and
+                  stage.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-num">4</div>
+              <div>
+                <strong>Progress</strong>
+                <p style="color: #000000">
+                  Watch lessons, complete modules, and track growth through
+                  streaks and milestones.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+       <h4>THIS is How Women Want You To THRUST Inside Them (99% of Men Do This WRONG)</h4>
+        <div class="welcome-video-card">
+          <div
+            class="hero-video"
+            style="position: relative; padding-top: 56.25%"
+          >
+            <video controls autoplay muted playsinline>
+              <source
+                src="assets/thisis.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <section
+                   class="container feature cd-position-relative cd-z-index-1 cd-margin-y-2xl"
+    >
+      <div class="cd-container cd-max-width-adaptive-lg">
+       
+<div style="justify-content: center; align-items: center; display: inline">
+   <h1 class="hero-title" style="text-align: center;">Master Classes with Marni Kinrys</h1>
+          <p class="hero-subtitle" style="color: #0d1c2bd9;">Man's Secret Weapon! Learn dirty master tips & secrets about what women REALLY want from men.</p>
+ <div class="hero-cta">
+  <div class="hero-cta-content">
+  
+    <div class="hero-cta-simple">
+      <img src="assets/cta-bg-a-scaled.jpg" alt="Banner" class="hero-image-simple">
+      <div class="hero-overlay-simple">
+        <h3 style="color: #f0f7ff; text-align: center;">Most Popular Masterclasses</h3>
+        <p style="text-align: center;">Learn with us on your time. Start and stop at your own pace.</p>
+        <a href="#"  class="btn-simple">Browse Classes →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+.hero-cta {
+  margin: 40px 0;
+  width: 100%;
+}
+
+.hero-cta-content {
+  width: 100%;
+}
+
+.hero-cta-simple {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+.hero-image-simple {
+  width: 100%;
+  height: 300px;
+
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.hero-overlay-simple {
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 2px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.3));
+  padding: 40px 30px;
+  color: white;
+}
+
+.hero-overlay-simple h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.hero-overlay-simple p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.btn-simple {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 8px;
+  background: #5B9BD5;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn-simple:hover {
+  background: #4a8ac2;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(91, 155, 213, 0.3);
+}
+
+@media (max-width: 640px) {
+  .hero-overlay-simple h3 {
+    font-size: 20px;
+  }
+  .hero-overlay-simple p {
+    font-size: 13px;
+  }
+  /* .hero-image-simple {
+    height: 400px;
+  } */
+  .hero-overlay-simple {
+    padding: 25px 20px;
+  }
+}
+</style>
+
+<style>
+.hero-cta {
+  margin-top: 40px;
+  
+}
+
+
+
+.hero-cta-text {
+  flex: 1;
+}
+
+.cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(91, 155, 213, 0.1);
+  color: #5B9BD5;
+  padding: 6px 14px;
+  border-radius: 40px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.cta-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.cta-description {
+  font-size: 16px;
+  color: #475569;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cta-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #5B9BD5;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.cta-btn-primary:hover {
+  background: #4a8ac2;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(91, 155, 213, 0.3);
+}
+
+.cta-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid rgba(91, 155, 213, 0.3);
+  color: #5B9BD5;
+  padding: 12px 28px;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.cta-btn-secondary:hover {
+  background: rgba(91, 155, 213, 0.1);
+  border-color: #5B9BD5;
+  transform: translateY(-2px);
+}
+
+.hero-cta-image {
+  flex: 0.8;
+  max-width: 300px;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .hero-cta-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 32px 24px;
+  }
+  
+  .cta-title {
+    font-size: 24px;
+  }
+  
+  .hero-cta-image {
+    max-width: 200px;
+  }
+  
+  .cta-buttons {
+    justify-content: center;
+  }
+}
+</style>
+</div>
+
+
+      </div>
+    </section>
+    <section class="section section-dark" style="padding: 60px 0;">
+      <div class="container two-col">
+        <div class="panel">
+          <h3>Member Results</h3>
+
+          <!-- TESTIMONIAL 1 -->
+          <div class="testimonial-item">
+            <div class="icon">
+              <i data-lucide="star"></i>
+              <span class="label">Top Rated</span>
+            </div>
+            <p class="quote">
+              “I stopped freezing, started taking action, and finally felt like
+              I had a system instead of random advice.”
+            </p>
+            <div class="meta">
+              <span>4.9 average satisfaction</span>
+              <span>Confidence cohort</span>
+            </div>
+          </div>
+
+          <!-- TESTIMONIAL 2 -->
+          <div class="testimonial-item">
+            <div class="icon">
+              <i data-lucide="trending-up"></i>
+              <span class="label">Growth</span>
+            </div>
+            <p class="quote">
+              “The dashboard, progress tracking, and training flow kept me
+              engaged in a way most course platforms never have.”
+            </p>
+            <div class="meta">
+              <span>4.8 platform rating</span>
+              <span>Conversation cohort</span>
+            </div>
+          </div>
+
+          <!-- TESTIMONIAL 3 -->
+          <div class="testimonial-item">
+            <div class="icon">
+              <i data-lucide="zap"></i>
+              <span class="label">Fast Results</span>
+            </div>
+            <p class="quote">
+              “Within weeks, my confidence improved and I started seeing real
+              results in my conversations and dating life.”
+            </p>
+            <div class="meta">
+              <span>4.9 transformation score</span>
+              <span>Results cohort</span>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Track Your Growth Instantly</h3>
+          <div class="mini-chart">
+            <img
+              src="assets/pexels-wecare-media-123880473-10020092.jpg"
+              style="width: 100%; height: 100%; object-fit: cover"
+              alt=""
+            />
+          </div>
+          <div class="stat-grid" style="margin-top: 14px">
+            <div class="icon-card">
+              <h4>1,248</h4>
+              <p>Weekly active members</p>
+            </div>
+            <div class="icon-card">
+              <h4>41%</h4>
+              <p>Course completion uplift</p>
+            </div>
+            <div class="icon-card">
+              <h4>2.4%</h4>
+              <p>Upsell CTR</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+     style="padding: 60px 0;"  class="container feature cd-position-relative cd-z-index-1 cd-margin-y-2xl"
+    >
+      <div class="cd-container cd-max-width-adaptive-lg">
+        <div class="feature__grid">
+          <div>
+            <div class="feature__content">
+              <!-- <h1 class="badge">Marni</h1> -->
+              <h1>
+                I want to get you L.A.I.D!!!! Go listen here so that I can tell
+                you how to do it ;)
+              </h1>
+              <p class="cd-line-height-lg">
+                Tired of being the nice guy who gets nothing from women? I’m
+                Marni, your personal Wing Girl and this podcast is your
+                insider pass into the female mind. Each week, I'll deliver 2
+                episodes where I’ll teach you how to get the girl, keep the
+                power, and do it all without games or turning into a douchebag
+                so you can TURN HER ON. You’ll learn how to flirt, lead, and
+                create real attraction with women who actually want you. It's
+                time for you to TURN HER ON ;)
+              </p>
+
+              <div class="feature__actions">
+                <!-- <a href="#0" class="cd-btn cd-btn--primary">Download</a> -->
+                <a href="/dashboard.html" class="cd-link">Learn more</a>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <figure>
+              <img
+                class="feature__img"
+                data-img-light
+                src="assets/homeimg.webp"
+                alt="Image description"
+              />
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+   
+
+  
+    <section class="section" style="padding: 60px 0;">
+      <div class="container " style="align-items: center !important">
+      
+        <div class="cta-band">
+          <div class="badge" style="color: #5b9bd5">Ready to begin?</div>
+          <h2 style="margin-top: 8px">
+            Join the platform and build momentum faster.
+          </h2>
+          <p style="color: #000000; line-height: 1.75">
+            Start with the membership that fits your stage now, then unlock
+            deeper coaching support when you are ready for faster growth.
+          </p>
+          <div
+            style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px"
+          >
+            <a
+              class="btn btn-secondary"
+              style="background-color: #5b9bd5"
+              href="checkout.html"
+              >Start Membership</a
+            >
+            <!-- <a class="btn btn-secondary" href="pricing.html"    style="color: white !important;">Compare Plans</a> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- SOCIAL PROOF SECTION -->
+    <section class="section masterclass-testimonials" style="padding: 60px 0;">
+      <div class="container">
+        <div class="section-header">
+          <h2>Real Results from Our Members
+</h2>
+          <p>See what our students are saying</p>
+        </div>
+
+        <div class="testimonials-wrapper">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Marni's master advice completely transformed my love life. The techniques are immediately applicable."</p>
+            <div class="testimonial-author">
+              <strong>Jessica Wei</strong>
+              <span>Single Professional</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"High-quality production and incredibly valuable master tips. Best investment I've made in my relationships."</p>
+            <div class="testimonial-author">
+              <strong>Marcus Johnson</strong>
+              <span>Bachelor</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Game-changing master advice. My confidence with women has never been better. Highly recommend!"</p>
+            <cite class="ta0-text-sm">
+            <strong>Michael Reynolds</strong> 
+            <span class="ta0-block ta0-color-contrast-medium ta0-margin-top-4xs">Dating Skills Program</span>
+          </cite>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- FAQ SECTION -->
+<section class="section masterclass-faq" style="padding: 60px 0;">
+  <div class="container">
+    <div class="section-header">
+      <h2>Frequently Asked Questions</h2>
+      <p>Everything you need to know about our master advice</p>
+    </div>
+
+    <div class="faq-container">
+      <div class="faq-item">
+        <button class="faq-header">
+          <span class="faq-title">Do I need prior knowledge to learn master skills?</span>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="faq-content">
+          <p>No! Our master advice videos are designed for all levels. Marni guides you through every step with clear, actionable techniques.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-header">
+          <span class="faq-title">How long do I have access to the master videos?</span>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="faq-content">
+          <p>You get lifetime access! Once you enroll, you can watch the master videos whenever you want, as many times as you need.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-header">
+          <span class="faq-title">Can I download videos for offline viewing?</span>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="faq-content">
+          <p>Yes! Pro and Teams subscribers can download master videos for offline viewing, perfect for learning on the go.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-header">
+          <span class="faq-title">What platforms can I watch on?</span>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="faq-content">
+          <p>Our platform works on desktop, tablet, and mobile. We have native apps for iOS and Android for the best mobile experience.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-header">
+          <span class="faq-title">Is there a certificate of completion?</span>
+          <svg class="faq-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="faq-content">
+          <p>Yes! When you complete a master course, you can download a professional certificate. Share it on social media or use it in your dating profile.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+   <div class="banner" >
+  <div class="left">
+    <h1 style="color: #fff;">Transformation anytime, anywhere</h1>
+    <p>Access your personalized recommendations and keep track of your growth journey.</p>
+  </div>
+
+  <div class="right">
+    <!-- <img src="qr.png" alt="QR Code" class="qr"> -->
+      <img src="assets/app-store.png" alt="App Store">
+      <img src="assets/google-play.png" alt="Google Play">
+
+    <!-- <div class="store-buttons">
+      <img src="assets/app-store.png" alt="App Store">
+      <img src="assets/google-play.png" alt="Google Play">
+    </div> -->
+  </div>
+</div>
+
+<section class="email-light">
+  <div class="container email-light-inner">
+
+    <!-- LEFT -->
+    <div class="email-left">
+      <h2>Try some of our classes</h2>
+      <p>
+        Enter your email and we’ll send you some samples of our favorite classes.
+      </p>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="email-right">
+
+     
+
+      <div class="email-input-wrap">
+         <input type="email" placeholder="Enter Email Address" />
+        <button>Submit</button>
+      </div>
+
+   <div class="checkbox-wrap">
+      <input type="checkbox" id="agree3" name="agree3" />
+      <label for="agree3">
+        I agree to receive emails about programs and updates.
+      </label>
+    </div>
+
+      <p class="terms">
+        
+      </p>
+
+    </div>
+
+  </div>
+</section>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <!-- BRAND -->
+        <div class="footer-brand">
+          <img
+            src="assets/main_logo.png"
+            alt="Wing Girl Method Logo"
+            style="height: 40px; margin-top: 20px"
+          />
+          <p>
+            Wing Girl Method Transform your confidence, dating life &
+            masculinity with expert guidance from Marni Kinrys.
+          </p>
+        </div>
+
+        <!-- COLUMN 1 -->
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          
+          <a href="dashboard.html">Dashboard</a>
+        </div>
+
+        <!-- COLUMN 2 -->
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <a href="courses-public.html">Programs</a>
+          <a href="master-classes.html">Master Classes</a>
+          <a href="course-library-member.html">Video Library</a>
+          <a href="resources.html">Resources</a>
+        </div>
+
+        <!-- COLUMN 3 -->
+        <div class="footer-col">
+          <h4>Account</h4>
+          <a href="profile.html">Profile</a>
+          <a href="signup.html">Signup</a>
+          <a href="login.html">Login</a>
+          <a href="onboarding-quiz.html">Onboarding</a>
+          <a href="checkout.html">Checkout</a>
+        </div>
+
+        <!-- COLUMN 4 -->
+        <div class="footer-col">
+          <h4>Community & Support</h4>
+          <a href="community.html">Community</a>
+          <a href="achievements.html">Achievements</a>
+          <a href="help-center.html">Help Center</a>
+          <a href="contact-support.html">Contact Support</a>
+          
+        </div>
+      </div>
+
+      <!-- BOTTOM -->
+      <div class="footer-bottom">
+        <div class="container">
+          © 2026 Wing Girl Method. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- CHAT BUTTON -->
+    <div class="chat-toggle" onclick="toggleChat()">
+      <i data-lucide="message-circle"></i>
+    </div>
+
+    <!-- CHAT BOX -->
+    <div class="chat-box" id="chatBox">
+      <div class="chat-header">
+        <strong>Talk to wing girl</strong>
+        <span onclick="toggleChat()">✖</span>
+      </div>
+
+      <div class="chat-body" id="chatBody">
+        <div class="msg bot">Hi 👋 How can we help you today?</div>
+      </div>
+
+      <div class="chat-footer">
+        <input type="text" id="chatInput" placeholder="Type a message..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+
+
+    
+<!-- wing girl popup -->
+<div id="winggirl-modal" class="wg-modal">
+  <div class="wg-modal-content">
+
+    <!-- CLOSE -->
+    <span class="wg-close" onclick="closeWingGirl()">✕</span>
+
+    <!-- HEADER -->
+    <div class="wg-header">
+      <img src="assets/main_logo.png" class="wg-avatar" />
+
+      <h2>Marni Kinrys</h2>
+      <p class="wg-sub">Founder of The Wing Girl Method</p>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="wg-actions">
+
+      <button class="wg-btn">
+        <!-- chat icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M20 2H4a2 2 0 0 0-2 2v14l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/>
+        </svg>
+        Chat
+      </button>
+
+      <button class="wg-btn-outline">
+        <!-- phone icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2c1 .3 2 .5 3 .5a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10 21 3 14 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1 .2 2 .5 3a1 1 0 0 1-.2 1l-2.2 2.2z"/>
+        </svg>
+        Call
+      </button>
+
+    </div>
+
+    <!-- SUGGESTED QUESTIONS -->
+    <div class="wg-suggestions">
+      <p>Suggested Questions</p>
+
+      <div class="wg-suggest-list">
+        <span>How do I approach a girl confidently?</span>
+        <span>What should I say first?</span>
+        <span>How to stop overthinking?</span>
+        <span>How to build attraction naturally?</span>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div class="wg-input">
+      <input type="text" placeholder="Ask Wing Girl a question..." />
+      <button>
+        <!-- send icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24">
+          <path fill="white"
+            d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- dark theme -->
+<script>
+// ==================== THEME TOGGLE FUNCTIONALITY ====================
+
+// Check for saved theme preference on page load
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Update Lucide icons after theme change
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Toggle theme function
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  // Show toast notification
+  showThemeToast(newTheme === 'dark' ? '🌙 Dark mode activated' : '☀️ Light mode activated');
+  
+  // Refresh Lucide icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Optional: Show temporary notification
+function showThemeToast(message) {
+  const toast = document.createElement('div');
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 13px;
+    z-index: 9999;
+    animation: fadeInOut 2s ease forwards;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  `;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.remove();
+  }, 2000);
+}
+
+// Add keyframes for toast animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  }
+`;
+document.head.appendChild(style);
+
+// Initialize theme on page load
+initTheme();
+
+</script>
+<!-- dark theme end -->
+
+<!-- dark theme -->
+<script>
+// ==================== THEME TOGGLE FUNCTIONALITY ====================
+
+// Check for saved theme preference on page load
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Update Lucide icons after theme change
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Toggle theme function
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  // Show toast notification
+  showThemeToast(newTheme === 'dark' ? '🌙 Dark mode activated' : '☀️ Light mode activated');
+  
+  // Refresh Lucide icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Optional: Show temporary notification
+function showThemeToast(message) {
+  const toast = document.createElement('div');
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 13px;
+    z-index: 9999;
+    animation: fadeInOut 2s ease forwards;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  `;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.remove();
+  }, 2000);
+}
+
+// Add keyframes for toast animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  }
+`;
+document.head.appendChild(style);
+
+// Initialize theme on page load
+initTheme();
+
+</script>
+<!-- dark theme end --><!-- nav btn -->
+<script>
+
+document.querySelector('.nav-hamburger')?.addEventListener('click', () => {
+  document.querySelector('.mobile-nav-drawer')?.classList.toggle('open');
+});
+
+</script>
+
+
+<!-- faq js -->
+<script>
+  // FAQ Accordion Functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqHeaders = document.querySelectorAll('.faq-header');
+    
+    faqHeaders.forEach(header => {
+      header.addEventListener('click', function() {
+        const faqItem = this.parentElement;
+        faqItem.classList.toggle('open');
+        
+        // Optional: Close other FAQs when one opens
+        faqHeaders.forEach(otherHeader => {
+          if (otherHeader !== header) {
+            otherHeader.parentElement.classList.remove('open');
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<script>
+function openWingGirl() {
+  document.getElementById("winggirl-modal").style.display = "block";
+}
+
+function closeWingGirl() {
+  document.getElementById("winggirl-modal").style.display = "none";
+}
+
+// close outside
+window.onclick = function(e) {
+  let modal = document.getElementById("winggirl-modal");
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+}
+
+// suggestion click → input fill
+document.querySelectorAll('.wg-suggest-list span').forEach(item => {
+  item.onclick = () => {
+    document.querySelector('.wg-input input').value = item.innerText;
+  }
+});
+</script>
+
+
+    <script>
+      lucide.createIcons();
+
+      // Carousel
+      const cards = document.getElementById("programCards");
+      if (document.querySelector(".arrow.right")) {
+        document.querySelector(".arrow.right").onclick = () =>
+          (cards.scrollLeft += 320);
+        document.querySelector(".arrow.left").onclick = () =>
+          (cards.scrollLeft -= 320);
+      }
+
+     const welcomeContainer = document.getElementById("welcome-video-container");
+const closeBtn = document.getElementById("close-welcome-btn");
+const iframe = document.getElementById("welcome-iframe");
+
+if (welcomeContainer) {
+  welcomeContainer.classList.add("show");
+}
+
+if (closeBtn) {
+  closeBtn.addEventListener("click", () => {
+    welcomeContainer.classList.remove("show");
+    if (iframe) iframe.src = iframe.src;
+  });
+}
+
+      function toggleChat() {
+        const box = document.getElementById("chatBox");
+        box.style.display = box.style.display === "flex" ? "none" : "flex";
+      }
+
+      function sendMessage() {
+        const input = document.getElementById("chatInput");
+        const text = input.value.trim();
+
+        if (text === "") return;
+
+        const chatBody = document.getElementById("chatBody");
+
+        // user message
+        const userMsg = document.createElement("div");
+        userMsg.className = "msg user";
+        userMsg.innerText = text;
+        chatBody.appendChild(userMsg);
+
+        // fake bot reply
+        setTimeout(() => {
+          const botMsg = document.createElement("div");
+          botMsg.className = "msg bot";
+          botMsg.innerText = "Got it 👍 We'll get back to you shortly.";
+          chatBody.appendChild(botMsg);
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 800);
+
+        input.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+    </script>
+
+    <script>
+      function toggleSearch() {
+        document.getElementById("searchPopup").classList.toggle("active");
+      }
+
+      function toggleNotif() {
+        document.getElementById("notificationPanel").classList.toggle("active");
+      }
+
+      function toggleProfile() {
+        document.getElementById("profileDropdown").classList.toggle("active");
+      }
+
+      // close on outside click
+      document.addEventListener("click", function (e) {
+        if (
+          !e.target.closest(".nav-icon") &&
+          !e.target.closest(".nav-profile") &&
+          !e.target.closest("#notificationPanel") &&
+          !e.target.closest("#profileDropdown")
+        ) {
+          document
+            .getElementById("notificationPanel")
+            .classList.remove("active");
+          document.getElementById("profileDropdown").classList.remove("active");
+        }
+      });
+
+      // lucide icons init
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

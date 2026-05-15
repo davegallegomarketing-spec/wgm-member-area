@@ -1,0 +1,1307 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+  </head>
+
+  <style>
+    /* Welcome Video Popup Styling */
+    #welcome-video-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+    }
+    #welcome-video-container.show {
+      display: flex;
+    }
+    .welcome-popup {
+      position: relative;
+      width: 90%;
+      max-width: 920px;
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    }
+    #close-welcome-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      z-index: 100000;
+      background: #000;
+      color: white;
+      border: 2px solid white;
+      width: 45px;
+      height: 45px;
+      font-size: 26px;
+      font-weight: bold;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+
+  <body>
+  <div class="nav-wrap">
+  <div class="container nav">
+
+    <!-- LEFT -->
+    <div class="nav-left">
+      <div class="brand">
+        <a href="index.html">
+          <img src="assets/main_logo.png" alt="Logo" />
+        </a>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="courses-public.html">Programs</a>
+        <a href="course-library-member.html">Library</a>
+        <a href="community.html">Community</a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="nav-right">
+
+       <!-- 🌓 THEME TOGGLE -->
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <i data-lucide="sun" class="sun-icon"></i>
+    <i data-lucide="moon" class="moon-icon"></i>
+  </div>
+
+      <span class="ai-btn" onclick="openWingGirl()">
+        <i data-lucide="sparkles"></i> Talk to wing girl
+      </span>
+
+      <div class="nav-icon" onclick="toggleSearch()">
+        <i data-lucide="search"></i>
+      </div>
+
+      <div class="nav-icon" onclick="toggleNotif()">
+        <i data-lucide="bell"></i>
+      </div>
+
+      <div class="nav-profile" onclick="toggleProfile()">
+        <i data-lucide="user"></i>
+      </div>
+
+      <a class="btn btn-secondary" href="signup.html">Join Now</a>
+      
+
+      <!-- 🔥 HAMBURGER -->
+       
+      <div class="nav-hamburger">
+        <i data-lucide="menu" style="color: #5B9BD5;"></i>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 🔥 MOBILE DRAWER -->
+<!-- 🔥 MOBILE DRAWER - UPDATED WITH ALL ELEMENTS -->
+<div class="mobile-nav-drawer">
+
+  <!-- Overlay -->
+  <div class="mobile-nav-overlay"
+       onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+  </div>
+
+  <!-- Panel -->
+  <div class="mobile-nav-panel">
+
+    <!-- Close Button -->
+    <div class="close-nav">
+      <i data-lucide="x"
+         style="cursor:pointer;"
+         onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      </i>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="mobile-profile-section">
+      <div class="mobile-avatar">M</div>
+      <div class="mobile-user-info">
+        <h4>Marni</h4>
+        <p>marni@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- Main Navigation Links -->
+    <a href="index.html">
+      <i data-lucide="home"></i> Home
+    </a>
+    <a href="dashboard.html">
+      <i data-lucide="layout-dashboard"></i> Dashboard
+    </a>
+    <a href="courses-public.html">
+      <i data-lucide="graduation-cap"></i> Programs
+    </a>
+    <a href="course-library-member.html">
+      <i data-lucide="book-open"></i> Library
+    </a>
+    <a href="community.html">
+      <i data-lucide="users"></i> Community
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Account</div>
+
+    <!-- Account Links -->
+    <a href="profile.html">
+      <i data-lucide="user"></i> Profile
+    </a>
+    <a href="achievements.html">
+      <i data-lucide="award"></i> Achievements
+    </a>
+    <a href="help-center.html">
+      <i data-lucide="help-circle"></i> Help Center
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Support</div>
+
+    <!-- Support Links -->
+    <a href="contact-support.html">
+      <i data-lucide="mail"></i> Contact Support
+    </a>
+    <a href="about.html">
+      <i data-lucide="info"></i> About Us
+    </a>
+
+    <!-- Action Buttons -->
+    <button class="mobile-ai-btn" onclick="openWingGirl(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="sparkles"></i> Talk to Wing Girl
+    </button>
+
+    <a href="signup.html" class="mobile-join-btn" onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="log-in"></i> Join Now
+    </a>
+
+    <!-- Search and Notification in mobile -->
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+      <div class="nav-icon" onclick="toggleSearch(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="search"></i>
+      </div>
+      <div class="nav-icon" onclick="toggleNotif(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="bell"></i>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+     <!-- search -->
+      <div class="search-popup" id="searchPopup">
+        <div class="search-box">
+          <i data-lucide="search"></i>
+          <input type="text" placeholder="Search anything..." />
+          <button onclick="toggleSearch()"><i data-lucide="x"></i></button>
+        </div>
+      </div>
+  <!-- profile -->
+       <!-- profile -->
+      <div class="profile-dropdown" id="profileDropdown">
+        <!-- TOP PROFILE INFO -->
+        <div class="profile-header">
+          <div class="avatar">M</div>
+          <div class="user-info">
+            <h4>Marni</h4>
+            <p>marni@gmail.com</p>
+          </div>
+        </div>
+
+        <!-- MENU -->
+        <div class="menu">
+          <a href="profile.html"><i data-lucide="user"></i> Profile</a>
+          <a href="dashboard.html"
+            ><i data-lucide="layout-dashboard"></i> Dashboard</a
+          >
+          <a href="about.html"><i data-lucide="info"></i> About</a>
+          <a href="contact-support.html"><i data-lucide="mail"></i> Contact</a>
+        </div>
+
+        <!-- LOGOUT -->
+        <div class="menu logout">
+          <a href="login.html"><i data-lucide="log-out"></i> Logout</a>
+        </div>
+      </div>
+   <!-- notification -->
+      <div class="notification-panel" id="notificationPanel">
+        <div class="notif-header">
+          <h4>Notifications</h4>
+          <span onclick="toggleNotif()"><i data-lucide="x"></i></span>
+        </div>
+        <div class="notif-item">
+          <i data-lucide="message-circle" style="color: #5B9BD5;" ></i> <span>New message received</span>
+        </div>
+        <div class="notif-item">
+          <i data-lucide="book-open"  style="color: #5B9BD5;"></i> <span>Course updated</span>
+        </div>
+        <div class="notif-item">
+          <i data-lucide="trending-up" style="color: #5B9BD5;"></i>
+          <span>Your progress improved </span>
+        </div>
+      </div>
+      
+
+
+    <div class="dashboard-shell">
+      <!-- LEFT SIDEBAR -->
+
+ <aside class="left-dashboard">
+  
+  <!-- Mobile Menu Toggle Button (only visible on mobile) -->
+  <div class="dashboard-menu-toggle" >
+    <span>Menu</span>
+    <i data-lucide="chevron-down"></i>
+  </div>
+  
+  <!-- Scrollable Menu Wrapper -->
+  <div class="left-dashboard-scroll dashboard-menu-wrapper">
+    
+    <!-- Member Add-Ons Button -->
+    <button class="member-addon-btn" onclick="window.location.href='checkout.html'">
+      <span class="plus-box">+</span>
+      <span>Member Add-Ons</span>
+      <i data-lucide="arrow-right"></i>
+    </button>
+
+    <ul class="dashboard-menu">
+      <!-- MAIN -->
+      <li class="active"><a href="courses-public.html">Courses</a></li>
+      <li><a href="coaching.html">Coaching</a></li>
+      <li><a href="master-classes.html">Masterclasses</a></li>
+      <li><a onclick="openWingGirl()" style="cursor: pointer;">Talk to Wing Girl</a></li>
+      <li><a href="contact-support.html">Support</a></li>
+
+      <!-- USER AREA -->
+      <li><a href="course.html">My Course</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="profile.html">Account</a></li>
+
+      <!-- OPTIONAL (CTA / Extra) -->
+      <li>
+        <a href="#app-download" class="btn btn-secondary" style="display: flex; align-items: center; gap: 8px; justify-content: center;">App Download</a>
+      </li>
+      <li>
+        <a href="#" class="btn btn-secondary" onclick="logout()" style="display: flex; align-items: center; gap: 8px; justify-content: center;">Log out</a>
+      </li>
+    </ul>
+    
+  </div>
+</aside>
+      <!-- RIGHT CONTENT -->
+      <main class="dashboard-main">
+        <section class="section">
+          <div class="container dashboard-container">
+            <div class="dashboard-header">
+              <h2>Welcome back, Dave</h2>
+
+              <div class="streak-pill">
+                <div class="streak-icon">
+                  <i data-lucide="hexagon"></i>
+                </div>
+
+                <div class="streak-text">
+                  <strong>6</strong>
+                  <span>day streak</span>
+                </div>
+              </div>
+            </div>
+            <p class="sub">
+              Welcome back. Continue your journey and keep building momentum.
+            </p>
+
+            <div class="kpis">
+              <div class="kpi">
+                <div class="kpi-icon">
+                  <i data-lucide="book-open"></i>
+                </div>
+                <strong>4</strong>
+                <p>Courses Completed</p>
+              </div>
+
+              <div class="kpi">
+                <div class="kpi-icon">
+                  <i data-lucide="play-circle"></i>
+                </div>
+                <strong>37</strong>
+                <p>Lessons Watched</p>
+              </div>
+              <!-- 
+              <div class="kpi">
+                <div class="kpi-icon">
+                  <i data-lucide="flame"></i>
+                </div>
+                <strong>6</strong>
+                <p>Day Streak</p>
+              </div> -->
+
+              <div class="kpi">
+                <div class="kpi-icon">
+                  <i data-lucide="clock"></i>
+                </div>
+                <strong>420</strong>
+                <p>Minutes Watched</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIMEO VIDEO -->
+        <div class="welcome-video-card-DB">
+          <div class="hero-video">
+            <video controls autoplay muted playsinline>
+              <source
+                src="assets/Welcome to The Wing Girl Method Members Area_1080p.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+
+        <section class="section" id="continue-learning">
+          <div class="container dashboard-container two-col">
+            <div class="panel">
+              <h3>Continue Learning</h3>
+                 <a href="course.html" class="card-link">
+
+              <div class="card" style="margin-top: 16px">
+                <img
+                  style="height: auto"
+                  src="assets/Masterclass_How-To-Master-Emotional-Intelligence-With-Women-.png"
+                  alt=""
+                />
+                <div class="content">
+                  <span class="badge">In Progress</span>
+                  <h3>Emotional Intelligence</h3>
+                  <div class="meta">
+                    <span>Lesson 3 of 12</span><span>Saved at 10:21</span>
+                  </div>
+                  <p>
+                    Continue the module that helps you read situations better
+                    and respond more calmly.
+                  </p>
+
+                  <p class="author">Marni Kinrys</p>
+                  <div class="meta">
+                    <span>12 lessons</span><span>2h</span><span>4.7★</span>
+                  </div>
+
+                  <div class="progress-container">
+                    <div class="progress"><span style="width: 45%"></span></div>
+                    <span class="progress-text">45% completed</span>
+                  </div>
+
+                  <p class="enrollment">1,250 enrolled</p>
+
+                  <a class="btn btn-secondary" href="course.html"
+                    >Resume Lesson</a
+                  >
+                </div>
+              </div></a>
+
+
+            </div>
+
+            <div class="panel">
+              <div class="div">
+                <h3>Continue Learning</h3>
+                 <a href="course.html" class="card-link">
+
+                <div class="card" style="margin-top: 16px">
+                  <div class="hero-video">
+                   
+                      <video controls  muted playsinline>
+                        <source
+                          src="/assets/99.9%25.mp4"
+                          type="video/mp4"
+                        />
+                        Your browser does not support the video tag.
+                      </video>
+                   
+                  </div>
+                  <div class="content">
+                    <span class="badge">In Progress</span>
+                    <h3>99.9% Of All Women Are Turned On If You Say "THIS"</h3>
+                    <div class="meta">
+                      <span>12 lessons</span><span>2h</span><span>4.7★</span>
+                    </div>
+                    <p>
+                      This video explains how to communicate and connect with
+                      women in a deeper way. Understanding emotional connection
+                      can make conversations more engaging and attractive.
+                    </p>
+
+                    <p class="author">Marni Kinrys</p>
+                    <div class="meta">
+                      <span>10M views</span>
+                      <span>Relationship Advice</span>
+                      <span>4.8★</span>
+                    </div>
+
+                    <div class="progress-container">
+                      <div class="progress">
+                        <span style="width: 70%"></span>
+                      </div>
+                      <span class="progress-text">70% completed</span>
+                    </div>
+
+                    <p class="enrollment">3,210 enrolled</p>
+
+                    <a class="btn btn-secondary" href="course.html"
+                      >Resume Lesson</a
+                    >
+                  </div>
+                </div>
+
+                </a>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== WELCOME VIDEO POPUP ==================== -->
+        <!-- <div id="welcome-video-container">
+        <div class="welcome-popup">
+          <button id="close-welcome-btn">✕</button>
+          
+          <div style="position: relative; padding-top: 56.25%;">
+            <iframe
+              id="welcome-iframe"
+              src="https://www.youtube.com/embed/IwdW3vGd-ho?rel=0&modestbranding=1&autoplay=1"
+              title="Welcome Video"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            </iframe>
+          </div>
+        </div>
+      </div> -->
+
+        <!-- program -->
+        <section class="section">
+          <div class="container">
+            <h2>Programs</h2>
+            <p class="sub">
+              A public view of what members unlock inside the platform.
+            </p>
+            <div class="program-carousel">
+              <button class="arrow left">
+                <i data-lucide="chevron-left"></i>
+              </button>
+
+              <div class="cards" id="programCards">
+                <!-- Card 1 -->
+                 <a href="course.html" class="card-link">
+
+                <div class="card">
+                  <img
+                    src="assets/visualization-thumbnail.png"
+                    alt="Visualization Training"
+                  />
+                  <div class="content">
+                    <span class="badge">Featured</span>
+                    <h3>Visualization Training</h3>
+                    <p class="author">Marni Kinrys</p>
+                    <div class="meta">
+                      <span>12 lessons</span><span>2h</span><span>4.7★</span>
+                    </div>
+
+                    <div class="progress-container">
+                      <div class="progress">
+                        <span style="width: 45%"></span>
+                      </div>
+                      <span class="progress-text">45% completed</span>
+                    </div>
+
+                    <p class="enrollment">1,250 enrolled</p>
+                    <a class="btn btn-secondary" href="course.html">View</a>
+                  </div>
+                </div>
+</a>
+                 <a href="course.html" class="card-link">
+
+                <!-- Card 2 -->
+                <div class="card">
+                  <img
+                    src="assets/Masterclass_How-To-Master-Emotional-Intelligence-With-Women-.png"
+                    alt="Emotional Intelligence"
+                  />
+                  <div class="content">
+                    <span class="badge">Featured</span>
+                    <h3>Emotional Intelligence</h3>
+                    <p class="author">Marni Kinrys</p>
+                    <div class="meta">
+                      <span>10 lessons</span><span>1.5h</span><span>4.8★</span>
+                    </div>
+
+                    <div class="progress-container">
+                      <div class="progress">
+                        <span style="width: 60%"></span>
+                      </div>
+                      <span class="progress-text">60% completed</span>
+                    </div>
+
+                    <p class="enrollment">980 enrolled</p>
+                    <a class="btn btn-secondary" href="course.html">View</a>
+                  </div>
+                </div>
+</a>
+                 <a href="course.html" class="card-link">
+
+                <!-- Card 3 -->
+                <div class="card">
+                  <img
+                    src="assets/The-Art-Of-Conversation-Masterclass.png"
+                    alt="Conversation Mastery"
+                  />
+                  <div class="content">
+                    <span class="badge">Featured</span>
+                    <h3>Conversation Mastery</h3>
+                    <p class="author">Marni Kinrys</p>
+                    <div class="meta">
+                      <span>15 lessons</span><span>3h</span><span>4.9★</span>
+                    </div>
+
+                    <div class="progress-container">
+                      <div class="progress">
+                        <span style="width: 30%"></span>
+                      </div>
+                      <span class="progress-text">30% completed</span>
+                    </div>
+
+                    <p class="enrollment">1,500 enrolled</p>
+                    <a class="btn btn-secondary" href="course.html">View</a>
+                  </div>
+                </div>
+</a>
+                 <a href="course.html" class="card-link">
+
+                <!-- Card 4 -->
+                <div class="card">
+                  <img
+                    src="assets/The-Cold-Approach.png"
+                    alt="Approach Mastery"
+                  />
+                  <div class="content">
+                    <span class="badge">Featured</span>
+                    <h3>Approach Mastery</h3>
+                    <p class="author">Marni Kinrys</p>
+                    <div class="meta">
+                      <span>8 lessons</span><span>56 min</span><span>4.9★</span>
+                    </div>
+
+                    <div class="progress-container">
+                      <div class="progress">
+                        <span style="width: 70%"></span>
+                      </div>
+                      <span class="progress-text">70% completed</span>
+                    </div>
+
+                    <p class="enrollment">850 enrolled</p>
+                    <a class="btn btn-secondary" href="course.html">View</a>
+                  </div>
+                </div>
+</a>
+                 <a href="course.html" class="card-link">
+
+                <!-- Card 5 -->
+                <div class="card">
+                  <img
+                    src="assets/wiawm-thumbnail.png"
+                    alt="Inside a Woman’s Mind"
+                  />
+                  <div class="content">
+                    <span class="badge">Featured</span>
+                    <h3>Inside a Woman’s Mind</h3>
+                    <p class="author">Marni Kinrys</p>
+                    <div class="meta">
+                      <span>10 lessons</span><span>74 min</span
+                      ><span>4.8★</span>
+                    </div>
+
+                    <div class="progress-container">
+                      <div class="progress">
+                        <span style="width: 50%"></span>
+                      </div>
+                      <span class="progress-text">50% completed</span>
+                    </div>
+
+                    <p class="enrollment">1,100 enrolled</p>
+                    <a class="btn btn-secondary" href="course.html">View</a>
+                  </div>
+                </div>
+</a>
+                 <a href="course.html" class="card-link">
+
+                <!-- Card 6 -->
+                <div class="card">
+                  <img
+                    src="assets/Online-Dating-Profile.png"
+                    alt="Advanced Dating Skills"
+                  />
+                  <div class="content">
+                    <span class="badge">Featured</span>
+                    <h3>Advanced Dating Skills</h3>
+                    <p class="author">Marni Kinrys</p>
+                    <div class="meta">
+                      <span>12 lessons</span><span>92 min</span
+                      ><span>4.7★</span>
+                    </div>
+
+                    <div class="progress-container">
+                      <div class="progress">
+                        <span style="width: 25%"></span>
+                      </div>
+                      <span class="progress-text">25% completed</span>
+                    </div>
+
+                    <p class="enrollment">950 enrolled</p>
+                    <a class="btn btn-secondary" href="course.html">View</a>
+                  </div>
+                </div>
+</a>
+
+
+              </div>
+
+              <button class="arrow right">
+                <i data-lucide="chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick Wins of the Day -->
+        <section class="quick-wins-section-new" id="quick-wins">
+          <div class="quick-wins-wrapper-new">
+            <h3>Quick Wins of the Day</h3>
+
+            <div class="quick-wins-grid">
+              <div class="quick-win-card-new">
+                <div class="p-icon">
+                  <i data-lucide="sunrise"></i>
+                </div>
+                <h4>5-min Meditation</h4>
+                <p>Quick mental reset</p>
+              </div>
+
+              <div class="quick-win-card-new">
+                <div class="p-icon">
+                  <i data-lucide="zap"></i>
+                </div>
+                <h4>10-min Confidence Drill</h4>
+                <p>Boost your confidence</p>
+              </div>
+
+              <div class="quick-win-card-new">
+                <div class="p-icon">
+                  <i data-lucide="eye"></i>
+                </div>
+                <h4>5-min Visualization</h4>
+                <p>Visualize success</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section section-dark" id="recommended">
+          <div class="container dashboard-container two-col">
+            <div class="panel">
+              <h3>Recommended For You</h3>
+              <div
+                class="cards"
+                style="grid-template-columns: 1fr 1fr; gap: 16px"
+              >
+
+                               <a href="course.html" class="card-link">
+
+                <div class="card">
+                  <img
+                    style="object-fit: cover; height: 115px"
+                    src="assets/The-Art-Of-Conversation-Masterclass.png"
+                    alt=""
+                  />
+                  <div class="content">
+                    <span class="badge">Featured</span>
+                    <h3>Conversation Mastery</h3>
+                    <p class="author">Marni Kinrys</p>
+                    <div class="meta">
+                      <span>11 lessons</span><span>83 min</span
+                      ><span>4.7★</span>
+                    </div>
+
+                    <div class="progress-container">
+                      <div class="progress">
+                        <span style="width: 45%"></span>
+                      </div>
+                      <span class="progress-text">45% completed</span>
+                    </div>
+
+                    <p class="enrollment">1,234 enrolled</p>
+                    <a class="btn btn-secondary" href="course.html">View</a>
+                  </div>
+                </div>
+</a>
+                 <a href="course.html" class="card-link">
+
+                <div class="card">
+                  <img
+                    style="object-fit: cover; height: 115px"
+                    src="assets/visualization-thumbnail.png"
+                    alt=""
+                  />
+                  <div class="content">
+                    <span class="badge">Featured</span>
+                    <h3>Visualization Training</h3>
+                    <p class="author">Marni Kinrys</p>
+                    <div class="meta">
+                      <span>9 lessons</span><span>61 min</span>
+                      <span>4.7★</span>
+                    </div>
+
+                    <div class="progress-container">
+                      <div class="progress">
+                        <span style="width: 10%"></span>
+                      </div>
+                      <span class="progress-text">10% completed</span>
+                    </div>
+
+                    <p class="enrollment">500 enrolled</p>
+                    <a class="btn btn-secondary" href="course.html">View</a>
+                  </div>
+                </div>
+                </a>
+
+              </div>
+              <!-- Community Activity Feed -->
+              <section class="community-feed-new" id="community-feed">
+                <div class="community-wrapper-new">
+                  <h3>Community Activity</h3>
+
+                  <ul class="community-list">
+                    <li>
+                      <strong>Anna</strong> completed "Visualization Training"
+                    </li>
+                    <li>
+                      <strong>Mark</strong> shared a win: "Finished Meditation
+                      Module"
+                    </li>
+                    <li><strong>Lisa</strong> joined a new program</li>
+                  </ul>
+                </div>
+              </section>
+            </div>
+
+            <div class="panel" id="snapshot">
+              <h3>Recommended For You</h3>
+                               <a href="course.html" class="card-link">
+
+              <div class="card">
+                <img
+                  style="object-fit: fill; height: 180px"
+                  src="assets/Online-Dating-Profile.png"
+                  alt=""
+                />
+                <div class="content">
+                  <span class="badge">Featured</span>
+                  <h3>Advanced Dating Skills</h3>
+                  <p class="author">Marni Kinrys</p>
+                  <div class="meta">
+                    <span>12 lessons</span><span>92 min</span>
+                    <span>4.7★</span>
+                  </div>
+
+                  <div class="progress-container">
+                    <div class="progress"><span style="width: 25%"></span></div>
+                    <span class="progress-text">25% completed</span>
+                  </div>
+
+                  <p class="enrollment">950 enrolled</p>
+                  <a class="btn btn-secondary" href="course.html">View</a>
+                </div>
+              </div>
+</a>
+
+              <!-- <h3>Performance Snapshot</h3>
+              <div class="mini-chart"></div> -->
+              <div class="stat-grid" style="margin-top: 14px">
+                <div class="icon-card">
+                  <i class="p-icon" data-lucide="book-open"></i>
+                  <h4>8</h4>
+                  <p>Lessons this week</p>
+                </div>
+
+                <div class="icon-card">
+                  <i class="p-icon" data-lucide="clock"></i>
+                  <h4>132</h4>
+                  <p>Minutes watched</p>
+                </div>
+
+                <div class="icon-card">
+                  <i class="p-icon" data-lucide="help-circle"></i>
+                  <h4>1</h4>
+                  <p>Support clicks</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+ <!-- VIMEO VIDEO -->
+       <!-- <div class="container panel" style="margin-top: 40px;">
+        <h1 style="text-align: center;">Talk To Us Love The Wing Girls</h1>
+            <img 
+            style="border-radius: 10px;"
+            src="assets/cta-bg-a-scaled.jpg" alt="">
+            
+          </div> -->
+       
+
+
+
+          <!-- Coaching Upsell Banner -->
+          <section class="coaching-banner-new" id="coaching-banner">
+            <div class="coaching-wrapper-new">
+              <div class="coaching-content-new">
+                <h3>Level up your game</h3>
+                <p>
+                  Get 1-on-1 coaching from Marni to accelerate your progress.
+                </p>
+
+                <a class="btn btn-secondary" href="coaching.html">
+                  Book a Session
+                </a>
+              </div>
+            </div>
+          </section>
+
+
+        </section>
+
+      </main>
+    </div>
+              <!-- App Download Section -->
+   <div class="banner" id="app-download" >
+  <div class="left">
+    <h1 style="color: #fff;">Transformation anytime, anywhere</h1>
+    <p>Access your personalized recommendations and keep track of your growth journey.</p>
+  </div>
+
+  <div class="right">
+    <!-- <img src="qr.png" alt="QR Code" class="qr"> -->
+      <img src="assets/app-store.png" alt="App Store">
+      <img src="assets/google-play.png" alt="Google Play">
+
+    <!-- <div class="store-buttons">
+      <img src="assets/app-store.png" alt="App Store">
+      <img src="assets/google-play.png" alt="Google Play">
+    </div> -->
+  </div>
+</div>
+       <footer class="footer">
+  <div class="container footer-inner">
+
+    <!-- BRAND -->
+    <div class="footer-brand">
+      <img src="assets/main_logo.png" alt="Wing Girl Method Logo" style="height: 40px; margin-top: 20px;">
+      <p>
+        Wing Girl Method Transform your confidence, dating life & masculinity 
+        with expert guidance from Marni Kinrys.
+      </p>
+    </div>
+
+    <!-- COLUMN 1 -->
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+
+    <!-- COLUMN 2 -->
+    <div class="footer-col">
+      <h4>Learn</h4>
+      <a href="courses-public.html">Programs</a>
+      <a href="master-classes.html">Master Classes</a>
+      <a href="course-library-member.html">Video Library</a>
+      <a href="resources.html">Resources</a>
+    </div>
+
+    <!-- COLUMN 3 -->
+    <div class="footer-col">
+      <h4>Account</h4>
+      <a href="profile.html">Profile</a>
+      <a href="signup.html">Signup</a>
+      <a href="login.html">Login</a>
+      <a href="onboarding-quiz.html">Onboarding</a>
+      <a href="checkout.html">Checkout</a>
+    </div>
+
+    <!-- COLUMN 4 -->
+    <div class="footer-col">
+      <h4>Community & Support</h4>
+      <a href="community.html">Community</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="help-center.html">Help Center</a>
+      <a href="contact-support.html">Contact Support</a>
+      
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <div class="container">
+      © 2026 Wing Girl Method. All Rights Reserved.
+    </div>
+  </div>
+</footer>
+
+    <!-- Floating Coach Marni AI Button -->
+    <!-- <a href="#" target="_blank" class="floating-ai-btn">
+      <i data-lucide="sparkles"></i>
+      <span>Coach Marni AI</span>
+    </a> -->
+
+    <!-- CHAT BUTTON -->
+    <div class="chat-toggle" onclick="toggleChat()">
+  <i data-lucide="message-circle"></i>
+</div>
+
+    <!-- CHAT BOX -->
+    <div class="chat-box" id="chatBox">
+      <div class="chat-header">
+        <strong>Talk to wing girl</strong>
+        <span onclick="toggleChat()">✖</span>
+      </div>
+
+      <div class="chat-body" id="chatBody">
+        <div class="msg bot">Hi 👋 How can we help you today?</div>
+      </div>
+
+      <div class="chat-footer">
+        <input type="text" id="chatInput" placeholder="Type a message..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+
+
+<!-- wing girl popup -->
+<div id="winggirl-modal" class="wg-modal">
+  <div class="wg-modal-content">
+
+    <!-- CLOSE -->
+    <span class="wg-close" onclick="closeWingGirl()">✕</span>
+
+    <!-- HEADER -->
+    <div class="wg-header">
+      <img src="assets/main_logo.png" class="wg-avatar" />
+
+      <h2>Marni Kinrys</h2>
+      <p class="wg-sub">Founder of The Wing Girl Method</p>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="wg-actions">
+
+      <button class="wg-btn">
+        <!-- chat icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M20 2H4a2 2 0 0 0-2 2v14l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/>
+        </svg>
+        Chat
+      </button>
+
+      <button class="wg-btn-outline">
+        <!-- phone icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24">
+          <path fill="currentColor"
+            d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2c1 .3 2 .5 3 .5a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10 21 3 14 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1 .2 2 .5 3a1 1 0 0 1-.2 1l-2.2 2.2z"/>
+        </svg>
+        Call
+      </button>
+
+    </div>
+
+    <!-- SUGGESTED QUESTIONS -->
+    <div class="wg-suggestions">
+      <p>Suggested Questions</p>
+
+      <div class="wg-suggest-list">
+        <span>How do I approach a girl confidently?</span>
+        <span>What should I say first?</span>
+        <span>How to stop overthinking?</span>
+        <span>How to build attraction naturally?</span>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div class="wg-input">
+      <input type="text" placeholder="Ask Wing Girl a question..." />
+      <button>
+        <!-- send icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24">
+          <path fill="white"
+            d="M2 21l21-9L2 3v7l15 2-15 2z"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- dark theme -->
+<script>
+// ==================== THEME TOGGLE FUNCTIONALITY ====================
+
+// Check for saved theme preference on page load
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Update Lucide icons after theme change
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Toggle theme function
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  // Show toast notification
+  showThemeToast(newTheme === 'dark' ? '🌙 Dark mode activated' : '☀️ Light mode activated');
+  
+  // Refresh Lucide icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Optional: Show temporary notification
+function showThemeToast(message) {
+  const toast = document.createElement('div');
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 13px;
+    z-index: 9999;
+    animation: fadeInOut 2s ease forwards;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  `;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.remove();
+  }, 2000);
+}
+
+// Add keyframes for toast animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  }
+`;
+document.head.appendChild(style);
+
+// Initialize theme on page load
+initTheme();
+
+</script>
+<!-- dark theme end -->
+
+<!-- nav btn -->
+<script>
+
+document.querySelector('.nav-hamburger')?.addEventListener('click', () => {
+  document.querySelector('.mobile-nav-drawer')?.classList.toggle('open');
+});
+
+// Mobile dashboard menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.querySelector('.dashboard-menu-toggle');
+  const menuWrapper = document.querySelector('.dashboard-menu-wrapper');
+  
+  if (menuToggle && menuWrapper) {
+    menuToggle.addEventListener('click', function() {
+      menuWrapper.classList.toggle('open');
+      const icon = menuToggle.querySelector('i');
+      if (icon && menuWrapper.classList.contains('open')) {
+        icon.style.transform = 'rotate(180deg)';
+      } else if (icon) {
+        icon.style.transform = 'rotate(0deg)';
+      }
+    });
+  }
+});
+
+
+</script>
+
+<script>
+function openWingGirl() {
+  document.getElementById("winggirl-modal").style.display = "block";
+}
+
+function closeWingGirl() {
+  document.getElementById("winggirl-modal").style.display = "none";
+}
+
+// close outside
+window.onclick = function(e) {
+  let modal = document.getElementById("winggirl-modal");
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+}
+
+// suggestion click → input fill
+document.querySelectorAll('.wg-suggest-list span').forEach(item => {
+  item.onclick = () => {
+    document.querySelector('.wg-input input').value = item.innerText;
+  }
+});
+</script>
+
+
+    <script>
+      lucide.createIcons();
+
+      // Carousel
+      const cards = document.getElementById("programCards");
+      if (document.querySelector(".arrow.right")) {
+        document.querySelector(".arrow.right").onclick = () =>
+          (cards.scrollLeft += 320);
+        document.querySelector(".arrow.left").onclick = () =>
+          (cards.scrollLeft -= 320);
+      }
+
+     const welcomeContainer = document.getElementById("welcome-video-container");
+const closeBtn = document.getElementById("close-welcome-btn");
+const iframe = document.getElementById("welcome-iframe");
+
+if (welcomeContainer) {
+  welcomeContainer.classList.add("show");
+}
+
+if (closeBtn) {
+  closeBtn.addEventListener("click", () => {
+    welcomeContainer.classList.remove("show");
+    if (iframe) iframe.src = iframe.src;
+  });
+}
+
+      function toggleChat() {
+        const box = document.getElementById("chatBox");
+        box.style.display = box.style.display === "flex" ? "none" : "flex";
+      }
+
+      function sendMessage() {
+        const input = document.getElementById("chatInput");
+        const text = input.value.trim();
+
+        if (text === "") return;
+
+        const chatBody = document.getElementById("chatBody");
+
+        // user message
+        const userMsg = document.createElement("div");
+        userMsg.className = "msg user";
+        userMsg.innerText = text;
+        chatBody.appendChild(userMsg);
+
+        // fake bot reply
+        setTimeout(() => {
+          const botMsg = document.createElement("div");
+          botMsg.className = "msg bot";
+          botMsg.innerText = "Got it 👍 We'll get back to you shortly.";
+          chatBody.appendChild(botMsg);
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 800);
+
+        input.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+    </script>
+
+    <script>
+      function toggleSearch() {
+        document.getElementById("searchPopup").classList.toggle("active");
+      }
+
+      function toggleNotif() {
+        document.getElementById("notificationPanel").classList.toggle("active");
+      }
+
+      function toggleProfile() {
+        document.getElementById("profileDropdown").classList.toggle("active");
+      }
+
+      // close on outside click
+      document.addEventListener("click", function (e) {
+        if (
+          !e.target.closest(".nav-icon") &&
+          !e.target.closest(".nav-profile") &&
+          !e.target.closest("#notificationPanel") &&
+          !e.target.closest("#profileDropdown")
+        ) {
+          document
+            .getElementById("notificationPanel")
+            .classList.remove("active");
+          document.getElementById("profileDropdown").classList.remove("active");
+        }
+      });
+
+      // lucide icons init
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

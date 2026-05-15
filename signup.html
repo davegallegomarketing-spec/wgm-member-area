@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign Up - Wing Girl Method</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+   <style>
+  .signup-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    padding: 40px 20px;
+  }
+
+  .signup-container {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    max-width: 1150px;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+  }
+
+  /* LEFT SIDE */
+  .signup-form-side {
+    padding: 60px 50px;
+  }
+
+  .signup-form-side h2 {
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #0f172a;
+  }
+
+  .signup-form-side p {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 35px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    font-weight: 600;
+    font-size: 13px;
+    color: #334155;
+    margin-bottom: 6px;
+  }
+
+  .input, select {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #0f172a;
+    font-size: 14px;
+    transition: 0.3s;
+  }
+
+  .input:focus, select:focus {
+    border-color: #5B9BD5;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(91,155,213,0.15);
+    outline: none;
+  }
+
+  .btn-signup {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #5B9BD5, #3b82f6);
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+  }
+
+  .btn-signup:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(59,130,246,0.3);
+  }
+
+  /* RIGHT SIDE (FIXED PREMIUM LOOK) */
+  .signup-info-side {
+    background-color: #5B9BD5;
+    color: white;
+    padding: 60px 45px;
+    position: relative;
+  }
+
+  /* subtle overlay effect */
+  .signup-info-side::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.15), transparent 40%);
+    pointer-events: none;
+  }
+
+  .signup-info-side h3 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .signup-info-side .sub-text {
+    text-align: center;
+    opacity: 0.85;
+    margin-bottom: 30px;
+    font-size: 14px;
+  }
+
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .process-step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .step-icon {
+    width: 42px;
+    height: 42px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-content strong {
+    font-size: 15px;
+    display: block;
+  }
+
+  .step-content p {
+    font-size: 13px;
+    opacity: 0.85;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 920px) {
+    .signup-container {
+      grid-template-columns: 1fr;
+    }
+
+    .signup-info-side {
+      text-align: center;
+    }
+  }
+
+  /* Dark Theme - Signup Page */
+[data-theme="dark"] .signup-section {
+  background: var(--bg);
+}
+
+[data-theme="dark"] .signup-container {
+  background: var(--bg2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .signup-form-side h2 {
+  color: var(--text);
+}
+
+[data-theme="dark"] .signup-form-side p {
+  color: var(--muted);
+}
+
+[data-theme="dark"] .form-group label {
+  color: var(--text);
+}
+
+[data-theme="dark"] .input,
+[data-theme="dark"] select {
+  background: var(--bg);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+[data-theme="dark"] .input::placeholder {
+  color: var(--muted);
+}
+
+/* Minimal SweetAlert Dark Theme - Sign Up */
+[data-theme="dark"] .swal2-popup {
+  background: #111317 !important;
+  color: #f0f2f5 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .swal2-title {
+  color: #f0f2f5 !important;
+}
+
+[data-theme="dark"] .swal2-html-container {
+  color: #8e98a9 !important;
+}
+
+[data-theme="dark"] .swal2-confirm {
+  background-color: #5B9BD5 !important;
+}
+
+[data-theme="dark"] .swal2-icon.swal2-success .swal2-success-ring {
+  border-color: #10b981 !important;
+}
+</style>
+  </head>
+  <body>
+
+    <!-- NAV -->
+    <div class="nav-wrap">
+  <div class="container nav">
+
+    <!-- LEFT -->
+    <div class="nav-left">
+      <div class="brand">
+        <a href="index.html">
+          <img src="assets/main_logo.png" alt="Logo" />
+        </a>
+      </div>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="courses-public.html">Programs</a>
+        <a href="course-library-member.html">Library</a>
+        <a href="community.html">Community</a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="nav-right">
+
+
+           <!-- 🌓 THEME TOGGLE -->
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <i data-lucide="sun" class="sun-icon"></i>
+    <i data-lucide="moon" class="moon-icon"></i>
+  </div>
+
+
+      <!-- <span class="ai-btn" onclick="openWingGirl()">
+        <i data-lucide="sparkles"></i> Talk to wing girl
+      </span>
+
+      <div class="nav-icon" onclick="toggleSearch()">
+        <i data-lucide="search"></i>
+      </div>
+
+      <div class="nav-icon" onclick="toggleNotif()">
+        <i data-lucide="bell"></i>
+      </div>
+
+      <div class="nav-profile" onclick="toggleProfile()">
+        <i data-lucide="user"></i>
+      </div> -->
+
+      <a class="btn btn-secondary" href="signup.html">Join Now</a>
+
+      <!-- 🔥 HAMBURGER -->
+       
+      <div class="nav-hamburger">
+        <i data-lucide="menu" style="color: #5B9BD5;"></i>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 🔥 MOBILE DRAWER -->
+<!-- 🔥 MOBILE DRAWER - UPDATED WITH ALL ELEMENTS -->
+<div class="mobile-nav-drawer">
+
+  <!-- Overlay -->
+  <div class="mobile-nav-overlay"
+       onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+  </div>
+
+  <!-- Panel -->
+  <div class="mobile-nav-panel">
+
+    <!-- Close Button -->
+    <div class="close-nav">
+      <i data-lucide="x"
+         style="cursor:pointer;"
+         onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      </i>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="mobile-profile-section">
+      <div class="mobile-avatar">M</div>
+      <div class="mobile-user-info">
+        <h4>Marni</h4>
+        <p>marni@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- Main Navigation Links -->
+    <a href="index.html">
+      <i data-lucide="home"></i> Home
+    </a>
+    <a href="dashboard.html">
+      <i data-lucide="layout-dashboard"></i> Dashboard
+    </a>
+    <a href="courses-public.html">
+      <i data-lucide="graduation-cap"></i> Programs
+    </a>
+    <a href="course-library-member.html">
+      <i data-lucide="book-open"></i> Library
+    </a>
+    <a href="community.html">
+      <i data-lucide="users"></i> Community
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Account</div>
+
+    <!-- Account Links -->
+    <a href="profile.html">
+      <i data-lucide="user"></i> Profile
+    </a>
+    <a href="achievements.html">
+      <i data-lucide="award"></i> Achievements
+    </a>
+    <a href="help-center.html">
+      <i data-lucide="help-circle"></i> Help Center
+    </a>
+
+    <!-- Divider -->
+    <div class="mobile-nav-divider">Support</div>
+
+    <!-- Support Links -->
+    <a href="contact-support.html">
+      <i data-lucide="mail"></i> Contact Support
+    </a>
+    <a href="about.html">
+      <i data-lucide="info"></i> About Us
+    </a>
+
+    <!-- Action Buttons -->
+    <button class="mobile-ai-btn" onclick="openWingGirl(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="sparkles"></i> Talk to Wing Girl
+    </button>
+
+    <a href="signup.html" class="mobile-join-btn" onclick="document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+      <i data-lucide="log-in"></i> Join Now
+    </a>
+
+    <!-- Search and Notification in mobile -->
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+      <div class="nav-icon" onclick="toggleSearch(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="search"></i>
+      </div>
+      <div class="nav-icon" onclick="toggleNotif(); document.querySelector('.mobile-nav-drawer').classList.remove('open')">
+        <i data-lucide="bell"></i>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <!-- SIGNUP SECTION -->
+    <section class="signup-section">
+      <div class="signup-container">
+
+        <!-- Form Side -->
+        <div class="signup-form-side">
+          <h2>Create Your Account</h2>
+          <p>Join the community and start your transformation today</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input class="input" placeholder="First name" />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input class="input" placeholder="Last name" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <input class="input" type="email" placeholder="name@example.com" />
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <input id="password" class="input" type="password" placeholder="Create a strong password" />
+            <!-- <button type="button" class="toggle-password" id="togglePassword" style="position:absolute;right:75px;top:52px;background:none;border:none;font-size:20px;cursor:pointer;">👁️</button> -->
+          </div>
+
+          <div class="form-group">
+            <label>Select Your Plan</label>
+            <select class="input">
+              <option>Premium Access — $99/month</option>
+              <option>Core Membership — $49/month</option>
+            </select>
+          </div>
+
+          <button onclick="handleSignup()" class="btn-signup">Create Account & Continue</button>
+
+          <div class="signup-link" style="text-align:center; margin-top:28px; font-size:15px;">
+            Already have an account? <a href="login.html">Login here</a>
+          </div>
+        </div>
+
+      <div class="signup-info-side">
+  <h3 style="color: #fff;">What happens next</h3>
+  <p class="sub-text">Your journey starts instantly — here’s exactly what to expect</p>
+
+  <div class="process-steps">
+
+    <div class="process-step">
+      <div class="step-icon"><i data-lucide="user"></i></div>
+      <div class="step-content">
+        <strong>Account Created</strong>
+        <p>Instantly — Your secure profile is set up in seconds</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-icon"><i data-lucide="mail"></i></div>
+      <div class="step-content">
+        <strong>Welcome Access</strong>
+        <p>Immediate — Get access to your member dashboard</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-icon"><i data-lucide="target"></i></div>
+      <div class="step-content">
+        <strong>Onboarding Quiz</strong>
+        <p>Starts instantly — We personalize your experience</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-icon"><i data-lucide="book-open"></i></div>
+      <div class="step-content">
+        <strong>Programs Recommended</strong>
+        <p>Smart suggestions based on your answers</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-icon"><i data-lucide="layout-dashboard"></i></div>
+      <div class="step-content">
+        <strong>Dashboard Unlocked</strong>
+        <p>Track progress, watch lessons & grow</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-icon"><i data-lucide="users"></i></div>
+      <div class="step-content">
+        <strong>Community Access</strong>
+        <p>Connect, share wins & stay accountable</p>
+      </div>
+    </div>
+
+    <div class="process-step">
+      <div class="step-icon"><i data-lucide="brain"></i></div>
+      <div class="step-content">
+        <strong>AI Coaching</strong>
+        <p>Get smart recommendations anytime</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+   <footer class="footer">
+  <div class="container footer-inner">
+
+    <!-- BRAND -->
+    <div class="footer-brand">
+      <img src="assets/main_logo.png" alt="Wing Girl Method Logo" style="height: 40px; margin-top: 20px;">
+      <p>
+        Wing Girl Method Transform your confidence, dating life & masculinity 
+        with expert guidance from Marni Kinrys.
+      </p>
+    </div>
+
+    <!-- COLUMN 1 -->
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+
+    <!-- COLUMN 2 -->
+    <div class="footer-col">
+      <h4>Learn</h4>
+      <a href="courses-public.html">Programs</a>
+      <a href="master-classes.html">Master Classes</a>
+      <a href="course-library-member.html">Video Library</a>
+      <a href="resources.html">Resources</a>
+    </div>
+
+    <!-- COLUMN 3 -->
+    <div class="footer-col">
+      <h4>Account</h4>
+      <a href="profile.html">Profile</a>
+      <a href="signup.html">Signup</a>
+      <a href="login.html">Login</a>
+      <a href="onboarding-quiz.html">Onboarding</a>
+      <a href="checkout.html">Checkout</a>
+    </div>
+
+    <!-- COLUMN 4 -->
+    <div class="footer-col">
+      <h4>Community & Support</h4>
+      <a href="community.html">Community</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="help-center.html">Help Center</a>
+      <a href="contact-support.html">Contact Support</a>
+      
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <div class="container">
+      © 2026 Wing Girl Method. All Rights Reserved.
+    </div>
+  </div>
+</footer>
+
+    <!-- CHAT WIDGET -->
+    <div class="chat-toggle" onclick="toggleChat()">
+  <i data-lucide="message-circle"></i>
+</div>
+
+    <div class="chat-box" id="chatBox">
+      <div class="chat-header">
+        <strong>Talk to Wing Girl</strong>
+        <span onclick="toggleChat()">✖</span>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="msg bot">Hi 👋 How can we help you today?</div>
+      </div>
+      <div class="chat-footer">
+        <input type="text" id="chatInput" placeholder="Type a message..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <script>
+      lucide.createIcons();
+
+      // Password Toggle
+      const passwordInput = document.getElementById('password');
+      const toggleBtn = document.getElementById('togglePassword');
+
+      toggleBtn.addEventListener('click', () => {
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          toggleBtn.textContent = "🙈";
+        } else {
+          passwordInput.type = "password";
+          toggleBtn.textContent = "👁️";
+        }
+      });
+
+      // SweetAlert Signup
+      function handleSignup() {
+        Swal.fire({
+          icon: 'success',
+          title: 'Account Created Successfully!',
+          text: 'Redirecting you to onboarding...',
+          timer: 1800,
+          showConfirmButton: false
+        }).then(() => {
+          window.location.href = "onboarding-quiz.html";
+        });
+      }
+
+      // Chat Functions
+      function toggleChat() {
+        const box = document.getElementById("chatBox");
+        box.style.display = box.style.display === "flex" ? "none" : "flex";
+      }
+
+      function sendMessage() {
+        const input = document.getElementById("chatInput");
+        const text = input.value.trim();
+        if (text === "") return;
+
+        const chatBody = document.getElementById("chatBody");
+        const userMsg = document.createElement("div");
+        userMsg.className = "msg user";
+        userMsg.innerText = text;
+        chatBody.appendChild(userMsg);
+
+        setTimeout(() => {
+          const botMsg = document.createElement("div");
+          botMsg.className = "msg bot";
+          botMsg.innerText = "Got it 👍 We'll get back to you shortly.";
+          chatBody.appendChild(botMsg);
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 800);
+
+        input.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+    </script>
+<!-- dark theme -->
+<script>
+// ==================== THEME TOGGLE FUNCTIONALITY ====================
+
+// Check for saved theme preference on page load
+function initTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  
+  // Update Lucide icons after theme change
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Toggle theme function
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  // Show toast notification
+  showThemeToast(newTheme === 'dark' ? '🌙 Dark mode activated' : '☀️ Light mode activated');
+  
+  // Refresh Lucide icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Optional: Show temporary notification
+function showThemeToast(message) {
+  const toast = document.createElement('div');
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 13px;
+    z-index: 9999;
+    animation: fadeInOut 2s ease forwards;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  `;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.remove();
+  }, 2000);
+}
+
+// Add keyframes for toast animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  }
+`;
+document.head.appendChild(style);
+
+// Initialize theme on page load
+initTheme();
+
+</script>
+<!-- dark theme end --><!-- nav btn -->
+<script>
+
+document.querySelector('.nav-hamburger')?.addEventListener('click', () => {
+  document.querySelector('.mobile-nav-drawer')?.classList.toggle('open');
+});
+
+</script>
+
+
+  </body>
+</html>
